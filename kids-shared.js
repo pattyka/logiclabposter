@@ -202,12 +202,34 @@ async function handleSubmit(source, emailInput, submitBtn, statusEl) {
     submitBtn.textContent = 'SAVING...';
     statusEl.textContent = '';
 
+    let userLocation = 'Unknown';
+    try {
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+        const lang = navigator.language || '';
+        userLocation = `Timezone: ${tz}, Lang: ${lang}`;
+        
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 1500);
+        const res = await fetch('https://ipapi.co/json/', { signal: controller.signal });
+        clearTimeout(timeoutId);
+        if (res.ok) {
+            const data = await res.json();
+            userLocation = `${data.country_name} (${data.city})`;
+        }
+    } catch(e) {
+        // Fallback to timezone
+    }
+
+    const userDevice = navigator.userAgent;
+
     try {
         const docId = `${source}_${email}`;
         await setDoc(doc(db, 'kids-waitlist', docId), {
             email: email,
             plan: selectedPlan,
             source: source,
+            location: userLocation,
+            device: userDevice,
             lang: document.documentElement.lang || 'en',
             timestamp: serverTimestamp()
         });
