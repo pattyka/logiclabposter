@@ -1613,7 +1613,7 @@
     </div>
 
     <script type="module">
-        import { initKidsPage } from './kids-shared.js';
+        import { initKidsPage, setSelectedPlanUI } from './kids-shared.js';
         initKidsPage('cssabafinal_hu');
 
         // ── Nav logo theme toggle (same as original .logo behavior) ──
@@ -1678,6 +1678,7 @@
             if (typeof gtag === 'function') {
                 gtag('event', 'cta_click', { cta_source: source });
             }
+            setSelectedPlanUI('monthly'); // General CTA counts as monthly intent by default
             openModalDirect();
         }
 

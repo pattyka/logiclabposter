@@ -261,3 +261,19 @@ export function initKidsPage(source) {
     initContinueButton(source);
     initFaq();
 }
+
+export function setSelectedPlanUI(plan) {
+    selectedPlan = plan;
+    const cards = document.querySelectorAll('.pricing-card, .plan-option');
+    cards.forEach(c => {
+        if (c.dataset.plan === plan) {
+            c.classList.add('selected');
+        } else {
+            c.classList.remove('selected');
+        }
+    });
+    const continueBtn = document.getElementById('continue-btn');
+    if (continueBtn) {
+        continueBtn.textContent = selectedPlan === 'free' ? 'PRÓBÁLD KI' : 'INGYENES PRÓBA INDÍTÁSA';
+    }
+}
