@@ -123,7 +123,7 @@ function initPricing() {
             if (typeof gtag === 'function') {
                 gtag('event', 'plan_selected', {
                     plan_type: selectedPlan,
-                    intent_of_payment: selectedPlan !== 'free'
+                    intent_of_payment: true
                 });
             }
         });
@@ -158,7 +158,7 @@ function initContinueButton(source) {
         if (typeof gtag === 'function') {
             gtag('event', 'checkout_click', {
                 plan_type: selectedPlan,
-                intent_of_payment: selectedPlan !== 'free',
+                intent_of_payment: true,
                 source: source
             });
         }
@@ -221,7 +221,7 @@ async function handleSubmit(source, emailInput, submitBtn, statusEl) {
     if (typeof gtag === 'function') {
         gtag('event', 'waitlist_signup', {
             plan_type: selectedPlan,
-            intent_of_payment: selectedPlan !== 'free',
+            intent_of_payment: true,
             email_domain: email.split('@')[1]
         });
     }
