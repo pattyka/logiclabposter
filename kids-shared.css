@@ -12,6 +12,8 @@
     --hover-color: #555555;
     --faint-line: rgba(42, 42, 42, 0.2);
     --faint-bg: rgba(42, 42, 42, 0.05);
+    --highlight-color: #0E7490;
+    --highlight-color-inverse: #2DD4BF;
 }
 
 html.dark-mode, body.dark-mode {
@@ -24,6 +26,8 @@ html.dark-mode, body.dark-mode {
     --hover-color: #BFB59F;
     --faint-line: rgba(239, 227, 199, 0.2);
     --faint-bg: rgba(239, 227, 199, 0.05);
+    --highlight-color: #2DD4BF;
+    --highlight-color-inverse: #0E7490;
 }
 
 * {
@@ -140,6 +144,7 @@ section {
 .statement-large {
     font-size: 5rem;
     font-weight: bold;
+    color: var(--highlight-color);
 }
 
 .statement-small {
@@ -288,11 +293,12 @@ p {
 .step-number {
     font-size: 3rem;
     font-weight: bold;
-    opacity: 0.15;
+    opacity: 0.8;
     white-space: nowrap;
     flex-shrink: 0;
     line-height: 1;
     min-width: 50px;
+    color: var(--highlight-color);
 }
 
 .step-content h3 {
@@ -384,6 +390,7 @@ p {
     font-size: 3rem;
     font-weight: bold;
     margin-bottom: 0.3rem;
+    color: var(--highlight-color);
 }
 
 .pricing-card .price-period {
