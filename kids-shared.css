@@ -12,8 +12,8 @@
     --hover-color: #555555;
     --faint-line: rgba(42, 42, 42, 0.2);
     --faint-bg: rgba(42, 42, 42, 0.05);
-    --highlight-color: #0E7490;
-    --highlight-color-inverse: #2DD4BF;
+    --highlight-color: #48A9A6;
+    --highlight-color-inverse: #A6F4EA;
 }
 
 html.dark-mode, body.dark-mode {
@@ -26,8 +26,8 @@ html.dark-mode, body.dark-mode {
     --hover-color: #BFB59F;
     --faint-line: rgba(239, 227, 199, 0.2);
     --faint-bg: rgba(239, 227, 199, 0.05);
-    --highlight-color: #2DD4BF;
-    --highlight-color-inverse: #0E7490;
+    --highlight-color: #A6F4EA;
+    --highlight-color-inverse: #48A9A6;
 }
 
 * {
