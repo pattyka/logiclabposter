@@ -1,6 +1,6 @@
-# LogicLab Kids | cssabafinal Landing Page Reference
+# LogicLab Kids | Landing Page Reference
 
-> Ez a dokumentum azt tartalmazza, hogy mi történt eddig a `cssabafinal` mappában, mi az oldal célja, milyen technológiák és fájlok vannak használatban, és mit kell tudni egy új AI-nak ahhoz, hogy folytassa a munkát.
+> Ez a dokumentum azt tartalmazza, hogy mi történt eddig a projektben, mi az oldal célja, milyen technológiák és fájlok vannak használatban, és mit kell tudni egy új AI-nak ahhoz, hogy folytassa a munkát.
 
 ---
 
@@ -23,15 +23,17 @@ A **LogicLab Kids** egy edukációs mobil alkalmazás 8–14 éves gyerekeknek, 
 
 ## Fájlstruktúra
 
-```
-cssabafinal/
+```text
+/ (Repository gyökérkönyvtár)
 ├── index.html                  ← Főoldal (landing page)
 ├── kids-shared.css             ← Közös CSS (stílusok, változók, responsive)
-├── kids-shared.js              ← Közös JS (téma váltás, scroll animáció, modal, Firebase waitlist)
-├── firebase-config.js          ← Firebase Firestore konfiguráció (waitlist mentés)
+├── kids-shared.js              ← Közös JS (téma váltás, animációk, modal, Firebase waitlist)
+├── firebase-config.js          ← Firebase Firestore konfiguráció (feliratkozók mentése)
 ├── Logo.png                    ← Világos módú logó
 ├── AppIconDark.png             ← Sötét módú logó / favicon
 ├── references.md               ← EZ A FÁJL (dokumentáció)
+├── ga4-tracking-guide.md       ← Részletes útmutató a Google Analytics eseményekről
+├── FIREBASE_SETUP.md           ← Útmutató az adatbázis beállításához
 └── apple-iphone-15-pro-blue-titanium-mockup-3/   ← iPhone mockup képek
     ├── App normal/             ← 5 kép: főoldal, jutalom aktiválás, profil
     │   ├── Unknown-27-portrait.png   (Főoldal: napi kérdés + jutalom képernyőidő 140p)
@@ -268,6 +270,20 @@ Az oldalt **teljesen átalakítottuk** Superhuman.com-stílusú modern landing p
   - Dark mode is frissítve
 - **Érintett fájlok**: `index.html`
 
+### 16. Repository konszolidáció és végső simítások (2026-04-09)
+
+#### Módosítások:
+- **Root mappa struktúra**: A `cssabafinal` és egyéb almappák törölve lettek, immár minden fájl (HTML, JS, CSS) a repó gyökérkönyvtárában található a GitHub Pages maximális kompatibilitása érdekében.
+- **Saját Firebase Adatbázis**: Beállítottuk a user saját Firebase projektjét (`logiclab-kids-290f5`). A Firestore Security Rules `write-only` módba lett állítva a maximális adatvédelem érdekében. 
+- **Bővített adatgyűjtés**: Amikor egy felhasználó feliratkozik, az email mellett az eszköze (userAgent) és a pontos lokációja (Timezone és IP alapú ország/város) is elmentésre kerül a Firestore DB-be. Beépült egy XSS biztonsági szűrés is az e-mail megjelenítéséhez a felugró ablakban.
+- **Általános "Intent of Payment"**: Minden CTA kattintás generalizált havi (Monthly) szándéknak, vagy egyszerűen fizetési szándéknak (`intent_of_payment = true`) minősül a Google Analytics mérések kiszolgálása miatt, még az Ingyenes csomag is.
+- **Mobil Tap Highlight fix**: Kikapcsolva az iOS Safari idegesítő kék kijelölési villogása gombnyomáskor (`-webkit-tap-highlight-color: transparent`), így sokkal native-alkalmazásosabb az érzet mobiltelefonon.
+- **Záró copy finomhangolások**: 
+  - A `<title>` "Képernyőidő bűntudat nélkül"-re lett módosítva.
+  - A modal popup szövege marketingesebb ("Hamarosan érkezünk!").
+  - A Testimonial szekció átalakult egy erősen probléma-központú, pre-launch empátia blokká, ahol a szülők a gyakori problémákat (telefonos hisztik, iPad reflexek, gondolkodás hiány) fogalmazzák meg, nem magát az appot értékelik. A csillagok eltávolítva.
+- **Érintett fájlok**: `index.html`, `kids-shared.js`, `kids-shared.css`, mappastruktúra
+
 ---
 
 ## Fontos változók (CSS)
@@ -310,7 +326,7 @@ Dark mode automatikusan a böngésző/OS `prefers-color-scheme` beállítása sz
 
 ## Hogyan dolgozz ezzel az oldallal
 
-1. **Csak a `cssabafinal/` mappában dolgozz**, a többi mappa más verziókat tartalmaz
+1. **A gyökérkönyvtárban dolgozz**, nincsenek almappák (kivéve a képeket).
 2. **SOHA ne használj em dash-t (—)** semmilyen fájlban
 3. A stílusokat lehetőleg az `index.html` `<style>` blokkjában tartsd, vagy ha megosztott, `kids-shared.css`-ben
 4. A JS logika a `kids-shared.js`-ben van. Ha módosítod, az összes oldal érintett lehet
