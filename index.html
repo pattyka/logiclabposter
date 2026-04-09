@@ -1,0 +1,1711 @@
+<!DOCTYPE html>
+<html lang="hu" translate="no">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0106KW4DEW"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-0106KW4DEW');
+    </script>
+    <title>LogicLab Kids | Gondolkodj mélyebben</title>
+    <link rel="icon" href="AppIconDark.png" type="image/x-icon">
+    <link rel="apple-touch-icon" href="AppIconDark.png">
+    <link rel="stylesheet" href="kids-shared.css">
+    <meta name="description" content="Valahányszor a gyermeked az AI-tól kéri a választ, az agyában egy izom gyengül. A LogicLab Kids újraépíti a kritikus gondolkodást. Mielőtt túl késő.">
+    <style>
+        /* ════════════════════════════════════════════
+           LANDING PAGE
+           ════════════════════════════════════════════ */
+
+        /* ── Sticky Nav ── */
+        .lp-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 3rem;
+            background: rgba(239, 227, 199, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--faint-line);
+            transition: background 0.5s ease, border-color 0.5s ease, opacity 0.4s ease, transform 0.4s ease;
+            opacity: 0;
+            transform: translateY(-100%);
+        }
+
+        .lp-nav.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        body.dark-mode .lp-nav {
+            background: rgba(42, 42, 42, 0.85);
+        }
+
+        .lp-nav-logo {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+            border-radius: 10px;
+            overflow: hidden;
+            object-fit: cover;
+        }
+
+        .lp-nav-logo:hover {
+            opacity: 0.7;
+        }
+
+        .lp-nav-brand {
+            font-size: 0.8rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            opacity: 0.5;
+            margin-left: 0.8rem;
+        }
+
+        .lp-nav-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .lp-nav-cta {
+            background: var(--text-color);
+            color: var(--bg-color);
+            border: 1px solid var(--text-color);
+            padding: 0.6rem 1.8rem;
+            font-family: var(--font-main);
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease, opacity 0.4s ease, transform 0.4s ease;
+            text-decoration: none;
+            border-radius: 8px;
+            opacity: 0;
+            transform: translateY(-10px);
+            pointer-events: none;
+        }
+
+        .lp-nav-cta.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+
+        .lp-nav-cta:hover {
+            background: transparent;
+            color: var(--text-color);
+        }
+
+        /* ── Hero Section ── */
+        .lp-hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lp-hero-badge {
+            font-size: 0.75rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            opacity: 0;
+            margin-bottom: 2rem;
+            animation: lpFadeUp 1s ease-out 0.2s forwards;
+        }
+
+        .lp-hero h1 {
+            font-size: clamp(2.8rem, 6vw, 5.5rem);
+            font-weight: normal;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            max-width: 900px;
+            opacity: 0;
+            animation: lpFadeUp 1s ease-out 0.4s forwards;
+        }
+
+        .lp-hero h1 strong {
+            font-weight: bold;
+        }
+
+        .lp-hero-sub {
+            font-size: clamp(1rem, 1.5vw, 1.3rem);
+            max-width: 550px;
+            opacity: 0;
+            font-family: Georgia, serif;
+            line-height: 1.6;
+            margin-top: 2rem;
+            animation: lpFadeUp 1s ease-out 0.6s forwards;
+        }
+
+        .lp-hero-cta-row {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-top: 2.5rem;
+            opacity: 0;
+            animation: lpFadeUp 1s ease-out 0.8s forwards;
+        }
+
+        .lp-btn-primary {
+            background: var(--text-color);
+            color: var(--bg-color);
+            border: 1px solid var(--text-color);
+            padding: 1rem 3rem;
+            font-family: var(--font-main);
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border-radius: 10px;
+        }
+
+        .lp-btn-primary:hover {
+            background: transparent;
+            color: var(--text-color);
+        }
+
+        .lp-hero-hint {
+            font-size: 0.75rem;
+            opacity: 0.35;
+            letter-spacing: 0.1em;
+        }
+
+        /* ── Hero Phones ── */
+        .lp-hero-phones {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 2rem;
+            margin-top: 4rem;
+            opacity: 0;
+            animation: lpFadeUp 1.2s ease-out 1s forwards;
+            perspective: 1200px;
+        }
+
+        .lp-hero-phones img {
+            width: 220px;
+            height: auto;
+            transition: transform 0.6s cubic-bezier(.25,.46,.45,.94);
+        }
+
+        .lp-hero-phones img:nth-child(1) { transform: rotate(-6deg) translateY(20px); }
+        .lp-hero-phones img:nth-child(2) { transform: translateY(-10px) scale(1.05); z-index: 2; }
+        .lp-hero-phones img:nth-child(3) { transform: rotate(6deg) translateY(20px); }
+
+        .lp-hero-phones img:hover {
+            transform: translateY(-20px) scale(1.08) !important;
+            z-index: 10;
+        }
+
+        /* ── Trust Bar ── */
+        .lp-trust {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--faint-line);
+            border-bottom: 1px solid var(--faint-line);
+        }
+
+        .lp-trust span {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            opacity: 0.55;
+        }
+
+        body.dark-mode .lp-trust span {
+            opacity: 0.6;
+        }
+
+        /* ── Feature Showcase Sections ── */
+        .lp-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+            border-bottom: 1px solid var(--faint-line);
+        }
+
+        .lp-showcase.reverse {
+            direction: rtl;
+        }
+
+        .lp-showcase.reverse > * {
+            direction: ltr;
+        }
+
+        .lp-showcase-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 6rem 5rem;
+            gap: 1.5rem;
+        }
+
+        .lp-showcase-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            opacity: 0.4;
+        }
+
+        .lp-showcase-text h2 {
+            font-size: clamp(2rem, 3.5vw, 3.2rem);
+            font-weight: normal;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+
+        .lp-showcase-text h2 strong {
+            font-weight: bold;
+        }
+
+        .lp-showcase-text p {
+            font-size: 1.15rem;
+            opacity: 0.65;
+            line-height: 1.6;
+            font-family: Georgia, serif;
+            max-width: 480px;
+        }
+
+        .lp-showcase-features {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .lp-showcase-features li {
+            list-style: none;
+            font-size: 0.95rem;
+            padding-left: 1.5rem;
+            position: relative;
+            opacity: 0.7;
+            line-height: 1.5;
+        }
+
+        .lp-showcase-features li::before {
+            content: '·';
+            position: absolute;
+            left: 0.4rem;
+            opacity: 0.5;
+            font-weight: bold;
+        }
+
+        .lp-showcase-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem;
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            margin: 2rem;
+        }
+
+        body.dark-mode .lp-showcase-visual {
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        body:not(.dark-mode) .lp-showcase-visual {
+            background: rgba(42, 42, 42, 0.03);
+        }
+
+        .lp-showcase-visual img {
+            width: 280px;
+            height: auto;
+            transition: transform 0.5s cubic-bezier(.25,.46,.45,.94);
+        }
+
+        .lp-showcase-visual img:hover {
+            transform: scale(1.03) translateY(-8px);
+        }
+
+        .lp-showcase-visual .lp-phone-pair {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .lp-showcase-visual .lp-phone-pair img {
+            width: 220px;
+        }
+
+        .lp-showcase-visual .lp-phone-pair img:first-child {
+            transform: translateY(30px);
+        }
+
+        .lp-showcase-visual .lp-phone-pair img:hover {
+            transform: scale(1.04) translateY(-5px);
+            z-index: 2;
+        }
+
+        /* ── Big Statement (Interstitial) ── */
+        .lp-statement {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 6rem 2rem;
+            border-bottom: 1px solid var(--faint-line);
+        }
+
+        .lp-statement h2 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: normal;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            max-width: 800px;
+        }
+
+        .lp-statement h2 strong {
+            font-weight: bold;
+        }
+
+        .lp-statement p {
+            font-size: 1.2rem;
+            opacity: 0.6;
+            font-family: Georgia, serif;
+            line-height: 1.6;
+            max-width: 550px;
+            margin-top: 2rem;
+        }
+
+        /* ── Three Column Features ── */
+        .lp-features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            border-bottom: 1px solid var(--faint-line);
+        }
+
+        .lp-feature-col {
+            padding: 4rem 3rem;
+            border-right: 1px solid var(--faint-line);
+            text-align: center;
+        }
+
+        .lp-feature-col:last-child {
+            border-right: none;
+        }
+
+        .lp-feature-col .feature-number {
+            font-size: 3rem;
+            font-weight: bold;
+            opacity: 0.1;
+            margin-bottom: 1.5rem;
+            line-height: 1;
+        }
+
+        .lp-feature-col h3 {
+            font-size: 1.2rem;
+            font-weight: normal;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+
+        .lp-feature-col p {
+            font-size: 0.95rem;
+            opacity: 0.6;
+            line-height: 1.6;
+            font-family: Georgia, serif;
+        }
+
+        /* ── Data / Stats Row ── */
+        .lp-stats {
+            display: flex;
+            justify-content: center;
+            gap: 6rem;
+            padding: 5rem 2rem;
+            border-bottom: 1px solid var(--faint-line);
+            flex-wrap: wrap;
+        }
+
+        .lp-stat {
+            text-align: center;
+        }
+
+        .lp-stat-number {
+            font-size: 4rem;
+            font-weight: bold;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .lp-stat-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            opacity: 0.4;
+        }
+
+        /* ── Testimonials ── */
+        .lp-testimonials {
+            padding: 6rem 2rem;
+            border-bottom: 1px solid var(--faint-line);
+        }
+
+        .lp-testimonials-label {
+            text-align: center;
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            opacity: 0.4;
+            margin-bottom: 3rem;
+        }
+
+        .lp-testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .lp-testimonial {
+            padding: 2.5rem 2rem;
+            border: 1px solid var(--faint-line);
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            border-radius: 10px;
+        }
+
+        .lp-testimonial-stars {
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+            opacity: 0.5;
+        }
+
+        .lp-testimonial-text {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            font-family: Georgia, serif;
+            opacity: 0.75;
+            flex: 1;
+        }
+
+        .lp-testimonial-author {
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0.4;
+        }
+
+        /* ── One-page Checkout (bottom) ── */
+        .onepage-hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding: 0;
+            border-top: 1px solid var(--faint-line);
+        }
+
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 6rem 5rem;
+            gap: 2rem;
+        }
+
+        .hero-left h1 {
+            font-size: 3.2rem;
+            font-weight: normal;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-left h1 strong {
+            font-weight: bold;
+        }
+
+        .hero-left .subline {
+            font-size: 1.2rem;
+            opacity: 0.6;
+            font-family: Georgia, serif;
+            line-height: 1.6;
+            max-width: 480px;
+        }
+
+        .hero-left .micro-features {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        .hero-left .micro-features span {
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            opacity: 0.35;
+        }
+
+        /* ── Right side: checkout panel ── */
+        .hero-right {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem 3rem;
+            border-left: 1px solid var(--faint-line);
+        }
+
+        .checkout-panel {
+            width: 100%;
+            max-width: 360px;
+        }
+
+        .checkout-panel h2 {
+            font-size: 0.85rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            opacity: 0.5;
+            font-weight: normal;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .plan-option {
+            border: 1px solid var(--faint-line);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            border-radius: 10px;
+        }
+
+        .plan-option:hover {
+            background: var(--faint-bg);
+        }
+
+        .plan-option.selected {
+            border-color: var(--text-color);
+        }
+
+        .plan-option.selected::before {
+            content: '';
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--text-color);
+        }
+
+        .plan-option .plan-info h3 {
+            font-size: 1rem;
+            font-weight: normal;
+            margin-bottom: 0.2rem;
+        }
+
+        .plan-option .plan-info p {
+            font-size: 0.8rem;
+            opacity: 0.45;
+        }
+
+        .plan-option .plan-price {
+            font-size: 1.4rem;
+            font-weight: bold;
+            text-align: right;
+        }
+
+        .plan-option .plan-price span {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: normal;
+            opacity: 0.45;
+        }
+
+        .plan-badge {
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: 1px solid var(--text-color);
+            padding: 0.15rem 0.5rem;
+            opacity: 0.6;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+            border-radius: 4px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: var(--text-color);
+            color: var(--bg-color);
+            border: 1px solid var(--text-color);
+            padding: 1.1rem;
+            font-family: var(--font-main);
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            margin-top: 1.5rem;
+            border-radius: 10px;
+        }
+
+        .checkout-btn:hover {
+            background: transparent;
+            color: var(--text-color);
+        }
+
+        .checkout-fine-print {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.7rem;
+            opacity: 0.3;
+            line-height: 1.5;
+        }
+
+        /* ── Bottom info strip ── */
+        .info-strip {
+            padding: 5rem 5rem 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 3rem;
+            border-top: 1px solid var(--faint-line);
+        }
+
+        .info-block h3 {
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            opacity: 0.4;
+            font-weight: normal;
+            margin-bottom: 1rem;
+        }
+
+        .info-block p {
+            font-size: 1rem;
+            line-height: 1.6;
+            opacity: 0.7;
+            font-family: Georgia, serif;
+        }
+
+        .onepage-footer {
+            padding: 2rem 5rem;
+            font-size: 0.85rem;
+            opacity: 0.4;
+            border-top: 1px solid var(--faint-line);
+        }
+
+        .onepage-footer a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* ── Mobile Bottom CTA Bar (hidden on desktop) ── */
+        .lp-mobile-bottom-bar {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 0.8rem 1.5rem;
+            background: rgba(239, 227, 199, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid var(--faint-line);
+            justify-content: center;
+            align-items: center;
+            transition: background 0.5s ease, opacity 0.4s ease, transform 0.4s ease;
+            opacity: 0;
+            transform: translateY(100%);
+        }
+
+        .lp-mobile-bottom-bar.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        body.dark-mode .lp-mobile-bottom-bar {
+            background: rgba(42, 42, 42, 0.92);
+        }
+
+        .lp-mobile-bottom-bar .lp-mobile-cta {
+            width: 100%;
+            background: var(--text-color);
+            color: var(--bg-color);
+            border: 1px solid var(--text-color);
+            padding: 0.85rem;
+            font-family: var(--font-main);
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        /* ════════════════════════════════════════════
+           ANIMATIONS
+           ════════════════════════════════════════════ */
+
+        @keyframes lpFadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .lp-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .lp-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered children reveal */
+        .lp-reveal-children > * {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .lp-reveal-children.visible > *:nth-child(1) { transition-delay: 0s; opacity: 1; transform: translateY(0); }
+        .lp-reveal-children.visible > *:nth-child(2) { transition-delay: 0.1s; opacity: 1; transform: translateY(0); }
+        .lp-reveal-children.visible > *:nth-child(3) { transition-delay: 0.2s; opacity: 1; transform: translateY(0); }
+        .lp-reveal-children.visible > *:nth-child(4) { transition-delay: 0.3s; opacity: 1; transform: translateY(0); }
+        .lp-reveal-children.visible > *:nth-child(5) { transition-delay: 0.4s; opacity: 1; transform: translateY(0); }
+        .lp-reveal-children.visible > *:nth-child(6) { transition-delay: 0.5s; opacity: 1; transform: translateY(0); }
+
+        /* ════════════════════════════════════════════
+           RESPONSIVE
+           ════════════════════════════════════════════ */
+
+        /* ── Tablet (max 900px) ── */
+        @media (max-width: 900px) {
+            .lp-nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .lp-hero {
+                padding: 7rem 2rem 3rem;
+                min-height: auto;
+            }
+
+            .lp-hero h1 {
+                font-size: clamp(2rem, 5vw, 3.5rem);
+            }
+
+            .lp-hero-sub {
+                font-size: 1rem;
+                margin-top: 1.5rem;
+            }
+
+            .lp-hero-phones {
+                gap: 0.8rem;
+                margin-top: 3rem;
+            }
+
+            .lp-hero-phones img {
+                width: 130px;
+            }
+
+            .lp-showcase {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .lp-showcase.reverse {
+                direction: ltr;
+            }
+
+            .lp-showcase-text {
+                padding: 3rem 2rem 2rem;
+                gap: 1rem;
+            }
+
+            .lp-showcase-text h2 {
+                font-size: clamp(1.6rem, 4vw, 2.4rem);
+            }
+
+            .lp-showcase-text p {
+                font-size: 1rem;
+            }
+
+            .lp-showcase-visual {
+                padding: 2.5rem 2rem;
+            }
+
+            .lp-showcase-visual img {
+                width: 200px;
+            }
+
+            .lp-showcase-visual .lp-phone-pair {
+                gap: 1rem;
+            }
+
+            .lp-showcase-visual .lp-phone-pair img {
+                width: 150px;
+            }
+
+            .lp-statement {
+                min-height: auto;
+                padding: 4rem 2rem;
+            }
+
+            .lp-statement h2 {
+                font-size: clamp(1.8rem, 4.5vw, 3rem);
+            }
+
+            .lp-statement p {
+                font-size: 1rem;
+            }
+
+            .lp-features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lp-feature-col {
+                border-right: none;
+                border-bottom: 1px solid var(--faint-line);
+                padding: 3rem 2rem;
+            }
+
+            .lp-feature-col:last-child {
+                border-bottom: none;
+            }
+
+            .lp-stats {
+                gap: 2.5rem;
+                padding: 3.5rem 2rem;
+            }
+
+            .lp-stat-number {
+                font-size: 2.8rem;
+            }
+
+            .lp-testimonials {
+                padding: 4rem 2rem;
+            }
+
+            .lp-testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .lp-testimonial {
+                padding: 2rem 1.5rem;
+            }
+
+            .onepage-hero {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .hero-left {
+                padding: 3.5rem 2rem 2.5rem;
+                gap: 1.5rem;
+            }
+
+            .hero-left h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-left .subline {
+                font-size: 1rem;
+            }
+
+            .hero-right {
+                border-left: none;
+                border-top: 1px solid var(--faint-line);
+                padding: 2.5rem 2rem;
+            }
+
+            .info-strip {
+                grid-template-columns: 1fr;
+                padding: 3rem 2rem;
+                gap: 2rem;
+            }
+
+            .onepage-footer {
+                padding: 2rem;
+            }
+        }
+
+        /* ── Phone (max 600px) ── */
+        @media (max-width: 600px) {
+            .lp-nav {
+                padding: 0.8rem 1rem;
+            }
+
+            .lp-nav-brand {
+                font-size: 0.65rem;
+                letter-spacing: 0.2em;
+            }
+
+            .lp-nav-cta {
+                display: none;
+            }
+
+            .lp-mobile-bottom-bar {
+                display: flex;
+            }
+
+            body {
+                padding-bottom: 72px;
+            }
+
+            .lp-hero {
+                padding: 6rem 1.5rem 2.5rem;
+            }
+
+            .lp-hero-badge {
+                font-size: 0.6rem;
+                letter-spacing: 0.25em;
+                margin-bottom: 1.2rem;
+            }
+
+            .lp-hero h1 {
+                font-size: 1.8rem;
+                letter-spacing: -0.02em;
+            }
+
+            .lp-hero-sub {
+                font-size: 0.92rem;
+                margin-top: 1.2rem;
+                line-height: 1.5;
+            }
+
+            .lp-hero-cta-row {
+                flex-direction: column;
+                margin-top: 1.8rem;
+                gap: 0.8rem;
+            }
+
+            .lp-btn-primary {
+                padding: 0.9rem 2.5rem;
+                font-size: 0.9rem;
+                width: 100%;
+                text-align: center;
+            }
+
+            .lp-hero-phones {
+                gap: 0.5rem;
+                margin-top: 2.5rem;
+            }
+
+            .lp-hero-phones img {
+                width: 100px;
+            }
+
+            .lp-hero-phones img:nth-child(1) { transform: rotate(-4deg) translateY(12px); }
+            .lp-hero-phones img:nth-child(2) { transform: translateY(-6px) scale(1.03); }
+            .lp-hero-phones img:nth-child(3) { transform: rotate(4deg) translateY(12px); }
+
+            .lp-trust {
+                gap: 1.2rem;
+                padding: 2rem 1.5rem;
+            }
+
+            .lp-trust span {
+                font-size: 0.6rem;
+                letter-spacing: 0.1em;
+            }
+
+            .lp-showcase-text {
+                padding: 2.5rem 1.5rem 1.5rem;
+                gap: 0.8rem;
+            }
+
+            .lp-showcase-label {
+                font-size: 0.65rem;
+            }
+
+            .lp-showcase-text h2 {
+                font-size: 1.5rem;
+            }
+
+            .lp-showcase-text p {
+                font-size: 0.92rem;
+                line-height: 1.5;
+            }
+
+            .lp-showcase-features {
+                gap: 0.5rem;
+            }
+
+            .lp-showcase-features li {
+                font-size: 0.85rem;
+                padding-left: 1.2rem;
+            }
+
+            .lp-showcase-visual {
+                padding: 2rem 1.5rem;
+            }
+
+            .lp-showcase-visual img {
+                width: 180px;
+            }
+
+            .lp-showcase-visual .lp-phone-pair {
+                gap: 0.6rem;
+            }
+
+            .lp-showcase-visual .lp-phone-pair img {
+                width: 130px;
+            }
+
+            .lp-showcase-visual .lp-phone-pair img:first-child {
+                transform: translateY(15px);
+            }
+
+            .lp-statement {
+                padding: 3rem 1.5rem;
+                min-height: auto;
+            }
+
+            .lp-statement h2 {
+                font-size: 1.6rem;
+            }
+
+            .lp-statement p {
+                font-size: 0.92rem;
+                margin-top: 1.2rem;
+            }
+
+            .lp-feature-col {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .lp-feature-col .feature-number {
+                font-size: 2.2rem;
+                margin-bottom: 1rem;
+            }
+
+            .lp-feature-col h3 {
+                font-size: 1.05rem;
+            }
+
+            .lp-feature-col p {
+                font-size: 0.88rem;
+            }
+
+            .lp-stats {
+                gap: 2rem;
+                padding: 3rem 1.5rem;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .lp-stat-number {
+                font-size: 2.4rem;
+            }
+
+            .lp-stat-label {
+                font-size: 0.65rem;
+            }
+
+            .lp-testimonials {
+                padding: 3rem 1.5rem;
+            }
+
+            .lp-testimonials-label {
+                margin-bottom: 2rem;
+                font-size: 0.65rem;
+            }
+
+            .lp-testimonials-grid {
+                gap: 1rem;
+            }
+
+            .lp-testimonial {
+                padding: 1.8rem 1.5rem;
+                gap: 1rem;
+            }
+
+            .lp-testimonial-text {
+                font-size: 0.92rem;
+                line-height: 1.5;
+            }
+
+            .lp-testimonial-author {
+                font-size: 0.7rem;
+            }
+
+            .hero-left {
+                padding: 3rem 1.5rem 2rem;
+            }
+
+            .hero-left h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-left .subline {
+                font-size: 0.92rem;
+            }
+
+            .hero-left .micro-features {
+                gap: 1rem;
+            }
+
+            .hero-left .micro-features span {
+                font-size: 0.65rem;
+            }
+
+            .hero-right {
+                padding: 2rem 1.5rem;
+            }
+
+            .checkout-panel h2 {
+                font-size: 0.75rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .plan-option {
+                padding: 1.2rem;
+            }
+
+            .plan-option .plan-info h3 {
+                font-size: 0.9rem;
+            }
+
+            .plan-option .plan-price {
+                font-size: 1.2rem;
+            }
+
+            .checkout-btn {
+                padding: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .info-strip {
+                padding: 2.5rem 1.5rem;
+                gap: 1.8rem;
+            }
+
+            .info-block h3 {
+                font-size: 0.7rem;
+                margin-bottom: 0.6rem;
+            }
+
+            .info-block p {
+                font-size: 0.9rem;
+            }
+
+            .onepage-footer {
+                padding: 1.5rem;
+                font-size: 0.75rem;
+            }
+        }
+
+        /* ── Small Phone (max 400px) ── */
+        @media (max-width: 400px) {
+            .lp-hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .lp-hero-phones img {
+                width: 85px;
+            }
+
+            .lp-showcase-visual img {
+                width: 160px;
+            }
+
+            .lp-showcase-visual .lp-phone-pair img {
+                width: 110px;
+            }
+
+            .lp-statement h2 {
+                font-size: 1.35rem;
+            }
+
+            .lp-stat-number {
+                font-size: 2rem;
+            }
+
+            .hero-left h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ═══ Sticky Navigation ═══ -->
+    <nav class="lp-nav">
+        <div class="lp-nav-left">
+            <img src="Logo.png" alt="LogicLab" class="lp-nav-logo" id="nav-logo">
+            <span class="lp-nav-brand">LogicLab Kids</span>
+        </div>
+        <a href="javascript:void(0)" class="lp-nav-cta" id="nav-cta">Próbáld ki</a>
+    </nav>
+
+    <!-- ═══ Hero ═══ -->
+    <section class="lp-hero">
+        <span class="lp-hero-badge">Kritikus gondolkodás 7–14 éveseknek</span>
+
+        <h1>Az AI <strong>kényelmessé teszi a gondolkodást.</strong><br>Mi újra formába hozzuk.</h1>
+
+        <p class="lp-hero-sub">A LogicLab Kids visszaadja azokat a kognitív képességeket, amelyeket az algoritmusok leépítenek. Napi 15 perc tudatos edzés, játékos formában.</p>
+
+        <div class="lp-hero-cta-row">
+            <a href="javascript:void(0)" class="lp-btn-primary" id="hero-cta">Ingyenes próba</a>
+            <span class="lp-hero-hint">7 nap ingyen · bármikor lemondható</span>
+        </div>
+
+        <div class="lp-hero-phones">
+            <img src="apple-iphone-15-pro-blue-titanium-mockup-3/App normal/Unknown-48-portrait.png" alt="LogicLab főoldal" loading="lazy">
+            <img src="apple-iphone-15-pro-blue-titanium-mockup-3/App normal/Unknown-28-portrait.png" alt="LogicLab képernyőidő" loading="lazy">
+            <img src="apple-iphone-15-pro-blue-titanium-mockup-3/App normal/Unknown-37-portrait.png" alt="LogicLab profil" loading="lazy">
+        </div>
+    </section>
+
+    <!-- ═══ Trust Bar ═══ -->
+    <div class="lp-trust lp-reveal">
+        <span>MIT kutatás alapján</span>
+        <span>Napi 15 perc</span>
+        <span>7–14 éves kor</span>
+        <span>Szülői jelentések</span>
+        <span>AI vita mód</span>
+    </div>
+
+    <!-- ═══ Showcase 1: KILLER FEATURE - Képernyőidő jutalom ═══ -->
+    <section class="lp-showcase">
+        <div class="lp-showcase-text lp-reveal">
+            <span class="lp-showcase-label">Képernyőidő jutalomként</span>
+            <h2>Vége a képernyőidő körüli <strong>csatáknak</strong></h2>
+            <p>A gyermeked logikai feladatok megoldásával „váltja meg” a hozzáférést a kedvenc alkalmazásaihoz. TikTok, YouTube vagy játékok: a szórakozás mostantól az agytorna jutalma. Nem te vagy a szigorú szülő: a rendszer ösztönzi őt arra, hogy előbb gondolkodjon, és csak utána kapcsolódjon ki.</p>
+            <ul class="lp-showcase-features">
+                <li>Jutalom alapú haladás: Minden megoldott feladatért azonnali képernyőidő jár</li>
+                <li>Testreszabott kontroll: Te döntöd el, mely appok eléréséhez kelljen mentális edzés</li>
+                <li>Biztonság: A fontos alkalmazások (hívás, üzenetek, térkép) mindig elérhetők</li>
+                <li>Belső motiváció: Nincs több büntetés, a gyermek magától választja a fejlődést a cél érdekében</li>
+            </ul>
+        </div>
+        <div class="lp-showcase-visual lp-reveal">
+            <img src="apple-iphone-15-pro-blue-titanium-mockup-3/App normal/Unknown-28-portrait.png" alt="Jutalom képernyőidő aktiválás">
+        </div>
+    </section>
+
+    <!-- ═══ Statement ═══ -->
+    <section class="lp-statement">
+        <h2 class="lp-reveal">Ne vedd el a telefont.<br><strong>Adj helyette motivációt.</strong></h2>
+        <p class="lp-reveal">A tiltás önmagában nem megoldás, a képernyőmegvonás pedig csak vitákhoz vezet. A LogicLab Kids más utat kínál: a képernyőidőt jutalommá, a gondolkodást pedig élménnyé teszi.</p>
+    </section>
+
+    <!-- ═══ Showcase 2: Napi kihívás ═══ -->
+    <section class="lp-showcase reverse">
+        <div class="lp-showcase-text lp-reveal">
+            <span class="lp-showcase-label">Napi kérdés</span>
+            <h2>Gondolkodás, ami <strong>napi rutinná</strong> válik</h2>
+            <p>Minden nap egy új kihívás, ami nem a kész választ, hanem a megoldáshoz vezető utat keresi. Az AI nálunk nem megoldja a feladatot, hanem rávezet a logikus következtetésre.</p>
+            <ul class="lp-showcase-features">
+                <li>Személyre szabott napi kihívások</li>
+                <li>Jutalom képernyőidő a sikerért</li>
+                <li>Sorozat rendszer a motivációért</li>
+            </ul>
+        </div>
+        <div class="lp-showcase-visual lp-reveal">
+            <img src="apple-iphone-15-pro-blue-titanium-mockup-3/App normal/Unknown-27-portrait.png" alt="Napi kérdés a LogicLab Kidsben">
+        </div>
+    </section>
+
+    <!-- ═══ Showcase 3: Nyomozás ═══ -->
+    <section class="lp-showcase">
+        <div class="lp-showcase-text lp-reveal">
+            <span class="lp-showcase-label">Sherlock kihívás</span>
+            <h2>Élesítsd az elmét <strong>nyomozással</strong></h2>
+            <p>Interaktív detektívtörténetek, ahol a gyermekednek bizonyítékokat kell elemeznie és gyanúsítottakat kizárnia. Valódi logika, valódi izgalom.</p>
+            <ul class="lp-showcase-features">
+                <li>Valódi logikai fejtörők</li>
+                <li>Nyomgyűjtés és következtetés</li>
+                <li>Pontozás és visszajelzés</li>
+            </ul>
+        </div>
+        <div class="lp-showcase-visual lp-reveal">
+            <div class="lp-phone-pair">
+                <img src="apple-iphone-15-pro-blue-titanium-mockup-3/Course/Unknown-30-portrait.png" alt="Nyomozás kihívás" loading="lazy">
+                <img src="apple-iphone-15-pro-blue-titanium-mockup-3/Course/Unknown-35-portrait.png" alt="Gyanúsítottak" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ Statement ═══ -->
+    <section class="lp-statement">
+        <h2 class="lp-reveal">Nem kevesebb AI kell.<br><strong>Tudni kell, hogyan gondolkodj.</strong></h2>
+        <p class="lp-reveal">Az MIT kutatói kimutatták, hogy az AI-t használó diákok mérhetően gyengébb kritikus gondolkodást mutatnak. A LogicLab Kids pontosan ezt fordítja meg.</p>
+    </section>
+
+    <!-- ═══ Three Column Features ═══ -->
+    <div class="lp-features-grid lp-reveal-children">
+        <div class="lp-feature-col">
+            <div class="feature-number">I</div>
+            <h3>Napi 15 perc mentális tréning</h3>
+            <p>Strukturált leckék, amelyek a kritikus gondolkodást fejlesztik. Ez nem dopamincsapda, hanem valódi fejlődés.</p>
+        </div>
+        <div class="lp-feature-col">
+            <div class="feature-number">II</div>
+            <h3>AI Vitapartner</h3>
+            <p>Intelligens ellenfelek, akik visszakérdeznek, rámutatnak az érvelési hibákra és bizonyítékokat követelnek.</p>
+        </div>
+        <div class="lp-feature-col">
+            <div class="feature-number">III</div>
+            <h3>Tudatos tartalomfogyasztás</h3>
+            <p>Megtanítja felismerni a manipulációt a reklámokban és az AI által generált álhírekben.</p>
+        </div>
+    </div>
+
+    <!-- ═══ Showcase 4: Profil & Eredmények ═══ -->
+    <section class="lp-showcase reverse">
+        <div class="lp-showcase-text lp-reveal">
+            <span class="lp-showcase-label">Fejlődés követése</span>
+            <h2>Látható <strong>eredmények,</strong> valódi fejlődés</h2>
+            <p>Heti jelentések a gondolkodás fejlődéséről. Figyeld meg, ahogy a „nem tudom"-ból „szerintem ez azért van, mert..." lesz.</p>
+            <ul class="lp-showcase-features">
+                <li>Szintek és eredmények rendszere</li>
+                <li>Megoldott feladatok statisztikája</li>
+                <li>Szülői zóna hozzáféréssel</li>
+            </ul>
+        </div>
+        <div class="lp-showcase-visual lp-reveal">
+            <div class="lp-phone-pair">
+                <img src="apple-iphone-15-pro-blue-titanium-mockup-3/App normal/Unknown-39-portrait.png" alt="Profil és eredmények" loading="lazy">
+                <img src="apple-iphone-15-pro-blue-titanium-mockup-3/Course/Unknown-38-portrait.png" alt="Statisztikák" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ Stats ═══ -->
+    <div class="lp-stats lp-reveal-children">
+        <div class="lp-stat">
+            <div class="lp-stat-number">15</div>
+            <div class="lp-stat-label">perc naponta</div>
+        </div>
+        <div class="lp-stat">
+            <div class="lp-stat-number">7–14</div>
+            <div class="lp-stat-label">éves korosztály</div>
+        </div>
+        <div class="lp-stat">
+            <div class="lp-stat-number">4</div>
+            <div class="lp-stat-label">kognitív terület</div>
+        </div>
+        <div class="lp-stat">
+            <div class="lp-stat-number">∞</div>
+            <div class="lp-stat-label">kihívás</div>
+        </div>
+    </div>
+
+    <!-- ═══ Showcase 5: Ügy lezárva ═══ -->
+    <section class="lp-showcase">
+        <div class="lp-showcase-text lp-reveal">
+            <span class="lp-showcase-label">Kurzusok</span>
+            <h2>Ügy lezárva. <strong>+50 pont.</strong></h2>
+            <p>Minden megoldott rejtély megerősíti a gondolkodást és visszajelzést ad. A siker magabiztossá tesz, a kudarc tanít.</p>
+            <ul class="lp-showcase-features">
+                <li>Azonnali, logikus visszajelzés</li>
+                <li>Pontgyűjtés és szintlépés</li>
+                <li>Újrajátszható kihívások</li>
+            </ul>
+        </div>
+        <div class="lp-showcase-visual lp-reveal">
+            <div class="lp-phone-pair">
+                <img src="apple-iphone-15-pro-blue-titanium-mockup-3/Course/Unknown-36-portrait.png" alt="Ügy lezárva eredmény" loading="lazy">
+                <img src="apple-iphone-15-pro-blue-titanium-mockup-3/Course/Unknown-44-portrait.png" alt="Lecke folyamat" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ Final Statement ═══ -->
+    <section class="lp-statement">
+        <h2 class="lp-reveal">Az elme olyan, mint egy izom.<br><strong>Ne hagyd ellustulni.</strong></h2>
+        <p class="lp-reveal">Nem tilthatod ki az AI-t a gyermeked életéből. De felkészítheted arra, hogy ő irányítsa az AI-t, és ne fordítva.</p>
+    </section>
+
+    <!-- ═══ Parent Testimonials ═══ -->
+    <div class="lp-testimonials lp-reveal">
+        <div class="lp-testimonials-label">Szülők mondták</div>
+        <div class="lp-testimonials-grid lp-reveal-children">
+            <div class="lp-testimonial">
+                <div class="lp-testimonial-stars">★★★★★</div>
+                <div class="lp-testimonial-text">„Amióta a LogicLab-ot használja, a fiam magától ül le gondolkodni ahelyett, hogy egyből a TikTokot pörgetné. Megszűnt a napi feszültség a telefon miatt."</div>
+                <div class="lp-testimonial-author">Kriszta, 2 gyermek anyukája</div>
+            </div>
+            <div class="lp-testimonial">
+                <div class="lp-testimonial-stars">★★★★★</div>
+                <div class="lp-testimonial-text">„Végre nem én vagyok a „rossz zsaru”. A lányom megértette az egyensúlyt: előbb a munka, aztán a szórakozás. Ez teljesen átalakította a reggeleinket."</div>
+                <div class="lp-testimonial-author">Gergő, 10 éves lány apukája</div>
+            </div>
+            <div class="lp-testimonial">
+                <div class="lp-testimonial-stars">★★★★★</div>
+                <div class="lp-testimonial-text">„A Sherlock kihívásokat imádja. Tegnap vacsoránál elkezdte elmagyarázni, hogyan jutott a megoldásra. Ilyet még sosem csinált korábban. 15 perc naponta, és látom a különbséget."</div>
+                <div class="lp-testimonial-author">Réka, 8 és 12 éves gyermekek anyukája</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- Trial / Checkout section                              -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+
+    <div class="onepage-hero" id="pricing">
+        <!-- Left: copy -->
+        <div class="hero-left">
+            <h1>Az AI <strong>butítja a gyermeked.</strong></h1>
+
+            <p class="subline">Valahányszor megkérdezi a ChatGPT-t, az agyában egy izom gyengül. Az AI tiltása nem működik. A LogicLab Kids azokat a gondolkodási képességeket edzi, amelyeket az AI leépít. Napi 15 percben.</p>
+
+            <div class="micro-features">
+                <span>7–14 éves kor</span>
+                <span>Napi 15 perc</span>
+                <span>Kritikus gondolkodás</span>
+                <span>Szülői jelentések</span>
+            </div>
+        </div>
+
+        <!-- Right: checkout -->
+        <div class="hero-right">
+            <div class="checkout-panel">
+                <h2>Válassz csomagot</h2>
+
+                <div class="plan-option selected" data-plan="free">
+                    <div class="plan-info">
+                        <h3>Ingyenes pr&oacute;baid&odblac;szak</h3>
+                        <p>Bankkártya nem szükséges</p>
+                    </div>
+                    <div class="plan-price">
+                        7 nap
+                        <span>ingyen</span>
+                    </div>
+                </div>
+
+                <div class="plan-option" data-plan="monthly">
+                    <div class="plan-info">
+                        <h3>Havi</h3>
+                        <p>Bármikor lemondható</p>
+                    </div>
+                    <div class="plan-price">
+                        &euro;9.99
+                        <span>/hó</span>
+                    </div>
+                </div>
+
+                <div class="plan-option" data-plan="yearly">
+                    <div class="plan-info">
+                        <h3>Éves <span class="plan-badge">34% kedvezmény</span></h3>
+                        <p>Legjobb ár</p>
+                    </div>
+                    <div class="plan-price">
+                        &euro;79
+                        <span>/év (&euro;6.58/hó)</span>
+                    </div>
+                </div>
+
+                <button class="checkout-btn" id="continue-btn">PRÓBÁLD KI</button>
+
+                <p class="checkout-fine-print">7 napos ingyenes próba. Ma nem kell fizetni.<br>Bármikor lemondható, kérdések nélkül.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info strip -->
+    <div class="info-strip">
+        <div class="info-block">
+            <h3>A probléma</h3>
+            <p>Az MIT kutatási adatai alapján az AI-t használó diákok kritikus gondolkodása mérhetően gyengül. Az agy kiszervezi a legfontosabb folyamatait pont abban a korban, amikor a legnagyobb szüksége lenne a fejlődésre.</p>
+        </div>
+        <div class="info-block">
+            <h3>A megoldás</h3>
+            <p>A LogicLab Kids napi szinten tornáztatja az érvelési és logikai képességeket. Olyan kognitív izmokat építünk újra, amelyeket a ChatGPT passzívvá tett.</p>
+        </div>
+        <div class="info-block">
+            <h3>Amit te látsz</h3>
+            <p>Heti jelentések a gyermeked gondolkodási fejlődéséről. Figyeld meg, ahogy a „nem tudom"-ból „szerintem ez azért van, mert..." lesz. A különbség egy AI-t használó és egy gondolkodó gyermek között.</p>
+        </div>
+    </div>
+
+    <div class="onepage-footer">
+        <p>&copy; LogicLab <span style="margin: 0 0.5rem;">|</span> <a href="mailto:info@logic-lab.hu">Kapcsolat</a></p>
+    </div>
+
+    <!-- Mobile Bottom CTA Bar -->
+    <div class="lp-mobile-bottom-bar" id="mobile-bottom-bar">
+        <a href="javascript:void(0)" class="lp-mobile-cta" id="mobile-cta">Pr&oacute;b&aacute;ld ki</a>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="checkout-overlay" id="checkout-overlay">
+        <div class="modal">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <div class="modal-body">
+                <h3>Még nem indultunk el.</h3>
+                <p class="modal-plan-tag">A LogicLab Kids hamarosan elindul. Add meg az e-mail címed, és értesítünk, amint kész.</p>
+                <input type="email" id="modal-email" placeholder="E-MAIL CÍMED" required autocomplete="off">
+                <button class="modal-submit" id="modal-submit">ÉRTESÍTS</button>
+                <div class="modal-status" id="modal-status"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initKidsPage } from './kids-shared.js';
+        initKidsPage('cssabafinal_hu');
+
+        // ── Nav logo theme toggle (same as original .logo behavior) ──
+        const navLogo = document.getElementById('nav-logo');
+        let isSwitchingNav = false;
+
+        function updateNavLogo() {
+            const isDark = document.body.classList.contains('dark-mode');
+            navLogo.src = isDark ? 'AppIconDark.png' : 'Logo.png';
+        }
+
+        if (navLogo) {
+            updateNavLogo();
+
+            navLogo.addEventListener('click', () => {
+                if (isSwitchingNav) return;
+                isSwitchingNav = true;
+
+                navLogo.style.opacity = '0';
+                navLogo.style.transform = 'scale(0.95)';
+                navLogo.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+
+                setTimeout(() => {
+                    document.body.classList.toggle('dark-mode');
+                    const isDark = document.body.classList.contains('dark-mode');
+                    localStorage.setItem('logiclab_theme', isDark ? 'dark' : 'light');
+                    updateNavLogo();
+                }, 300);
+
+                setTimeout(() => {
+                    navLogo.style.opacity = '1';
+                    navLogo.style.transform = 'scale(1)';
+                    navLogo.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    isSwitchingNav = false;
+                }, 800);
+            });
+
+            // Keep in sync if toggled elsewhere
+            const observer = new MutationObserver(() => updateNavLogo());
+            observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+        }
+
+        // ── CTA buttons: open modal directly ──
+        function openModalDirect() {
+            const overlay = document.getElementById('checkout-overlay');
+            if (overlay) {
+                overlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                setTimeout(() => {
+                    const emailInput = document.getElementById('modal-email');
+                    if (emailInput) emailInput.focus();
+                }, 300);
+            }
+        }
+
+        const navCta = document.getElementById('nav-cta');
+        const heroCta = document.getElementById('hero-cta');
+        const mobileCta = document.getElementById('mobile-cta');
+
+        function trackAndOpenModal(source) {
+            if (typeof gtag === 'function') {
+                gtag('event', 'cta_click', { cta_source: source });
+            }
+            openModalDirect();
+        }
+
+        if (navCta) navCta.addEventListener('click', () => trackAndOpenModal('navbar'));
+        if (heroCta) heroCta.addEventListener('click', () => trackAndOpenModal('hero'));
+        if (mobileCta) mobileCta.addEventListener('click', () => trackAndOpenModal('mobile_bottom'));
+
+        // ── CTA buttons + navbar: show/hide based on scroll position ──
+        const mobileBar = document.getElementById('mobile-bottom-bar');
+        const navCtaBtn = document.getElementById('nav-cta');
+        const navBar = document.querySelector('.lp-nav');
+        const heroCtaRow = document.querySelector('.lp-hero-cta-row');
+        const pricingSection = document.getElementById('pricing');
+        let heroVisible = true;
+        let pricingVisible = false;
+
+        function updateCtaVisibility() {
+            if (heroVisible || pricingVisible) {
+                if (mobileBar) mobileBar.classList.remove('visible');
+                if (navCtaBtn) navCtaBtn.classList.remove('visible');
+                if (navBar) navBar.classList.remove('visible');
+            } else {
+                if (mobileBar) mobileBar.classList.add('visible');
+                if (navCtaBtn) navCtaBtn.classList.add('visible');
+                if (navBar) navBar.classList.add('visible');
+            }
+        }
+
+        if (heroCtaRow) {
+            const heroObserver = new IntersectionObserver((entries) => {
+                heroVisible = entries[0].isIntersecting;
+                updateCtaVisibility();
+            }, { threshold: 0 });
+            heroObserver.observe(heroCtaRow);
+        }
+
+        if (pricingSection) {
+            const pricingObserver = new IntersectionObserver((entries) => {
+                pricingVisible = entries[0].isIntersecting;
+                updateCtaVisibility();
+            }, { threshold: 0.1 });
+            pricingObserver.observe(pricingSection);
+        }
+
+        // ── Landing page scroll reveals ──
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.lp-reveal, .lp-reveal-children').forEach(el => {
+            revealObserver.observe(el);
+        });
+
+        // ── Smooth scroll for anchor links ──
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
