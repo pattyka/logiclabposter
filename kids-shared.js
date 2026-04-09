@@ -229,10 +229,11 @@ async function handleSubmit(source, emailInput, submitBtn, statusEl) {
     // Success
     const planLabels = { free: 'Ingyenes próbaidőszak', monthly: '€9.99/hó', yearly: '€79/év' };
     const modalBody = document.querySelector('.modal-body');
+    const safeEmail = email.replace(/</g, "&lt;").replace(/>/g, "&gt;");
     modalBody.innerHTML = `
         <div class="reveal-container">
             <h2 class="reveal-title">Benne vagy.</h2>
-            <p class="reveal-detail">Értesítjük a <strong>${email}</strong> címet, amint a LogicLab Kids elindul.</p>
+            <p class="reveal-detail">Értesítjük a <strong>${safeEmail}</strong> címet, amint a LogicLab Kids elindul.</p>
             <br>
             <p class="reveal-small">Választott csomag: ${planLabels[selectedPlan] || planLabels.free}</p>
         </div>
