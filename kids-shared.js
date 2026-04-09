@@ -6,11 +6,14 @@ import { doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs
 function initTheme() {
     const saved = localStorage.getItem('logiclab_theme');
     if (saved === 'dark') {
+        document.documentElement.classList.add('dark-mode');
         document.body.classList.add('dark-mode');
     } else if (saved === 'light') {
+        document.documentElement.classList.remove('dark-mode');
         document.body.classList.remove('dark-mode');
     } else {
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark-mode');
             document.body.classList.add('dark-mode');
         }
     }
@@ -50,6 +53,7 @@ function toggleTheme() {
     }
 
     setTimeout(() => {
+        document.documentElement.classList.toggle('dark-mode');
         document.body.classList.toggle('dark-mode');
         const isDark = document.body.classList.contains('dark-mode');
         localStorage.setItem('logiclab_theme', isDark ? 'dark' : 'light');

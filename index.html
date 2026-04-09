@@ -1637,6 +1637,7 @@
                 navLogo.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
 
                 setTimeout(() => {
+                    document.documentElement.classList.toggle('dark-mode');
                     document.body.classList.toggle('dark-mode');
                     const isDark = document.body.classList.contains('dark-mode');
                     localStorage.setItem('logiclab_theme', isDark ? 'dark' : 'light');
