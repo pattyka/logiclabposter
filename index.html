@@ -23,6 +23,41 @@
            LANDING PAGE
            ════════════════════════════════════════════ */
 
+        /* ── Custom Selection Highlight ── */
+        ::selection {
+            background: var(--text-color);
+            color: var(--bg-color);
+        }
+
+        ::-moz-selection {
+            background: var(--text-color);
+            color: var(--bg-color);
+        }
+
+        /* ── Custom Scrollbar ── */
+        html {
+            scrollbar-color: var(--text-color) transparent;
+            scrollbar-width: thin;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: var(--text-color);
+            border: 2px solid var(--bg-color);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: var(--hover-color);
+        }
+
         /* ── Sticky Nav ── */
         .lp-nav {
             position: fixed;
@@ -608,17 +643,17 @@
 
         .plan-option.selected {
             border-color: var(--text-color);
+            background: var(--text-color);
+            color: var(--bg-color);
         }
 
-        .plan-option.selected::before {
-            content: '';
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--text-color);
+        .plan-option.selected .plan-info p {
+            opacity: 0.6;
+        }
+
+        .plan-option.selected .plan-badge {
+            background: var(--bg-color);
+            color: var(--text-color);
         }
 
         .plan-option .plan-info h3 {
@@ -732,7 +767,7 @@
             right: 0;
             z-index: 100;
             padding: 0.8rem 1.5rem;
-            background: rgba(239, 227, 199, 0.92);
+            background: rgba(239, 227, 199, 0.85);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-top: 1px solid var(--faint-line);
@@ -749,7 +784,7 @@
         }
 
         body.dark-mode .lp-mobile-bottom-bar {
-            background: rgba(42, 42, 42, 0.92);
+            background: rgba(42, 42, 42, 0.85);
         }
 
         .lp-mobile-bottom-bar .lp-mobile-cta {
@@ -992,14 +1027,14 @@
             }
 
             .lp-hero h1 {
-                font-size: 1.8rem;
+                font-size: 2rem;
                 letter-spacing: -0.02em;
             }
 
             .lp-hero-sub {
-                font-size: 0.92rem;
+                font-size: 1rem;
                 margin-top: 1.2rem;
-                line-height: 1.5;
+                line-height: 1.6;
             }
 
             .lp-hero-cta-row {
@@ -1034,8 +1069,8 @@
             }
 
             .lp-trust span {
-                font-size: 0.6rem;
-                letter-spacing: 0.1em;
+                font-size: 0.65rem;
+                letter-spacing: 0.12em;
             }
 
             .lp-showcase-text {
@@ -1048,12 +1083,12 @@
             }
 
             .lp-showcase-text h2 {
-                font-size: 1.5rem;
+                font-size: 1.6rem;
             }
 
             .lp-showcase-text p {
-                font-size: 0.92rem;
-                line-height: 1.5;
+                font-size: 1rem;
+                line-height: 1.6;
             }
 
             .lp-showcase-features {
@@ -1061,8 +1096,8 @@
             }
 
             .lp-showcase-features li {
-                font-size: 0.85rem;
-                padding-left: 1.2rem;
+                font-size: 0.95rem;
+                padding-left: 1.4rem;
             }
 
             .lp-showcase-visual {
@@ -1091,12 +1126,13 @@
             }
 
             .lp-statement h2 {
-                font-size: 1.6rem;
+                font-size: 1.7rem;
             }
 
             .lp-statement p {
-                font-size: 0.92rem;
+                font-size: 1rem;
                 margin-top: 1.2rem;
+                line-height: 1.6;
             }
 
             .lp-feature-col {
@@ -1113,7 +1149,8 @@
             }
 
             .lp-feature-col p {
-                font-size: 0.88rem;
+                font-size: 0.95rem;
+                line-height: 1.6;
             }
 
             .lp-stats {
@@ -1150,8 +1187,8 @@
             }
 
             .lp-testimonial-text {
-                font-size: 0.92rem;
-                line-height: 1.5;
+                font-size: 1rem;
+                line-height: 1.6;
             }
 
             .lp-testimonial-author {
@@ -1167,7 +1204,8 @@
             }
 
             .hero-left .subline {
-                font-size: 0.92rem;
+                font-size: 1rem;
+                line-height: 1.6;
             }
 
             .hero-left .micro-features {
@@ -1192,7 +1230,7 @@
             }
 
             .plan-option .plan-info h3 {
-                font-size: 0.9rem;
+                font-size: 0.95rem;
             }
 
             .plan-option .plan-price {
@@ -1215,7 +1253,8 @@
             }
 
             .info-block p {
-                font-size: 0.9rem;
+                font-size: 0.95rem;
+                line-height: 1.6;
             }
 
             .onepage-footer {
@@ -1276,7 +1315,7 @@
         <p class="lp-hero-sub">A LogicLab Kids visszaadja azokat a kognitív képességeket, amelyeket az algoritmusok leépítenek. Napi 15 perc tudatos edzés, játékos formában.</p>
 
         <div class="lp-hero-cta-row">
-            <a href="javascript:void(0)" class="lp-btn-primary" id="hero-cta">Ingyenes próba</a>
+            <a href="javascript:void(0)" class="lp-btn-primary" id="hero-cta">Próbáld ki</a>
             <span class="lp-hero-hint">7 nap ingyen · bármikor lemondható</span>
         </div>
 

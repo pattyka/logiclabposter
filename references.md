@@ -216,6 +216,58 @@ Az oldalt **teljesen átalakítottuk** Superhuman.com-stílusú modern landing p
 - **Korosztály frissítés**: 8-14 > 7-14 éves kor az egész oldalon (user manuális módosítás)
 - **Érintett fájlok**: `index.html`, `kids-shared.js`
 
+### 13. GA4 Tracking integráció (2026-04-09, 11. kör)
+
+#### Módosítások:
+- **GA Measurement ID csere**: G-D5VXHDLRWJ > G-0106KW4DEW
+- **Tracking események beépítve** (`kids-shared.js` + `index.html`):
+  - `cta_click`: CTA gomb kattintás, `cta_source` paraméterrel (hero/navbar/mobile_bottom)
+  - `plan_selected`: csomag kiválasztás, `plan_type` + `intent_of_payment` paraméterekkel
+  - `checkout_click`: checkout gomb, `plan_type` + `intent_of_payment` + `source`
+  - `waitlist_signup`: email megadás, `plan_type` + `intent_of_payment` + `email_domain`
+- **Intent of payment**: `intent_of_payment = true` ha a user havi vagy éves csomagot választott (nem free)
+- **Guide**: `ga4-tracking-guide.md` létrehozva a teljes GA4 beállítási útmutatóval
+- **GitHub deploy**: `csabagabor21/LogicLabWebsite` repóba pusholva, csak cssabafinal tartalom a root-ban
+- **Érintett fájlok**: `index.html`, `kids-shared.js`, `ga4-tracking-guide.md`
+
+### 14. UI Polish: Selection, Scrollbar, Mobile fontnagyság, Dot fix (2026-04-09, 12. kör)
+
+#### Módosítások:
+- **Custom text selection highlight**: 
+  - Világos mód: sötét háttér, krém szöveg
+  - Sötét mód: krém háttér, sötét szöveg
+  - `::selection` + `::-moz-selection` (Firefox kompatibilitás)
+- **Custom scrollbar**: 
+  - Vékony, kerekített, brand-színű thumb
+  - Hover effekt (`--hover-color`)
+  - Firefox: `scrollbar-color` + `scrollbar-width: thin`
+  - Webkit: `::-webkit-scrollbar-thumb` 8px, 10px border-radius
+- **Mobil font méret növelés** (max 600px):
+  - Hero h1: 1.8rem > 2rem
+  - Hero sub, Showcase p, Statement p, Subline, Info p: 0.92rem > 1rem
+  - Showcase h2: 1.5rem > 1.6rem, Statement h2: 1.6rem > 1.7rem
+  - Feature p: 0.88rem > 0.95rem, Feature li: 0.85rem > 0.95rem
+  - Testimonial text: 0.92rem > 1rem
+  - Trust span: 0.6rem > 0.65rem
+  - Plan info h3: 0.9rem > 0.95rem
+  - Összes line-height: 1.5 > 1.6 (jobb olvashatóság)
+- **Plan option dot fix** (`.plan-option.selected::before`):
+  - Desktop: `top: 1rem` > `top: 50%; transform: translateY(-50%)` (vertikálisan középre igazítva)
+  - Mobil: extra left padding (2rem) a dot-nak + kisebb dot méret (6px)
+- **Érintett fájlok**: `index.html`
+
+### 15. Plan selection color inversion + Mobile bar blur (2026-04-09, 13. kör)
+
+#### Módosítások:
+- **Plan option kiválasztás**: dot indicator eltávolítva, helyette teljes szín inverziót kap:
+  - Háttér: `var(--text-color)`, szöveg: `var(--bg-color)`
+  - Plan badge is invertálódik (bg/text csere)
+  - Subtitle opacity 0.6 kiválasztott állapotban
+  - Automatikusan működik light/dark mode-ban
+- **Mobil bottom bar blur**: opacity 0.92 > 0.85 (megegyezik a navbar-ral)
+  - Dark mode is frissítve
+- **Érintett fájlok**: `index.html`
+
 ---
 
 ## Fontos változók (CSS)
