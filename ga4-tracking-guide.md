@@ -1,6 +1,6 @@
 # LogicLab Kids: GA4 Tracking Guide
 
-> Measurement ID: **G-0106KW4DEW**
+> Measurement ID: **G-E8W35XPSZN**
 
 ---
 
@@ -54,7 +54,7 @@ Tüzel: amikor valaki sikeresen megadja az email címét.
 ### 1. lépés: Nyisd meg a GA4 dashboardot
 
 1. Menj ide: [analytics.google.com](https://analytics.google.com)
-2. Válaszd ki a **G-0106KW4DEW** property-t
+2. Válaszd ki a **G-E8W35XPSZN** property-t
 
 ### 2. lépés: Ellenőrizd, hogy jönnek az események
 
