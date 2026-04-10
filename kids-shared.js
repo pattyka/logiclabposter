@@ -249,7 +249,7 @@ async function handleSubmit(source, emailInput, submitBtn, statusEl) {
     }
 
     // Success
-    const planLabels = { free: 'Ingyenes próbaidőszak', monthly: '€9.99/hó', yearly: '€79/év' };
+    const planLabels = { free: 'Ingyenes próbaidőszak', monthly: '1 890 Ft/hó', yearly: '14 990 Ft/év' };
     const modalBody = document.querySelector('.modal-body');
     const safeEmail = email.replace(/</g, "&lt;").replace(/>/g, "&gt;");
     modalBody.innerHTML = `
