@@ -555,13 +555,118 @@
             opacity: 0.4;
         }
 
+        /* ── FAQ + Ethos Split Section ── */
+        .lp-faq-ethos {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-top: 1px solid var(--faint-line);
+        }
+
+        .lp-faq-ethos-col {
+            padding: 5rem 4rem;
+        }
+
+        .lp-faq-ethos-col:first-child {
+            border-right: 1px solid var(--faint-line);
+        }
+
+        .lp-faq-ethos-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            opacity: 0.4;
+            margin-bottom: 2.5rem;
+        }
+
+        .lp-faq-item {
+            border-bottom: 1px solid var(--faint-line);
+            padding: 1.3rem 0;
+            cursor: pointer;
+        }
+
+        .lp-faq-item:first-of-type {
+            border-top: 1px solid var(--faint-line);
+        }
+
+        .lp-faq-question {
+            font-size: 1.05rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            line-height: 1.4;
+        }
+
+        .lp-faq-question::after {
+            content: '+';
+            font-size: 1.3rem;
+            color: var(--highlight-color);
+            opacity: 1;
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+
+        .lp-faq-item.open .lp-faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .lp-faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+
+        .lp-faq-item.open .lp-faq-answer {
+            max-height: 400px;
+            padding-top: 0.8rem;
+        }
+
+        .lp-faq-answer p {
+            font-size: 0.95rem;
+            opacity: 0.65;
+            line-height: 1.6;
+            font-family: Georgia, serif;
+        }
+
+        .lp-ethos-text {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            font-family: Georgia, serif;
+            opacity: 0.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .lp-ethos-text strong {
+            color: var(--highlight-color);
+            font-weight: bold;
+            opacity: 1;
+        }
+
+        .lp-ethos-names {
+            font-size: 1.2rem;
+            font-weight: normal;
+            margin-bottom: 1rem;
+            letter-spacing: 0.02em;
+        }
+
+        .lp-ethos-names strong {
+            color: var(--highlight-color);
+        }
+
+        .lp-ethos-signature {
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            opacity: 0.35;
+            margin-top: 2rem;
+        }
+
         /* ── One-page Checkout (bottom) ── */
         .onepage-hero {
             min-height: 100vh;
             display: grid;
             grid-template-columns: 1fr 1fr;
             padding: 0;
-            border-top: 1px solid var(--faint-line);
         }
 
         .hero-left {
@@ -970,6 +1075,19 @@
                 padding: 2rem 1.5rem;
             }
 
+            .lp-faq-ethos {
+                grid-template-columns: 1fr;
+            }
+
+            .lp-faq-ethos-col {
+                padding: 3rem 2rem;
+            }
+
+            .lp-faq-ethos-col:first-child {
+                border-right: none;
+                border-bottom: 1px solid var(--faint-line);
+            }
+
             .onepage-hero {
                 grid-template-columns: 1fr;
                 min-height: auto;
@@ -1205,6 +1323,31 @@
 
             .lp-testimonial-author {
                 font-size: 0.7rem;
+            }
+
+            .lp-faq-ethos-col {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .lp-faq-ethos-label {
+                margin-bottom: 1.8rem;
+                font-size: 0.65rem;
+            }
+
+            .lp-faq-question {
+                font-size: 0.95rem;
+            }
+
+            .lp-faq-answer p {
+                font-size: 0.9rem;
+            }
+
+            .lp-ethos-text {
+                font-size: 0.95rem;
+            }
+
+            .lp-ethos-names {
+                font-size: 1.05rem;
             }
 
             .hero-left {
@@ -1598,6 +1741,62 @@
         </div>
     </div>
 
+    <!-- ═══ FAQ + Ethos Split ═══ -->
+    <div class="lp-faq-ethos lp-reveal">
+        <!-- Left: FAQ -->
+        <div class="lp-faq-ethos-col">
+            <div class="lp-faq-ethos-label">Gyakori kérdések</div>
+
+            <div class="lp-faq-item">
+                <div class="lp-faq-question">Hogyan kezeli az app a képernyőidőt?</div>
+                <div class="lp-faq-answer">
+                    <p>Az Apple Screen Time API-t használjuk, amely lehetővé teszi, hogy az app közvetlenül kommunikáljon az iOS képernyőidő-kezelésével. A gyermeked által teljesített feladatok után automatikusan feloldódik a beállított mennyiségű képernyőidő. Az Android verzió a Digital Wellbeing és a kisegítő lehetőségek (Accessibility Services) API-ját használja ugyanerre a célra.</p>
+                </div>
+            </div>
+
+            <div class="lp-faq-item">
+                <div class="lp-faq-question">Miért kell regisztrálnom, ha az app még nem elérhető?</div>
+                <div class="lp-faq-answer">
+                    <p>A regisztrációd segít nekünk bebizonyítani, hogy valós igény van erre a termékre. Jelenleg egy pályázatra készülünk, ahol adatokkal kell alátámasztanunk, hogy a szülők számára fontos a gyermekek kritikus gondolkodásának fejlesztése. Minden feliratkozás egy szavazat amellett, hogy ez a projekt megvalósuljon.</p>
+                </div>
+            </div>
+
+            <div class="lp-faq-item">
+                <div class="lp-faq-question">Tényleg ingyenes a próbaidőszak?</div>
+                <div class="lp-faq-answer">
+                    <p>Igen, a 7 napos próbaidőszakhoz nem kell bankkártya. Amikor az app elérhető lesz, az első héten teljes hozzáférést kapsz minden funkcióhoz. Utána döntesz, hogy folytatod-e.</p>
+                </div>
+            </div>
+
+            <div class="lp-faq-item">
+                <div class="lp-faq-question">Milyen eszközökön fog működni?</div>
+                <div class="lp-faq-answer">
+                    <p>Elsőként iOS-re (iPhone, iPad) jelenik meg az app, Android verzió szorosan utána következik. A szülői felület webes böngészőből is elérhető lesz.</p>
+                </div>
+            </div>
+
+            <div class="lp-faq-item">
+                <div class="lp-faq-question">Biztonságos a gyermekem adatainak kezelése?</div>
+                <div class="lp-faq-answer">
+                    <p>Kiemelten kezeljük az adatvédelmet. A képernyőidő kezelése az eszközön belül történik, a szerverre csak anonimizált tanulási statisztikák kerülnek. A GDPR és a gyermekek adatvédelméről szóló előírásoknak teljes mértékben megfelelünk.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Ethos -->
+        <div class="lp-faq-ethos-col">
+            <div class="lp-faq-ethos-label">Kik vagyunk</div>
+
+            <p class="lp-ethos-names"><strong>Gábor Csaba</strong> és <strong>Dörfler Patrik</strong></p>
+
+            <p class="lp-ethos-text">Két fiatal fejlesztő, akik nem akarják elfogadni, hogy a következő generáció gondolkodás nélkül nő fel. Megfigyeltük, hogy a körülöttünk lévő gyerekek egyre kevésbé képesek önállóan gondolkodni. Az AI nem rossz, de a kritikus gondolkodás izmai nélkül veszélyes.</p>
+
+            <p class="lp-ethos-text">Jelenleg egy pályázatra készülünk, és a te regisztrációd az egyik legfontosabb bizonyíték arra, hogy van igény erre a termékre. Segíts nekünk megmutatni, hogy a magyar szülők törődnek a gyermekeik gondolkodásával.</p>
+
+            <p class="lp-ethos-signature">Budapest, 2026</p>
+        </div>
+    </div>
+
     <div class="onepage-footer">
         <p>&copy; LogicLab <span style="margin: 0 0.5rem;">|</span> <a href="mailto:info@logic-lab.hu">Kapcsolat</a></p>
     </div>
@@ -1624,6 +1823,13 @@
     <script type="module">
         import { initKidsPage, setSelectedPlanUI } from './kids-shared.js';
         initKidsPage('cssabafinal_hu');
+
+        // ── FAQ accordion toggle ──
+        document.querySelectorAll('.lp-faq-item').forEach(item => {
+            item.querySelector('.lp-faq-question').addEventListener('click', () => {
+                item.classList.toggle('open');
+            });
+        });
 
         // ── Nav logo theme toggle (same as original .logo behavior) ──
         const navLogo = document.getElementById('nav-logo');
