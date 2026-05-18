@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>LogicLab Kids | Poszter 95×135 cm</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Limelight&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #EFE3C7;
+            --cream-light: #F7F0DE;
+            --cream-dark: #E2D3B0;
+            --dark: #111827;
+            --dark-soft: #2D3748;
+            --accent: #48A9A6;
+            --accent-bright: #5CC5C2;
+            --accent-deep: #37908D;
+            --accent-glow: rgba(72, 169, 166, 0.18);
+            --warm: #D4895A;
+            --warm-soft: rgba(212, 137, 90, 0.15);
+            --line: rgba(17, 24, 39, 0.12);
+            --line-strong: rgba(17, 24, 39, 0.25);
+            --display: 'Limelight', cursive;
+            --sans: 'Inter', -apple-system, sans-serif;
+            --serif: 'Playfair Display', Georgia, serif;
+            --mono: 'JetBrains Mono', monospace;
+            --radius: 14px;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            background: #0E0E0E;
+            font-family: var(--sans);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        @page { size: 95cm 135cm; margin: 0; }
+
+        .poster {
+            width: 950px;
+            height: 1350px;
+            background: var(--cream);
+            color: var(--dark);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+            justify-content: space-between;
+            padding-bottom: 20px;
+        }
+
+        .poster::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(72,169,166,0.08) 0%, transparent 45%),
+                radial-gradient(ellipse at 50% 100%, var(--warm-soft) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .poster > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* HEADER */
+        .hdr {
+            padding: 24px 40px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hdr-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .hdr img {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+        }
+
+        .hdr h1 {
+            font-family: var(--display);
+            font-size: 32px;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            line-height: 1;
+            color: var(--dark);
+        }
+
+        .hdr-right {
+            text-align: right;
+        }
+
+        .hdr-right small {
+            display: block;
+            font-family: var(--mono);
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 2px;
+        }
+
+        .hdr-right strong {
+            display: block;
+            font-family: var(--serif);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        /* HERO */
+        .hero {
+            padding: 10px 40px 0;
+            text-align: center;
+        }
+
+        .hero-tagline {
+            font-family: var(--serif);
+            font-size: 18px;
+            font-style: italic;
+            color: var(--accent-deep);
+            margin-bottom: 4px;
+            letter-spacing: -0.01em;
+        }
+
+        .hero h2 {
+            font-family: var(--display);
+            font-size: 42px;
+            font-weight: 400;
+            line-height: 1.15;
+            color: var(--dark);
+            letter-spacing: 0.01em;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h2 .hl {
+            color: var(--accent);
+            position: relative;
+        }
+
+        .hero h2 .hl::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent);
+            opacity: 0.2;
+            border-radius: 2px;
+        }
+
+        .hero-sub {
+            font: 500 13px/1.4 var(--sans);
+            color: var(--dark-soft);
+            margin-top: 6px;
+            opacity: 0.7;
+        }
+
+        .hero-sub sup {
+            font-size: .65em;
+            color: var(--accent);
+            font-weight: 700;
+            font-family: var(--mono);
+        }
+
+        /* PHONES */
+        .phones {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 16px;
+            padding: 10px 40px 0;
+            perspective: 1200px;
+            height: 240px; 
+        }
+
+        .phone-wrap {
+            position: relative;
+        }
+
+        .phone-wrap img {
+            height: 210px;
+            width: auto;
+            border-radius: 14px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            display: block;
+        }
+
+        .phone-wrap:nth-child(1) {
+            transform: rotate(-5deg) translateY(10px);
+        }
+
+        .phone-wrap:nth-child(2) {
+            transform: scale(1.08);
+            z-index: 3;
+        }
+
+        .phone-wrap:nth-child(2) img {
+            box-shadow: 0 14px 35px rgba(0,0,0,0.2);
+        }
+
+        .phone-wrap:nth-child(3) {
+            transform: rotate(5deg) translateY(10px);
+        }
+
+        /* STATS BAR */
+        .stats-bar {
+            margin: 10px 40px 0;
+            background: var(--dark);
+            border-radius: var(--radius);
+            display: flex;
+            justify-content: space-around;
+            padding: 14px 20px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(72,169,166,0.3);
+        }
+
+        .stats-bar::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(72,169,166,0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .stat { text-align: center; position: relative; flex: 1; }
+
+        .stat + .stat::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 15%;
+            height: 70%;
+            width: 1px;
+            background: rgba(72,169,166,0.25);
+        }
+
+        .stat-n {
+            font-family: var(--display);
+            font-size: 38px;
+            font-weight: 400;
+            color: var(--accent-bright);
+            line-height: 1;
+            margin-bottom: 2px;
+            text-shadow: 0 0 20px rgba(72,169,166,0.3);
+        }
+
+        .stat-l {
+            font-family: var(--mono);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--cream);
+            opacity: .9;
+        }
+
+        .stat-s {
+            font-family: var(--mono);
+            font-size: 10px;
+            font-weight: 500;
+            color: var(--accent);
+            margin-top: 2px;
+            opacity: .75;
+        }
+
+        /* TWO-COLUMN BODY */
+        .body-cols {
+            display: flex;
+            padding: 10px 40px 0;
+            gap: 24px;
+        }
+
+        .body-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* Section tag */
+        .stag {
+            display: inline-block;
+            font-family: var(--mono);
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: var(--cream);
+            background: var(--accent);
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin-bottom: 4px;
+        }
+
+        /* Section title */
+        .stitle {
+            font-family: var(--display);
+            font-size: 20px;
+            font-weight: 400;
+            line-height: 1.15;
+            margin-bottom: 4px;
+            color: var(--dark);
+        }
+
+        .stitle .hl {
+            color: var(--accent);
+        }
+
+        /* Body text */
+        .body-col p {
+            font: 400 13px/1.45 var(--sans);
+            color: var(--dark-soft);
+        }
+
+        .body-col p b {
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .body-col p sup {
+            font-size: .6em;
+            color: var(--accent);
+            font-weight: 700;
+            font-family: var(--mono);
+        }
+
+        /* Bullet list */
+        .body-col ul {
+            list-style: none;
+            margin: 0;
+        }
+
+        .body-col li {
+            font: 400 13px/1.45 var(--sans);
+            color: var(--dark-soft);
+            padding-left: 16px;
+            position: relative;
+            margin-bottom: 3px;
+        }
+
+        .body-col li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            font-family: var(--mono);
+            font-size: 13px;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .body-col li b {
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        /* Quote */
+        .qt {
+            background: var(--cream-light);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            padding: 10px;
+        }
+
+        .qt p {
+            font-family: var(--serif) !important;
+            font-style: italic;
+            font-size: 13px !important;
+            line-height: 1.4 !important;
+            color: var(--dark) !important;
+            margin-bottom: 4px !important;
+        }
+
+        .qt cite {
+            display: block;
+            font-style: normal;
+            font-family: var(--mono);
+            font-size: 9px;
+            font-weight: 600;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        /* 3 PILLARS */
+        .pillars {
+            display: flex;
+            margin: 10px 40px 0;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--line-strong);
+        }
+
+        .pillar {
+            flex: 1;
+            padding: 12px 14px;
+            text-align: center;
+            background: var(--cream-light);
+        }
+
+        .pillar + .pillar {
+            border-left: 1px solid var(--line-strong);
+        }
+
+        .pillar-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: var(--cream);
+            font-family: var(--display);
+            font-size: 16px;
+            margin-bottom: 6px;
+            box-shadow: 0 3px 8px rgba(72,169,166,0.3);
+        }
+
+        .pillar h3 {
+            font-family: var(--sans);
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 2px;
+            color: var(--dark);
+        }
+
+        .pillar p {
+            font: 400 11px/1.35 var(--sans);
+            color: var(--dark-soft);
+            opacity: .7;
+        }
+
+        /* CONCLUSION */
+        .conclusion {
+            margin: 10px 40px 0;
+            padding: 12px 24px;
+            background: var(--dark);
+            border-radius: var(--radius);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(72,169,166,0.3);
+        }
+
+        .conclusion::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 50% 50%, rgba(72,169,166,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .conclusion h2 {
+            font-family: var(--display);
+            font-size: 26px;
+            font-weight: 400;
+            color: var(--cream);
+            line-height: 1.2;
+            position: relative;
+        }
+
+        .conclusion h2 .hl {
+            color: var(--accent-bright);
+        }
+
+        .conclusion p {
+            font: 400 12px/1.4 var(--sans);
+            color: var(--cream-dark);
+            margin-top: 4px;
+            position: relative;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* REFERENCES */
+        .refs {
+            padding: 10px 40px 0;
+            margin-top: 10px;
+        }
+
+        .refs-tag {
+            font-family: var(--mono);
+            font-size: 8px;
+            font-weight: 700;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 2px;
+        }
+
+        .refs-list p {
+            font: 400 8px/1.3 var(--sans);
+            color: var(--dark-soft);
+            opacity: .5;
+            margin-bottom: 1px;
+        }
+
+        .refs-list b {
+            font-weight: 700;
+            color: var(--accent);
+            opacity: 1;
+        }
+
+        /* PRINT */
+        @media print {
+            @page { size: 95cm 135cm; margin: 0; }
+            html, body { background: #fff; padding: 0; margin: 0; }
+            body { display: block; }
+            .poster {
+                width: 950px;
+                box-shadow: none;
+                transform: scale(3.7795);
+                transform-origin: top left;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="poster">
+
+    <div class="hdr">
+        <div class="hdr-left">
+            <img src="Logo.png" alt="LogicLab">
+            <h1>LogicLab Kids</h1>
+        </div>
+        <div class="hdr-right">
+            <small>Készítette</small>
+            <strong>Dörfler Patrik</strong>
+        </div>
+    </div>
+
+    <div class="hero">
+        <div class="hero-tagline">Az AI kényelmessé teszi a gondolkodást.</div>
+        <h2>Képernyőidő, ami <span class="hl">gondolkodtat</span></h2>
+        <p class="hero-sub">Hogyan fordítható meg az AI okozta kognitív leépülés, ha a képernyőidőt jutalomként alkalmazzuk?<sup>[1]</sup></p>
+    </div>
+
+    <div class="phones">
+        <div class="phone-wrap">
+            <img src="new mockups/Unknown-54-portrait.png" alt="Képernyőidő jutalom">
+        </div>
+        <div class="phone-wrap">
+            <img src="new mockups/Simulator Screenshot - iPhone 17 Pro - 2026-04-10 at 17.33.51-portrait.png" alt="Főoldal">
+        </div>
+        <div class="phone-wrap">
+            <img src="new mockups/lecke-teljesitve-new-portrait.png" alt="Lecke teljesítve">
+        </div>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stat">
+            <div class="stat-n">431</div>
+            <div class="stat-l">Oldallátogató</div>
+            <div class="stat-s">2 nap alatt</div>
+        </div>
+        <div class="stat">
+            <div class="stat-n">206</div>
+            <div class="stat-l">Érdeklődő</div>
+            <div class="stat-s">47.8% konverzió</div>
+        </div>
+        <div class="stat">
+            <div class="stat-n">48</div>
+            <div class="stat-l">Feliratkozó</div>
+            <div class="stat-s">11.1% konverzió</div>
+        </div>
+    </div>
+
+    <div class="body-cols">
+        <div class="body-col">
+            <div>
+                <span class="stag">Probléma</span>
+                <div class="stitle">Kognitív <span class="hl">adósság</span></div>
+                <p>Az MIT kutatói kimutatták: az AI-t használó diákok <b>55%-kal kevesebb agyi aktivitást</b> mutatnak.<sup>[1]</sup> A 7–14 éves korosztálynál a gondolkodás alapjai most épülnek — ha nem edzik, később nehezen pótolható.</p>
+            </div>
+            <div>
+                <span class="stag">Módszerek</span>
+                <div class="stitle">„Fake Door" <span class="hl">validáció</span></div>
+                <ul>
+                    <li><b>Kvantitatív:</b> Landing page, GA4 mérés<sup>[3]</sup></li>
+                    <li><b>Kvalitatív:</b> Mélyinterjúk szülőkkel, tanárokkal, diákokkal<sup>[4]</sup></li>
+                    <li><b>Változó:</b> Jutalomalapú képernyőidő<sup>[2]</sup> vs. hagyományos tiltás</li>
+                </ul>
+            </div>
+            <div class="qt">
+                <p>„Tanárként látom, hogy drasztikusan esett a gyerekek problémamegoldó képessége. Ha valami nem megy elsőre, azonnal a ChatGPT-hez nyúlnak."</p>
+                <cite>Bence, általános iskolai tanár</cite>
+            </div>
+        </div>
+
+        <div class="body-col">
+            <div>
+                <span class="stag">Eredmények</span>
+                <div class="stitle">Erős piaci <span class="hl">validáció</span></div>
+                <p>A „fake door" teszt konverziós arányai messze meghaladták az iparági átlagot.<sup>[3]</sup> A <b>11.1%-os</b> feliratkozási arány bizonyítja a fizetőképes keresletet a jutalomalapú modellre.</p>
+            </div>
+            <div>
+                <span class="stag">Viták</span>
+                <div class="stitle">A tiltás <span class="hl">nem működik</span></div>
+                <p>A szülők eddig csak a képernyőmegvonásra hagyatkozhattak, ami családi konfliktusokhoz vezetett. A gamifikáció és jutalomalapú modell sikeresebben ösztönzi a kritikus gondolkodást.</p>
+            </div>
+            <div class="qt">
+                <p>„Nálunk minden este harc megy a képernyőidő miatt. Valami olyan kellene, ami belső motivációt ad nekik."</p>
+                <cite>Dénes, 3 gyermek édesapja</cite>
+            </div>
+            <p style="font-size:12px; opacity:.6; margin-top:auto;"><b>Korlátok:</b> A teszt szándékot mér, nem valós használatot. Nagyobb mintán validálandó.<sup>[4]</sup></p>
+        </div>
+    </div>
+
+    <div class="pillars">
+        <div class="pillar">
+            <div class="pillar-icon">I</div>
+            <h3>Napi 15 perc gondolkodás</h3>
+            <p>Rövid leckék, amik nem magoltatnak, hanem következtetésre késztetnek.</p>
+        </div>
+        <div class="pillar">
+            <div class="pillar-icon">II</div>
+            <h3>Kurzusok és pontgyűjtés</h3>
+            <p>Szintlépés, újrajátszható kihívások — belső motiváció építése.</p>
+        </div>
+        <div class="pillar">
+            <div class="pillar-icon">III</div>
+            <h3>Tudatos tartalomfogyasztás</h3>
+            <p>Felismeri a manipulációt és az AI generálta álhíreket.</p>
+        </div>
+    </div>
+
+    <div class="conclusion">
+        <h2>Nem büntetünk. <span class="hl">Motiválunk.</span></h2>
+        <p>A jövő generációja mindenképp AI-t fog használni. A kérdés: ők irányítják az algoritmusokat, vagy azok őket.</p>
+    </div>
+
+    <div class="refs">
+        <div class="refs-tag">Hivatkozások</div>
+        <div class="refs-list">
+            <p><b>[1]</b> Kosmyna, N. et al. (2025). Your Brain on ChatGPT: Accumulation of Cognitive Debt. <i>MIT Media Lab. arXiv:2506.08872</i></p>
+            <p><b>[2]</b> Apple Inc. Screen Time API & Family Controls Framework. <i>developer.apple.com/documentation/familycontrols</i></p>
+            <p><b>[3]</b> Google Analytics GA4 adatok. LogicLab Kids validációs landing page. Saját mérés, 2026.</p>
+            <p><b>[4]</b> Saját kvalitatív kutatás: Mélyinterjúk tanárokkal, szülőkkel és 7–14 éves diákokkal (n=12), 2026.</p>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
