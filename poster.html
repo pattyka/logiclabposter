@@ -516,8 +516,47 @@
             opacity: 1;
         }
 
+        /* EXPORT BUTTON */
+        .export-btn {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent);
+            color: var(--cream);
+            border: none;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-family: var(--sans);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(72,169,166,0.3);
+            transition: all 0.2s ease;
+        }
+
+        .export-btn:hover {
+            background: var(--accent-bright);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(72,169,166,0.4);
+        }
+
+        .export-btn svg {
+            transition: transform 0.2s ease;
+        }
+
+        .export-btn:hover svg {
+            transform: translateY(2px);
+        }
+
         /* PRINT */
         @media print {
+            .export-btn {
+                display: none !important;
+            }
             @page { size: 95cm 135cm; margin: 0; }
             html, body { background: #fff; padding: 0; margin: 0; }
             body { display: block; }
@@ -655,5 +694,15 @@
     </div>
 
 </div>
+
+<button class="export-btn" onclick="window.print()">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+        <polyline points="7 10 12 15 17 10"></polyline>
+        <line x1="12" y1="15" x2="12" y2="3"></line>
+    </svg>
+    PDF Mentése
+</button>
+
 </body>
 </html>
