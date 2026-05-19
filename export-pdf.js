@@ -14,6 +14,9 @@ const path = require('path');
     console.log(`📂 Fájl betöltése: ${filePath}`);
     await page.goto(filePath, { waitUntil: 'networkidle0' });
     
+    // Rákényszerítjük a screen megjelenítést, hogy a text-shadow és box-shadow elmosások (blur) tökéletesen kirajzolódjanak a PDF-ben is
+    await page.emulateMediaType('screen');
+    
     console.log('📄 PDF generálása (méretek a CSS-ből)...');
     await page.pdf({
       path: 'poster.pdf',
