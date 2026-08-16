@@ -221,7 +221,7 @@
             font-weight: 700;
         }
 
-        /* ── 3-DEVICE PHONE SHOWCASE STAGE ── */
+        /* ── 3-DEVICE SHOWCASE STAGE: iPad, iPhone, Android ── */
         .phones-stage {
             background: var(--cream-light);
             border: 1px solid var(--line-strong);
@@ -244,24 +244,41 @@
 
         .phones-row {
             display: flex;
-            align-items: center;
-            justify-content: space-around;
-            gap: 12px;
-            padding: 2px 0 4px;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 14px;
+            padding: 4px 0 2px;
         }
 
-        .phone-item {
+        .device-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            flex: 1;
+            justify-content: flex-end;
         }
 
-        .phone-item img {
+        .device-item.ipad {
+            flex: 1.35;
+        }
+
+        .device-item.ipad img {
+            width: 100%;
+            height: auto;
+            max-height: 180px;
+            object-fit: contain;
+            filter: drop-shadow(0 8px 18px rgba(17, 24, 39, 0.20));
+            border-radius: 6px;
+        }
+
+        .device-item.iphone, .device-item.android {
+            flex: 0.85;
+        }
+
+        .device-item.iphone img, .device-item.android img {
             width: 100%;
             height: 195px;
             object-fit: contain;
-            filter: drop-shadow(0 8px 16px rgba(17, 24, 39, 0.18));
+            filter: drop-shadow(0 8px 18px rgba(17, 24, 39, 0.20));
             border-radius: 10px;
         }
 
@@ -274,7 +291,7 @@
             color: var(--dark);
             margin-top: 5px;
             background: #fff;
-            padding: 2px 7px;
+            padding: 2px 8px;
             border-radius: 6px;
             border: 1px solid var(--line);
             white-space: nowrap;
@@ -411,27 +428,27 @@
 
         </div>
 
-        <!-- 3-DEVICE PHONE SHOWCASE STAGE -->
+        <!-- 3-DEVICE SHOWCASE STAGE: iPad, iPhone, Android -->
         <div class="phones-stage">
-            <div class="stage-title">Interactive Child Experience · iOS &amp; Android Builds</div>
+            <div class="stage-title">Interactive Multi-Platform Runtime · iPadOS, iOS &amp; Android</div>
 
             <div class="phones-row">
-                <div class="phone-item">
-                    <img src="posterimages/framed-home.png" alt="Daily Mystery Home">
-                    <div class="phone-badge">01 · Daily Mystery</div>
+                <div class="device-item ipad">
+                    <img src="posterimages/ipad.png" alt="iPadOS App">
+                    <div class="phone-badge">iPad</div>
                 </div>
-                <div class="phone-item">
-                    <img src="posterimages/framed-done.png" alt="Lesson Solved">
-                    <div class="phone-badge">02 · Lesson Solved</div>
+                <div class="device-item iphone">
+                    <img src="posterimages/framed-home.png" alt="iOS iPhone App">
+                    <div class="phone-badge">iPhone</div>
                 </div>
-                <div class="phone-item">
-                    <img src="posterimages/framed-reward.png" alt="Earn Free Time">
-                    <div class="phone-badge">03 · Earn Free Time</div>
+                <div class="device-item android">
+                    <img src="posterimages/framed-done.png" alt="Android App">
+                    <div class="phone-badge">Android</div>
                 </div>
             </div>
 
             <div class="stage-footer">
-                <span>NATIVE SWIFTUI &amp; KOTLIN BUILDS</span>
+                <span>NATIVE SWIFTUI &amp; KOTLIN COMPOSE</span>
                 <span>OS-ENFORCED REWARD INCENTIVE LOOP</span>
             </div>
         </div>
