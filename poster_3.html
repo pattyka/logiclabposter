@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LogicLab Kids | Poster 3: Results and Conclusion (70x100 cm)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #EFE3C7;
+            --cream-light: #F7F0DE;
+            --cream-dark: #E2D3B0;
+            --dark: #111827;
+            --dark-soft: #2D3748;
+            --accent: #48A9A6;
+            --accent-bright: #5CC5C2;
+            --accent-deep: #37908D;
+            --warm: #D4895A;
+            --line: rgba(17, 24, 39, 0.12);
+            --line-strong: rgba(17, 24, 39, 0.25);
+            --display: 'DM Serif Display', serif;
+            --sans: 'Inter', -apple-system, sans-serif;
+            --serif: 'Playfair Display', Georgia, serif;
+            --mono: 'JetBrains Mono', monospace;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 14px;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            background: #0E0E0E;
+            font-family: var(--sans);
+            -webkit-font-smoothing: antialiased;
+            margin: 0; padding: 0;
+        }
+
+        .poster-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            min-height: 100vh;
+        }
+
+        @page { size: 70cm 100cm; margin: 0; }
+
+        .poster {
+            width: 700px;
+            height: 1000px;
+            background: var(--cream);
+            color: var(--dark);
+            box-shadow: 0 35px 100px rgba(0, 0, 0, 0.65);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            padding: 22px 34px 20px;
+            gap: 10px;
+            justify-content: space-between;
+        }
+
+        /* ── HEADER ── */
+        .hdr {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--line-strong);
+            padding-bottom: 8px;
+            flex-shrink: 0;
+        }
+
+        .hdr-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .logo-wrap {
+            width: 44px;
+            height: 44px;
+            border-radius: 11px;
+            background: #fff;
+            padding: 3px;
+            box-shadow: 0 2px 8px rgba(17,24,39,0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .hdr h1 {
+            font-family: var(--display);
+            font-size: 32px;
+            font-weight: 400;
+            line-height: 1;
+            color: var(--dark);
+            letter-spacing: 0.01em;
+        }
+
+        .hdr-right-badge {
+            font-family: var(--mono);
+            font-size: 9.5px;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        /* ── HERO ── */
+        .hero {
+            flex-shrink: 0;
+            text-align: left;
+        }
+
+        .hero-tagline {
+            font-family: var(--serif);
+            font-size: 15px;
+            font-style: italic;
+            color: var(--accent-deep);
+            margin-bottom: 2px;
+        }
+
+        .hero h2 {
+            font-family: var(--display);
+            font-size: 32px;
+            font-weight: 400;
+            line-height: 1.12;
+            color: var(--dark);
+            letter-spacing: 0.01em;
+        }
+
+        .hero h2 .hl { color: var(--accent); }
+
+        /* ── TWO-COLUMN BALANCED CONTENT GRID ── */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            flex: 1;
+            min-height: 0;
+        }
+
+        .grid-col {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-height: 0;
+        }
+
+        .col-intro {
+            background: var(--cream-light);
+            border: 1px solid var(--line-strong);
+            border-radius: var(--radius-md);
+            padding: 10px 12px 9px;
+            flex-shrink: 0;
+        }
+
+        .stitle {
+            font-family: var(--display);
+            font-size: 19px;
+            font-weight: 400;
+            line-height: 1.15;
+            margin-bottom: 3px;
+            color: var(--dark);
+        }
+
+        .stitle .hl { color: var(--accent); }
+
+        p {
+            font: 400 12px/1.4 var(--sans);
+            color: var(--dark-soft);
+        }
+
+        p b { font-weight: 700; color: var(--dark); }
+
+        /* ── FIGURE BOXES (MAXIMIZED CANVAS) ── */
+        .figure-box {
+            background: var(--cream-light);
+            border: 1px solid var(--line-strong);
+            border-radius: var(--radius-md);
+            padding: 8px 10px 7px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-height: 0;
+            justify-content: space-between;
+        }
+
+        .fig-canvas {
+            flex: 1;
+            min-height: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--line);
+            padding: 3px;
+            overflow: hidden;
+        }
+
+        .fig-canvas img {
+            width: 100%;
+            height: 100%;
+            max-height: 155px;
+            object-fit: contain;
+            mix-blend-mode: multiply;
+            display: block;
+        }
+
+        .fig-footer {
+            border-top: 1px solid var(--line);
+            padding-top: 3px;
+            margin-top: 3px;
+            font-family: var(--mono);
+            font-size: 9px;
+            line-height: 1.3;
+            color: var(--dark-soft);
+            flex-shrink: 0;
+        }
+
+        .fig-footer b {
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .fig-footer.warm b {
+            color: var(--warm);
+        }
+
+        /* ── MARKET TRACTION FUNNEL CARD ── */
+        .funnel-canvas {
+            background: #fff;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--line);
+            padding: 8px 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            gap: 6px;
+            flex: 1;
+        }
+
+        .funnel-row {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .funnel-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-family: var(--mono);
+            font-size: 8.5px;
+        }
+
+        .funnel-label {
+            font-weight: 600;
+            color: var(--dark-soft);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .funnel-val {
+            font-weight: 700;
+            font-size: 10px;
+            color: var(--dark);
+        }
+
+        .funnel-val.teal { color: var(--accent); }
+        .funnel-val.warm { color: var(--warm); }
+
+        .funnel-bar-bg {
+            height: 7px;
+            background: rgba(17, 24, 39, 0.06);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .funnel-bar {
+            height: 100%;
+            border-radius: 4px;
+        }
+
+        .funnel-pills {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            margin-top: 2px;
+            border-top: 1px dashed var(--line);
+            padding-top: 5px;
+        }
+
+        .funnel-pill {
+            text-align: center;
+            background: var(--cream-light);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            padding: 3px 2px;
+        }
+
+        .pill-num {
+            font-family: var(--display);
+            font-size: 17px;
+            line-height: 1;
+            font-weight: 400;
+            color: var(--dark);
+        }
+
+        .funnel-pill.teal .pill-num { color: var(--accent); }
+        .funnel-pill.warm .pill-num { color: var(--warm); }
+
+        .pill-txt {
+            font-family: var(--mono);
+            font-size: 7.5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--dark-soft);
+            opacity: 0.75;
+            letter-spacing: 0.02em;
+        }
+
+        /* ── CONCLUSION ── */
+        .conclusion {
+            padding: 12px 18px;
+            background: var(--dark);
+            border-radius: var(--radius-md);
+            text-align: center;
+            position: relative;
+            border: 2px solid rgba(72,169,166,0.3);
+            flex-shrink: 0;
+        }
+
+        .conclusion h2 {
+            font-family: var(--display);
+            font-size: 22px;
+            font-weight: 400;
+            color: var(--cream);
+            line-height: 1.2;
+            margin-bottom: 3px;
+        }
+
+        .conclusion h2 .hl { color: var(--accent-bright); }
+
+        .conclusion p {
+            font: 400 12px/1.4 var(--sans);
+            color: var(--cream-dark);
+        }
+
+        /* ── REFERENCES ── */
+        .refs { flex-shrink: 0; }
+        .refs-tag {
+            font-family: var(--mono);
+            font-size: 8.5px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 2px;
+        }
+
+        .refs-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px 12px;
+        }
+
+        .refs-list p {
+            font: 400 8.5px/1.24 var(--sans);
+            color: var(--dark-soft);
+            opacity: 0.75;
+        }
+
+        .refs-list b {
+            font-family: var(--mono);
+            font-weight: 700;
+            color: var(--accent);
+            opacity: 1;
+        }
+
+        @media print {
+            .poster-wrapper { padding: 0; background: #fff; }
+            .poster { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+<div class="poster-wrapper">
+    <div class="poster">
+
+        <!-- HEADER -->
+        <div class="hdr">
+            <div class="hdr-left">
+                <div class="logo-wrap">
+                    <img src="Logo.png" alt="LogicLab Kids">
+                </div>
+                <h1>Results and conclusion</h1>
+            </div>
+            <div class="hdr-right-badge">LogicLab Kids · EUCYS 2026</div>
+        </div>
+
+        <!-- HERO -->
+        <div class="hero">
+            <div class="hero-tagline">3. Empirical Evidence &amp; Market Traction</div>
+            <h2>Validation &amp; <span class="hl">Impact</span></h2>
+        </div>
+
+        <!-- 2-COLUMN BALANCED CONTENT GRID -->
+        <div class="content-grid">
+
+            <!-- COLUMN 1: NEUROSCIENCE & COGNITIVE IMPACT -->
+            <div class="grid-col">
+                <div class="col-intro">
+                    <div class="stitle">The AI <span class="hl">Cognitive Debt</span></div>
+                    <p>Unconstrained generative AI reliance severely degrades critical thinking, functional brain connectivity, and independent memory retention.</p>
+                </div>
+
+                <!-- FIG 5: EEG Neural Connectivity -->
+                <div class="figure-box">
+                    <div class="fig-canvas">
+                        <img src="posterimages/02_eeg_connectivity.png" alt="EEG Neural Connectivity" />
+                    </div>
+                    <div class="fig-footer">
+                        <b>FIG 5.</b> <b>47% Fewer Brain Connections:</b> EEG dDTF analysis reveals 42 significant alpha-band connections with ChatGPT vs 79 in Brain-only mode (Kosmyna et al., MIT 2025, p &lt; .05).
+                    </div>
+                </div>
+
+                <!-- FIG 6: AI Quoting & Recall Deficit -->
+                <div class="figure-box">
+                    <div class="fig-canvas">
+                        <img src="posterimages/01_ai_quoting.png" alt="AI Quoting Deficit" />
+                    </div>
+                    <div class="fig-footer">
+                        <b>FIG 6.</b> <b>83.3% Quoting Failure:</b> 15 of 18 ChatGPT users failed to quote a single sentence from their own essay vs 11.1% in Brain-only and Search groups (p &lt; .001).
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLUMN 2: FUTURE SKILLS & MARKET TRACTION -->
+            <div class="grid-col">
+                <div class="col-intro">
+                    <div class="stitle">Empirical <span class="hl">Validation</span></div>
+                    <p>Analytical thinking is the #1 future workforce requirement. Our validation proves parents urgently seek structured screen-time incentives.</p>
+                </div>
+
+                <!-- FIG 7: WEF Skills 2030 -->
+                <div class="figure-box">
+                    <div class="fig-canvas">
+                        <img src="posterimages/05_wef_skills_2030.png" alt="WEF Skills for 2030" />
+                    </div>
+                    <div class="fig-footer">
+                        <b>FIG 7.</b> <b>Analytical Thinking Ranked #1:</b> 69% of employers rate analytical thinking as a core skill, followed by resilience (67%) and creative thinking (57%).
+                    </div>
+                </div>
+
+                <!-- FIG 8: Fake Door Market Funnel -->
+                <div class="figure-box">
+                    <div class="funnel-canvas">
+                        <div class="funnel-row">
+                            <div class="funnel-meta">
+                                <span class="funnel-label">01 · Unique Visitors</span>
+                                <span class="funnel-val">431 <span style="font-weight: 400; font-size: 8px; color: var(--dark-soft);">(100%)</span></span>
+                            </div>
+                            <div class="funnel-bar-bg">
+                                <div class="funnel-bar" style="width: 100%; background: var(--dark-soft);"></div>
+                            </div>
+                        </div>
+
+                        <div class="funnel-row">
+                            <div class="funnel-meta">
+                                <span class="funnel-label">02 · Waitlist Leads</span>
+                                <span class="funnel-val teal">206 <span style="font-weight: 600; font-size: 8px; color: var(--accent);">(47.8% Conv.)</span></span>
+                            </div>
+                            <div class="funnel-bar-bg">
+                                <div class="funnel-bar" style="width: 47.8%; background: var(--accent);"></div>
+                            </div>
+                        </div>
+
+                        <div class="funnel-row">
+                            <div class="funnel-meta">
+                                <span class="funnel-label">03 · Paid Plan Intent</span>
+                                <span class="funnel-val warm">48 <span style="font-weight: 600; font-size: 8px; color: var(--warm);">(11.1% Conv.)</span></span>
+                            </div>
+                            <div class="funnel-bar-bg">
+                                <div class="funnel-bar" style="width: 23%; background: var(--warm);"></div>
+                            </div>
+                        </div>
+
+                        <div class="funnel-pills">
+                            <div class="funnel-pill">
+                                <div class="pill-num">431</div>
+                                <div class="pill-txt">Visitors</div>
+                            </div>
+                            <div class="funnel-pill teal">
+                                <div class="pill-num">47.8%</div>
+                                <div class="pill-txt">Lead Rate</div>
+                            </div>
+                            <div class="funnel-pill warm">
+                                <div class="pill-num">11.1%</div>
+                                <div class="pill-txt">Paid Intent</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fig-footer warm">
+                        <b>FIG 8.</b> <b>High Commercial Intent:</b> 11.1% paid intent rate without credit card friction validates high parental demand for earned screen time.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CONCLUSION CARD -->
+        <div class="conclusion">
+            <h2>We don't ban AI, <span class="hl">we prepare children for it.</span></h2>
+            <p>The future generation will inevitably use AI. The fundamental question is whether they will command the algorithms, or let the algorithms command them. LogicLab Kids anchors screen time to structured reasoning to build genuine cognitive stamina.</p>
+        </div>
+
+        <!-- REFERENCES -->
+        <div class="refs">
+            <div class="refs-tag">References</div>
+            <div class="refs-list">
+                <p><b>[1]</b> Kosmyna et al. (2025). Your Brain on ChatGPT. <i>MIT Media Lab</i>, N=54.</p>
+                <p><b>[2]</b> World Economic Forum (2025). Future of Jobs: Core Skills 2030.</p>
+                <p><b>[3]</b> Apple Inc. FamilyControls &amp; ManagedSettings Frameworks.</p>
+                <p><b>[4]</b> LogicLab Kids GA4 Landing Page Intent Trial (n=431), 2026.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

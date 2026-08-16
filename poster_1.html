@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LogicLab Kids | Poster 1: Introduction (70x100 cm)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #EFE3C7;
+            --cream-light: #F7F0DE;
+            --cream-dark: #E2D3B0;
+            --dark: #111827;
+            --dark-soft: #2D3748;
+            --accent: #48A9A6;
+            --accent-bright: #5CC5C2;
+            --accent-deep: #37908D;
+            --warm: #D4895A;
+            --line: rgba(17, 24, 39, 0.12);
+            --line-strong: rgba(17, 24, 39, 0.25);
+            --display: 'DM Serif Display', serif;
+            --sans: 'Inter', -apple-system, sans-serif;
+            --serif: 'Playfair Display', Georgia, serif;
+            --mono: 'JetBrains Mono', monospace;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 14px;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            background: #0E0E0E;
+            font-family: var(--sans);
+            -webkit-font-smoothing: antialiased;
+            margin: 0; padding: 0;
+        }
+
+        .poster-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            min-height: 100vh;
+        }
+
+        @page { size: 70cm 100cm; margin: 0; }
+
+        .poster {
+            width: 700px;
+            height: 1000px;
+            background: var(--cream);
+            color: var(--dark);
+            box-shadow: 0 35px 100px rgba(0, 0, 0, 0.65);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            padding: 22px 34px 20px;
+            gap: 10px;
+            justify-content: space-between;
+        }
+
+        /* ── HEADER ── */
+        .hdr {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--line-strong);
+            padding-bottom: 8px;
+            flex-shrink: 0;
+        }
+
+        .hdr-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .logo-wrap {
+            width: 44px;
+            height: 44px;
+            border-radius: 11px;
+            background: #fff;
+            padding: 3px;
+            box-shadow: 0 2px 8px rgba(17,24,39,0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .hdr h1 {
+            font-family: var(--display);
+            font-size: 32px;
+            font-weight: 400;
+            line-height: 1;
+            color: var(--dark);
+            letter-spacing: 0.01em;
+        }
+
+        .hdr-right-badge {
+            font-family: var(--mono);
+            font-size: 9.5px;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--accent);
+        }
+
+        /* ── HERO ── */
+        .hero {
+            flex-shrink: 0;
+            text-align: left;
+        }
+
+        .hero-tagline {
+            font-family: var(--serif);
+            font-size: 15px;
+            font-style: italic;
+            color: var(--accent-deep);
+            margin-bottom: 2px;
+        }
+
+        .hero h2 {
+            font-family: var(--display);
+            font-size: 32px;
+            font-weight: 400;
+            line-height: 1.12;
+            color: var(--dark);
+            letter-spacing: 0.01em;
+            margin-bottom: 3px;
+        }
+
+        .hero h2 .hl {
+            color: var(--accent);
+        }
+
+        .hero-sub {
+            font: 400 12.5px/1.4 var(--sans);
+            color: var(--dark-soft);
+        }
+
+        /* ── 2-COLUMN CONTENT GRID ── */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .body-col {
+            background: var(--cream-light);
+            border: 1px solid var(--line-strong);
+            border-radius: var(--radius-md);
+            padding: 10px 12px 9px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .stitle {
+            font-family: var(--display);
+            font-size: 19px;
+            font-weight: 400;
+            line-height: 1.15;
+            margin-bottom: 2px;
+            color: var(--dark);
+        }
+
+        .stitle .hl { color: var(--accent); }
+
+        .body-col p {
+            font: 400 12px/1.38 var(--sans);
+            color: var(--dark-soft);
+        }
+
+        .body-col p b {
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        /* ── FIGURE BOX (FULL SPREAD) ── */
+        .img-wrap {
+            background: #fff;
+            padding: 4px 6px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--line);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .img-wrap img {
+            width: 100%;
+            height: 125px;
+            object-fit: contain;
+            display: block;
+            mix-blend-mode: multiply;
+        }
+
+        .img-cap {
+            font: 400 9px/1.25 var(--mono);
+            color: var(--dark-soft);
+            margin-top: 3px;
+            text-align: left;
+            border-top: 1px solid var(--line);
+            padding-top: 2px;
+        }
+
+        .img-cap b {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* ── 3-DEVICE PHONE SHOWCASE STAGE ── */
+        .phones-stage {
+            background: var(--cream-light);
+            border: 1px solid var(--line-strong);
+            border-radius: var(--radius-md);
+            padding: 10px 14px 8px;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .stage-title {
+            font-family: var(--display);
+            font-size: 17px;
+            font-weight: 400;
+            color: var(--dark);
+            margin-bottom: 4px;
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 3px;
+        }
+
+        .phones-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 12px;
+            padding: 2px 0 4px;
+        }
+
+        .phone-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+        }
+
+        .phone-item img {
+            width: 100%;
+            height: 195px;
+            object-fit: contain;
+            filter: drop-shadow(0 8px 16px rgba(17, 24, 39, 0.18));
+            border-radius: 10px;
+        }
+
+        .phone-badge {
+            font-family: var(--mono);
+            font-size: 8.5px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--dark);
+            margin-top: 5px;
+            background: #fff;
+            padding: 2px 7px;
+            border-radius: 6px;
+            border: 1px solid var(--line);
+            white-space: nowrap;
+        }
+
+        .stage-footer {
+            border-top: 1px solid var(--line);
+            padding-top: 4px;
+            margin-top: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: var(--mono);
+            font-size: 8.5px;
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        /* ── PREMACK FRAMEWORK CARD ── */
+        .premack-card {
+            background: var(--cream-light);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            padding: 8px 12px;
+            flex-shrink: 0;
+            border-top: 1px solid var(--line);
+            border-right: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .premack-card h3 {
+            font-family: var(--display);
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--dark);
+            margin-bottom: 2px;
+        }
+
+        .premack-card p {
+            font: 400 11.5px/1.36 var(--sans);
+            color: var(--dark-soft);
+        }
+
+        .premack-card p b {
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        /* ── REFERENCES ── */
+        .refs { flex-shrink: 0; }
+        .refs-tag {
+            font-family: var(--mono);
+            font-size: 8.5px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 2px;
+        }
+
+        .refs-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px 12px;
+        }
+
+        .refs-list p {
+            font: 400 8.5px/1.24 var(--sans);
+            color: var(--dark-soft);
+            opacity: 0.75;
+        }
+
+        .refs-list b {
+            font-weight: 700;
+            color: var(--accent);
+            opacity: 1;
+        }
+
+        @media print {
+            .poster-wrapper { padding: 0; background: #fff; }
+            .poster { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+<div class="poster-wrapper">
+    <div class="poster">
+
+        <!-- HEADER -->
+        <div class="hdr">
+            <div class="hdr-left">
+                <div class="logo-wrap">
+                    <img src="Logo.png" alt="LogicLab Kids">
+                </div>
+                <h1>Introduction</h1>
+            </div>
+            <div class="hdr-right-badge">LogicLab Kids · EUCYS 2026</div>
+        </div>
+
+        <!-- HERO -->
+        <div class="hero">
+            <div class="hero-tagline">1. Context & Rationale</div>
+            <h2>The Cognitive Cost of <span class="hl">Screen Media</span></h2>
+            <p class="hero-sub">Children spend 5.5 to 8.6 hours daily on entertainment media during the critical developmental window when executive function matures. Passive consumption and unconstrained generative AI threaten to replace the mental exertion required to build problem-solving stamina.</p>
+        </div>
+
+        <!-- 2-COLUMN CONTENT GRID -->
+        <div class="content-grid">
+
+            <!-- COLUMN 1: SCREEN MEDIA EXPLOSION -->
+            <div class="body-col">
+                <div>
+                    <div class="stitle">Entertainment <span class="hl">Surge</span></div>
+                    <p>Daily entertainment screen use increased by <b>+17% across two years</b>. Tweens (8-12) average 5h 33m daily, while teens (13-18) consume 8h 39m outside schoolwork.</p>
+                </div>
+                <div class="img-wrap">
+                    <img src="posterimages/04_screen_media.png" alt="Daily entertainment screen media use by age group" />
+                    <div class="img-cap"><b>FIG 1.</b> Daily screen media by age group, 2019 vs 2021 (+17% growth).</div>
+                </div>
+            </div>
+
+            <!-- COLUMN 2: DEVELOPMENTAL WINDOW -->
+            <div class="body-col">
+                <div>
+                    <div class="stitle">The Critical <span class="hl">Window</span></div>
+                    <p>Complex executive function develops rapidly between <b>ages 7 and 14</b> (rising 50% to &gt;90%), overlapping with smartphone ownership surge (50%+ by age 11).</p>
+                </div>
+                <div class="img-wrap">
+                    <img src="posterimages/03_developmental_window.png" alt="Executive function developmental window" />
+                    <div class="img-cap"><b>FIG 2.</b> Executive function trajectory by age (CAS complex-EF, ages 5-17).</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- 3-DEVICE PHONE SHOWCASE STAGE -->
+        <div class="phones-stage">
+            <div class="stage-title">Interactive Child Experience · iOS &amp; Android Builds</div>
+
+            <div class="phones-row">
+                <div class="phone-item">
+                    <img src="posterimages/framed-home.png" alt="Daily Mystery Home">
+                    <div class="phone-badge">01 · Daily Mystery</div>
+                </div>
+                <div class="phone-item">
+                    <img src="posterimages/framed-done.png" alt="Lesson Solved">
+                    <div class="phone-badge">02 · Lesson Solved</div>
+                </div>
+                <div class="phone-item">
+                    <img src="posterimages/framed-reward.png" alt="Earn Free Time">
+                    <div class="phone-badge">03 · Earn Free Time</div>
+                </div>
+            </div>
+
+            <div class="stage-footer">
+                <span>NATIVE SWIFTUI &amp; KOTLIN BUILDS</span>
+                <span>OS-ENFORCED REWARD INCENTIVE LOOP</span>
+            </div>
+        </div>
+
+        <!-- THE PREMACK INCENTIVE FRAMEWORK -->
+        <div class="premack-card">
+            <h3>The Premack Behavioral Contingency Model</h3>
+            <p>Under Premack's Principle (1959), high-probability behaviors (screen entertainment) effectively reinforce low-probability behaviors (structured logical reasoning). LogicLab Kids establishes an unbreakable OS-level contingency where screen time is earned through independent problem-solving.</p>
+        </div>
+
+        <!-- REFERENCES -->
+        <div class="refs">
+            <div class="refs-tag">References</div>
+            <div class="refs-list">
+                <p><b>[1]</b> Common Sense Media (2019, 2021). Media Use by Tweens and Teens.</p>
+                <p><b>[2]</b> Brydges et al. (2014). Executive function trajectory across ages 5-17 (N=2,036).</p>
+                <p><b>[3]</b> Premack, D. (1959). Toward empirical behavior laws: I. Positive reinforcement.</p>
+                <p><b>[4]</b> Rideout et al. (2022). The Common Sense Census: Media use by kids.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

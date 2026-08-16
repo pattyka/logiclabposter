@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LogicLab Kids | Poster 2: Experimental and Method (170x100 cm)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #EFE3C7;
+            --cream-light: #F7F0DE;
+            --cream-dark: #E2D3B0;
+            --dark: #111827;
+            --dark-soft: #2D3748;
+            --accent: #48A9A6;
+            --accent-bright: #5CC5C2;
+            --accent-deep: #37908D;
+            --warm: #D4895A;
+            --line: rgba(17, 24, 39, 0.12);
+            --line-strong: rgba(17, 24, 39, 0.25);
+            --display: 'DM Serif Display', serif;
+            --sans: 'Inter', -apple-system, sans-serif;
+            --serif: 'Playfair Display', Georgia, serif;
+            --mono: 'JetBrains Mono', monospace;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 14px;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            background: #0E0E0E;
+            font-family: var(--sans);
+            -webkit-font-smoothing: antialiased;
+            margin: 0; padding: 0;
+        }
+
+        .poster-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            min-height: 100vh;
+        }
+
+        @page { size: 170cm 100cm; margin: 0; }
+
+        .poster {
+            width: 1700px;
+            height: 1000px;
+            background: var(--cream);
+            color: var(--dark);
+            box-shadow: 0 35px 100px rgba(0, 0, 0, 0.65);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            padding: 20px 40px 18px;
+            gap: 10px;
+            justify-content: space-between;
+        }
+
+        /* ── HEADER ── */
+        .hdr {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--line-strong);
+            padding-bottom: 8px;
+            flex-shrink: 0;
+        }
+
+        .hdr-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo-wrap {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            background: #fff;
+            padding: 3px;
+            box-shadow: 0 2px 8px rgba(17,24,39,0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 9px;
+        }
+
+        .hdr h1 {
+            font-family: var(--display);
+            font-size: 38px;
+            font-weight: 400;
+            line-height: 1;
+            color: var(--dark);
+            letter-spacing: 0.01em;
+        }
+
+        .hdr-badge {
+            background: var(--dark);
+            color: var(--cream);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-family: var(--mono);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        /* ── TOP ROW: 4 PILLAR CARDS ── */
+        .body-top {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            flex-shrink: 0;
+        }
+
+        .pillar-card {
+            background: var(--cream-light);
+            border: 1px solid var(--line-strong);
+            border-radius: var(--radius-md);
+            padding: 10px 14px 9px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 105px;
+        }
+
+        .card-hdr {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2px;
+        }
+
+        .pillar-num {
+            font-family: var(--mono);
+            font-size: 9.5px;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .stitle {
+            font-family: var(--display);
+            font-size: 19px;
+            font-weight: 400;
+            line-height: 1.15;
+            color: var(--dark);
+            margin-bottom: 3px;
+        }
+
+        .stitle .hl { color: var(--accent); }
+        .stitle .hl-warm { color: var(--warm); }
+
+        .pillar-card p {
+            font: 400 11.5px/1.38 var(--sans);
+            color: var(--dark-soft);
+        }
+
+        .pillar-card p b {
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        /* ── BOTTOM ROW: 3 MAIN TECHNICAL COLUMNS ── */
+        .body-bottom {
+            display: grid;
+            grid-template-columns: 460px 1fr 1fr;
+            gap: 16px;
+            flex: 1;
+            min-height: 0;
+        }
+
+        /* COLUMN 1: PHONES SHOWCASE & PREMACK CARD */
+        .col-phones {
+            background: var(--cream-light);
+            border: 1px solid var(--line-strong);
+            border-radius: var(--radius-md);
+            padding: 10px 14px 9px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 0;
+        }
+
+        .stage-title {
+            font-family: var(--display);
+            font-size: 17.5px;
+            font-weight: 400;
+            color: var(--dark);
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 3px;
+            margin-bottom: 3px;
+            flex-shrink: 0;
+        }
+
+        .phones-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 2px 0;
+            flex: 1;
+        }
+
+        .phone-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+        }
+
+        .phone-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: contain;
+            filter: drop-shadow(0 8px 16px rgba(17, 24, 39, 0.18));
+            border-radius: 12px;
+        }
+
+        .phone-badge {
+            font-family: var(--mono);
+            font-size: 8px;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--dark);
+            margin-top: 5px;
+            background: #fff;
+            padding: 2px 6px;
+            border-radius: 6px;
+            border: 1px solid var(--line);
+            white-space: nowrap;
+        }
+
+        .premack-box {
+            background: #fff;
+            border-left: 3px solid var(--accent);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            padding: 7px 10px;
+            border-top: 1px solid var(--line);
+            border-right: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .premack-box h4 {
+            font-family: var(--display);
+            font-size: 14.5px;
+            font-weight: 400;
+            color: var(--dark);
+            margin-bottom: 2px;
+        }
+
+        .premack-box p {
+            font: 400 11px/1.35 var(--sans);
+            color: var(--dark-soft);
+        }
+
+        /* COLUMNS 2 & 3: FIGURE BOX + TECHNICAL PANEL */
+        .tech-col {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-height: 0;
+        }
+
+        .figure-box {
+            background: var(--cream-light);
+            border: 1px solid var(--line-strong);
+            border-radius: var(--radius-md);
+            padding: 10px 12px 8px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            min-height: 0;
+            justify-content: space-between;
+        }
+
+        .fig-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 3px;
+            margin-bottom: 4px;
+            flex-shrink: 0;
+        }
+
+        .fig-title {
+            font-family: var(--display);
+            font-size: 17px;
+            font-weight: 400;
+            color: var(--dark);
+        }
+
+        .fig-sub {
+            font-family: var(--mono);
+            font-size: 8.5px;
+            color: var(--dark-soft);
+            opacity: 0.8;
+        }
+
+        .fig-canvas {
+            flex: 1;
+            min-height: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--line);
+            padding: 4px;
+            overflow: hidden;
+        }
+
+        .fig-canvas img {
+            width: 100%;
+            height: 100%;
+            max-height: 280px;
+            object-fit: contain;
+            mix-blend-mode: multiply;
+            display: block;
+        }
+
+        .fig-footer {
+            border-top: 1px solid var(--line);
+            padding-top: 4px;
+            margin-top: 4px;
+            font-family: var(--mono);
+            font-size: 9px;
+            line-height: 1.3;
+            color: var(--dark-soft);
+            flex-shrink: 0;
+        }
+
+        .fig-footer b {
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .fig-footer.warm b {
+            color: var(--warm);
+        }
+
+        .info-panel {
+            background: var(--cream-light);
+            border-radius: var(--radius-md);
+            padding: 9px 12px;
+            border: 1px solid var(--line-strong);
+            flex-shrink: 0;
+        }
+
+        .info-panel.accent { border-left: 3px solid var(--accent); }
+        .info-panel.warm { border-left: 3px solid var(--warm); }
+
+        .info-panel .stitle {
+            font-size: 16.5px;
+            margin-bottom: 2px;
+        }
+
+        .info-panel p {
+            font: 400 11px/1.36 var(--sans);
+            color: var(--dark-soft);
+        }
+
+        .info-panel p b {
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        /* ── BOTTOM STATS STRIP ── */
+        .bottom-strip {
+            display: flex;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            border: 1px solid var(--line-strong);
+            background: var(--cream-light);
+            flex-shrink: 0;
+        }
+
+        .strip-item {
+            flex: 1;
+            padding: 6px 12px;
+            text-align: center;
+        }
+
+        .strip-item + .strip-item {
+            border-left: 1px solid var(--line-strong);
+        }
+
+        .strip-num {
+            font-family: var(--display);
+            font-size: 20px;
+            line-height: 1;
+            color: var(--accent);
+            margin-bottom: 1px;
+        }
+
+        .strip-num.warm { color: var(--warm); }
+
+        .strip-label {
+            font-family: var(--sans);
+            font-size: 10.5px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .strip-sub {
+            font-family: var(--mono);
+            font-size: 8px;
+            color: var(--dark-soft);
+            opacity: 0.75;
+        }
+
+        /* ── REFERENCES ── */
+        .refs { flex-shrink: 0; }
+        .refs-tag {
+            font-family: var(--mono);
+            font-size: 8.5px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 2px;
+        }
+
+        .refs-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .refs-list p {
+            font: 400 8.5px/1.24 var(--sans);
+            color: var(--dark-soft);
+            opacity: 0.75;
+        }
+
+        .refs-list b {
+            font-family: var(--mono);
+            font-weight: 700;
+            color: var(--accent);
+            opacity: 1;
+        }
+
+        @media print {
+            .poster-wrapper { padding: 0; background: #fff; }
+            .poster { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+<div class="poster-wrapper">
+    <div class="poster">
+
+        <!-- HEADER -->
+        <div class="hdr">
+            <div class="hdr-left">
+                <div class="logo-wrap">
+                    <img src="Logo.png" alt="LogicLab Kids">
+                </div>
+                <h1>Experimental and method</h1>
+            </div>
+            <div class="hdr-badge">LogicLab Kids · EUCYS 2026</div>
+        </div>
+
+        <!-- TOP ROW: 4 PILLAR ARCHITECTURE CARDS -->
+        <div class="body-top">
+
+            <!-- Pillar 1 -->
+            <div class="pillar-card">
+                <div class="card-hdr">
+                    <span class="stitle" style="margin-bottom: 0;">Native <span class="hl">Platforms</span></span>
+                    <span class="pillar-num">01</span>
+                </div>
+                <p>Native <b>SwiftUI (MVVM)</b> on iOS (live on Apple TestFlight) and <b>Kotlin Compose</b> on Android. Operates offline-first; all lessons execute with zero network connectivity.</p>
+            </div>
+
+            <!-- Pillar 2 -->
+            <div class="pillar-card">
+                <div class="card-hdr">
+                    <span class="stitle" style="margin-bottom: 0;">Stage <span class="hl">Grammar</span></span>
+                    <span class="pillar-num">02</span>
+                </div>
+                <p><b>6 modules and 36 lessons</b> bundled as JSON. 4 interactive task types: Quiz, Spot-It, Sort-It, Build-It. Mistakes are never punished (explanations shown after 2 misses).</p>
+            </div>
+
+            <!-- Pillar 3 -->
+            <div class="pillar-card">
+                <div class="card-hdr">
+                    <span class="stitle" style="margin-bottom: 0;">Premack <span class="hl-warm">Contingency</span></span>
+                    <span class="pillar-num" style="color: var(--warm);">03</span>
+                </div>
+                <p>Applies the Premack (1959) differential probability law. Solving a lesson credits the ledger with <b>+20 pts & +5 min</b>. Child spends balance within parent-allowed hours.</p>
+            </div>
+
+            <!-- Pillar 4 -->
+            <div class="pillar-card">
+                <div class="card-hdr">
+                    <span class="stitle" style="margin-bottom: 0;">Constrained <span class="hl">Gemini</span></span>
+                    <span class="pillar-num">04</span>
+                </div>
+                <p>System prompt restricts Gemini to Socratic dialogue: probes reasoning and gives hints, never direct answers. Strict low token cap prevents lecturing; unlocks only post-task.</p>
+            </div>
+
+        </div>
+
+        <!-- BOTTOM ROW: PHONES SHOWCASE + 2 TECHNICAL COLUMNS -->
+        <div class="body-bottom">
+
+            <!-- COLUMN 1: PHONES SHOWCASE + PREMACK CARD -->
+            <div class="col-phones">
+                <div class="stage-title">Interactive Child Experience · iOS &amp; Android</div>
+
+                <div class="phones-row">
+                    <div class="phone-item">
+                        <img src="posterimages/framed-home.png" alt="Daily Mystery Home">
+                        <div class="phone-badge">01 · Daily Mystery</div>
+                    </div>
+                    <div class="phone-item">
+                        <img src="posterimages/framed-done.png" alt="Lesson Solved">
+                        <div class="phone-badge">02 · Lesson Solved</div>
+                    </div>
+                    <div class="phone-item">
+                        <img src="posterimages/framed-reward.png" alt="Earn Free Time">
+                        <div class="phone-badge">03 · Earn Free Time</div>
+                    </div>
+                </div>
+
+                <div class="premack-box">
+                    <h4>The Behavioral Lock</h4>
+                    <p>Screen entertainment is the highest-probability behavior; structured reasoning practice is among the lowest. The lock and key are in the OS: a child cannot negotiate around it.</p>
+                </div>
+            </div>
+
+            <!-- COLUMN 2: ARCHITECTURE SCHEMATIC + OS SECURITY -->
+            <div class="tech-col">
+                <div class="figure-box">
+                    <div class="fig-header">
+                        <span class="fig-title">System Architecture</span>
+                        <span class="fig-sub">OS Sandbox vs Cloud</span>
+                    </div>
+                    <div class="fig-canvas">
+                        <img src="posterimages/07_system_architecture.png" alt="System Architecture">
+                    </div>
+                    <div class="fig-footer">
+                        <b>FIG 3.</b> Hardware sandbox vs cloud: Screen-time contingency is enforced on-device via Apple FamilyControls and ManagedSettings. Cloud Firestore manages sync and parental rules.
+                    </div>
+                </div>
+
+                <div class="info-panel accent">
+                    <div class="stitle">Opaque Token <span class="hl">Shielding</span></div>
+                    <p>The system picker returns <b>opaque tokens</b>, so LogicLab Kids never accesses which apps the parent selected. Shields are applied directly by iOS ManagedSettings, not in-app.</p>
+                </div>
+            </div>
+
+            <!-- COLUMN 3: STAGE GRAMMAR + REWARD LOOP -->
+            <div class="tech-col">
+                <div class="figure-box">
+                    <div class="fig-header">
+                        <span class="fig-title">Stage Grammar &amp; Loop</span>
+                        <span class="fig-sub">5-Stage Interaction Cycle</span>
+                    </div>
+                    <div class="fig-canvas">
+                        <img src="posterimages/08_lesson_reward_loop.png" alt="Lesson Reward Loop">
+                    </div>
+                    <div class="fig-footer warm">
+                        <b>FIG 4.</b> Fixed 5-stage lesson grammar (Story → Quiz/Spot/Sort/Build → Socratic AI → Reward Credit → Shield Lift). Screen entertainment is unlocked strictly for the earned interval.
+                    </div>
+                </div>
+
+                <div class="info-panel warm">
+                    <div class="stitle">4 Core <span class="hl-warm">Task Types</span></div>
+                    <p><b>Quiz</b> (sound continuation), <b>Spot-It</b> (faulty step), <b>Sort-It</b> (inference chain), and <b>Build-It</b> (conclusion assembly). The child acts dynamically rather than memorizing definitions.</p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- BOTTOM STATS STRIP -->
+        <div class="bottom-strip">
+            <div class="strip-item">
+                <div class="strip-num">36</div>
+                <div class="strip-label">Interactive Lessons</div>
+                <div class="strip-sub">6 modules across 4 tracks</div>
+            </div>
+            <div class="strip-item">
+                <div class="strip-num">+5 min</div>
+                <div class="strip-label">Earned Screen Time</div>
+                <div class="strip-sub">+20 pts per solved lesson</div>
+            </div>
+            <div class="strip-item">
+                <div class="strip-num">100%</div>
+                <div class="strip-label">OS-Level Shielding</div>
+                <div class="strip-sub">Apple FamilyControls &amp; Opaque Tokens</div>
+            </div>
+            <div class="strip-item">
+                <div class="strip-num warm">0 Net</div>
+                <div class="strip-label">Offline Runtime</div>
+                <div class="strip-sub">Zero network required for lessons</div>
+            </div>
+        </div>
+
+        <!-- REFERENCES -->
+        <div class="refs">
+            <div class="refs-tag">References</div>
+            <div class="refs-list">
+                <p><b>[1]</b> Apple Inc. FamilyControls, ManagedSettings &amp; DeviceActivity Frameworks.</p>
+                <p><b>[2]</b> Premack, D. (1959). Toward empirical behavior laws: I. Positive reinforcement.</p>
+                <p><b>[3]</b> Kosmyna et al. (2025). Your Brain on ChatGPT. <i>MIT Media Lab</i>.</p>
+                <p><b>[4]</b> LogicLab Kids System Architecture &amp; Build Specification (2026).</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
