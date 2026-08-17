@@ -339,7 +339,7 @@
             grid-template-columns: 148px 1fr;
             gap: 16px;
             align-items: baseline;
-            padding: 14px 2px;
+            padding: 20px 2px;
             border-bottom: 1px solid var(--line);
         }
 
@@ -347,7 +347,7 @@
 
         .spec-key {
             font-family: var(--mono);
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 600;
             letter-spacing: 0.08em;
             text-transform: uppercase;
@@ -355,7 +355,7 @@
         }
 
         .spec-val {
-            font: 400 16.5px/1.5 var(--sans);
+            font: 400 18px/1.55 var(--sans);
             color: var(--dark-soft);
         }
 
@@ -375,17 +375,17 @@
             display: flex;
             align-items: flex-start;
             gap: 18px;
-            padding: 10px 2px;
+            padding: 16px 2px;
         }
 
         .st-row + .st-row { border-top: 1px solid var(--line); }
 
         .st-n {
             font-family: var(--display);
-            font-size: 52px;
+            font-size: 62px;
             line-height: 0.95;
             color: var(--accent);
-            min-width: 40px;
+            min-width: 48px;
             text-align: center;
         }
 
@@ -394,18 +394,18 @@
 
         .st-body b {
             display: block;
-            font: 700 17.5px/1.35 var(--sans);
+            font: 700 20px/1.35 var(--sans);
             color: var(--dark);
         }
 
         .st-body span {
-            font: 400 14.5px/1.45 var(--sans);
+            font: 400 16px/1.5 var(--sans);
             color: var(--dark-soft);
         }
 
         .st-pay {
             font-family: var(--display) !important;
-            font-size: 24px !important;
+            font-size: 28px !important;
             color: #B85A28 !important;
         }
 
@@ -551,47 +551,6 @@
             <div class="hdr-badge">LogicLab Kids · EUCYS 2026</div>
         </div>
 
-        <!-- TOP ROW: 4 PILLAR ARCHITECTURE CARDS -->
-        <div class="body-top">
-
-            <!-- Pillar 1 -->
-            <div class="pillar-card">
-                <div class="card-hdr">
-                    <span class="stitle" style="margin-bottom: 0;">Native <span class="hl">Platforms</span></span>
-                    <span class="pillar-num">01</span>
-                </div>
-                <p>Native <b>SwiftUI (MVVM)</b> on iOS (live on Apple TestFlight) and <b>Kotlin Compose</b> on Android. Operates offline-first; all lessons execute with zero network connectivity.</p>
-            </div>
-
-            <!-- Pillar 2 -->
-            <div class="pillar-card">
-                <div class="card-hdr">
-                    <span class="stitle" style="margin-bottom: 0;">Stage <span class="hl">Grammar</span></span>
-                    <span class="pillar-num">02</span>
-                </div>
-                <p><b>6 modules and 36 lessons</b> bundled as JSON. 4 interactive task types: Quiz, Spot-It, Sort-It, Build-It. Mistakes are never punished (explanations shown after 2 misses).</p>
-            </div>
-
-            <!-- Pillar 3 -->
-            <div class="pillar-card">
-                <div class="card-hdr">
-                    <span class="stitle" style="margin-bottom: 0;">Premack <span class="hl-warm">Contingency</span></span>
-                    <span class="pillar-num" style="color: var(--warm);">03</span>
-                </div>
-                <p>Applies the Premack (1959) differential probability law. Solving a lesson credits the ledger with <b>+20 pts & +5 min</b>. Child spends balance within parent-allowed hours.</p>
-            </div>
-
-            <!-- Pillar 4 -->
-            <div class="pillar-card">
-                <div class="card-hdr">
-                    <span class="stitle" style="margin-bottom: 0;">Constrained <span class="hl">Gemini</span></span>
-                    <span class="pillar-num">04</span>
-                </div>
-                <p>System prompt restricts Gemini to Socratic dialogue: probes reasoning and gives hints, never direct answers. Strict low token cap prevents lecturing; unlocks only post-task.</p>
-            </div>
-
-        </div>
-
         <!-- BOTTOM ROW: PHONES SHOWCASE + 2 TECHNICAL COLUMNS -->
         <div class="body-bottom">
 
@@ -657,8 +616,8 @@
                 </div>
 
                 <div class="info-panel accent">
-                    <div class="stitle">Opaque Token <span class="hl">Shielding</span></div>
-                    <p>The system picker returns <b>opaque tokens</b>, so LogicLab Kids never accesses which apps the parent selected. Shields are applied directly by iOS ManagedSettings, not in-app.</p>
+                    <div class="stitle">Per-Child <span class="hl">Accounts</span></div>
+                    <p>The parent creates credentials per child; <b>role-based Firestore rules</b> mean a child can only ever read their own data. Multiple children, one parent dashboard.</p>
                 </div>
             </div>
 
@@ -694,7 +653,7 @@
                         </div>
                     </div>
                     <div class="fig-footer warm">
-                        <b>FIG 4.</b> Premack (1959): a high-probability behaviour reinforces a low-probability one. There is nothing to negotiate — the lock and the key are both in the OS.
+                        <b>FIG 4.</b> Reward values are those of the current build.
                     </div>
                 </div>
 
@@ -704,30 +663,6 @@
                 </div>
             </div>
 
-        </div>
-
-        <!-- BOTTOM STATS STRIP -->
-        <div class="bottom-strip">
-            <div class="strip-item">
-                <div class="strip-num">36</div>
-                <div class="strip-label">Interactive Lessons</div>
-                <div class="strip-sub">6 modules across 4 tracks</div>
-            </div>
-            <div class="strip-item">
-                <div class="strip-num">+5 min</div>
-                <div class="strip-label">Earned Screen Time</div>
-                <div class="strip-sub">+20 pts per solved lesson</div>
-            </div>
-            <div class="strip-item">
-                <div class="strip-num">100%</div>
-                <div class="strip-label">OS-Level Shielding</div>
-                <div class="strip-sub">Apple FamilyControls &amp; Opaque Tokens</div>
-            </div>
-            <div class="strip-item">
-                <div class="strip-num warm">0 Net</div>
-                <div class="strip-label">Offline Runtime</div>
-                <div class="strip-sub">Zero network required for lessons</div>
-            </div>
         </div>
 
         <!-- REFERENCES -->
