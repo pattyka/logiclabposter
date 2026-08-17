@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>LogicLab Kids · EUCYS stand view</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --mono: 'JetBrains Mono', ui-monospace, monospace;
+        --ink: #EFE3C7;
+        --dim: rgba(239, 227, 199, 0.38);
+        --line: rgba(239, 227, 199, 0.14);
+        --accent: #5CC5C2;
+
+        /* 1 cm = 10 px in poster space */
+        --gap: 60px;      /* 6 cm between panels */
+        --floor: 900px;   /* poster bottom edge is 90 cm above the floor */
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+        background: #0B0B0B;
+        color: var(--ink);
+        font-family: var(--mono);
+        height: 100%;
+        overflow: hidden;
+    }
+
+    /* ── SCENE ────────────────────────────────────────────── */
+    #viewport {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: auto;
+    }
+
+    #scene {
+        position: relative;
+        width: 3860px;                     /* 322 cm wall + room for the scale figure */
+        height: calc(1000px + var(--floor));/* poster top sits 190 cm above the floor */
+        flex: 0 0 auto;
+    }
+
+    .wall {
+        position: absolute;
+        left: 0; top: 0;
+        width: 3220px;                     /* 70 + 6 + 170 + 6 + 70 = 322 cm */
+        height: 1000px;
+        display: flex;
+        gap: var(--gap);
+    }
+
+    .panel {
+        position: relative;
+        flex: 0 0 auto;
+        height: 1000px;
+        background: #EFE3C7;
+        box-shadow: 0 24px 90px rgba(0, 0, 0, 0.7);
+    }
+
+    .panel.w70  { width: 700px; }
+    .panel.w170 { width: 1700px; }
+
+    .panel iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        display: block;
+        pointer-events: none;
+    }
+
+    /* the poster files centre themselves in a padded dark wrapper —
+       this pulls the poster itself flush to the panel edges */
+    .panel iframe {
+        transform: translate(-30px, -30px);
+        width: calc(100% + 60px);
+        height: calc(100% + 60px);
+    }
+
+    .tag {
+        position: absolute;
+        top: calc(100% + 16px);
+        left: 0;
+        font-size: 13px;
+        letter-spacing: 0.14em;
+        color: var(--dim);
+        white-space: nowrap;
+    }
+
+    .tag b { color: var(--ink); font-weight: 500; }
+
+    /* ── FLOOR + SCALE FIGURE ─────────────────────────────── */
+    #floorline {
+        position: absolute;
+        left: 0; right: 0;
+        bottom: 0;
+        border-top: 1px solid var(--line);
+    }
+
+    #human {
+        position: absolute;
+        bottom: 0;
+        left: 3320px;
+        width: 500px;
+        height: 1750px;                    /* 175 cm */
+        opacity: 0.5;
+        transition: opacity 0.18s;
+    }
+
+    #human svg { width: 100%; height: 100%; display: block; }
+
+    body.nohuman #human { opacity: 0; }
+
+    /* ── CONTROL BAR ──────────────────────────────────────── */
+    #bar {
+        position: fixed;
+        left: 50%;
+        bottom: 22px;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        padding: 5px;
+        background: rgba(24, 24, 24, 0.82);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 11px;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        z-index: 10;
+    }
+
+    #bar button {
+        font: 500 12px/1 var(--mono);
+        letter-spacing: 0.06em;
+        color: var(--dim);
+        background: none;
+        border: 0;
+        border-radius: 7px;
+        padding: 8px 13px;
+        cursor: pointer;
+    }
+
+    #bar button:hover { color: var(--ink); background: rgba(255,255,255,0.06); }
+    #bar button.on { color: #0B0B0B; background: var(--ink); }
+
+    #bar .sep { width: 1px; height: 20px; background: rgba(255,255,255,0.12); margin: 0 5px; }
+
+    #readout {
+        position: fixed;
+        top: 20px;
+        left: 22px;
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        color: var(--dim);
+        z-index: 10;
+    }
+
+    #readout b { color: var(--accent); font-weight: 500; }
+</style>
+</head>
+<body>
+
+<div id="readout">322 × 100 CM &nbsp;·&nbsp; <b><span id="zoomval">FIT</span></b></div>
+
+<div id="viewport">
+    <div id="scene">
+        <div class="wall">
+            <div class="panel w70">
+                <iframe src="poster_1.html" scrolling="no"></iframe>
+                <div class="tag">01 &nbsp; INTRODUCTION &nbsp;·&nbsp; <b>70 × 100 CM</b></div>
+            </div>
+            <div class="panel w170">
+                <iframe src="poster_2.html" scrolling="no"></iframe>
+                <div class="tag">02 &nbsp; EXPERIMENTAL AND METHOD &nbsp;·&nbsp; <b>170 × 100 CM</b></div>
+            </div>
+            <div class="panel w70">
+                <iframe src="poster_3.html" scrolling="no"></iframe>
+                <div class="tag">03 &nbsp; RESULTS AND CONCLUSION &nbsp;·&nbsp; <b>70 × 100 CM</b></div>
+            </div>
+        </div>
+
+        <div id="floorline"></div>
+
+        <div id="human">
+            <!-- 175 cm, drawn 1 unit = 1 cm -->
+            <svg viewBox="0 0 50 175" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
+                <g fill="rgba(239,227,199,0.26)">
+                    <circle cx="25" cy="11" r="10.5"/>
+                    <rect x="21" y="18"   width="8" height="9" rx="3"/>
+                    <rect x="14" y="24"   width="22" height="46" rx="8"/>
+                    <rect x="6.5" y="26"  width="6.5" height="44" rx="3.25"/>
+                    <rect x="37" y="26"   width="6.5" height="44" rx="3.25"/>
+                    <rect x="15" y="66"   width="20" height="16" rx="6"/>
+                    <rect x="16" y="76"   width="8.5" height="99" rx="4.25"/>
+                    <rect x="25.5" y="76" width="8.5" height="99" rx="4.25"/>
+                </g>
+            </svg>
+        </div>
+    </div>
+</div>
+
+<div id="bar">
+    <button data-zoom="fit" class="on">FIT</button>
+    <button data-zoom="0.5">50%</button>
+    <button data-zoom="1">1:1</button>
+    <div class="sep"></div>
+    <button id="humanbtn" class="on">SCALE FIGURE</button>
+</div>
+
+<script>
+    const scene    = document.getElementById('scene');
+    const viewport = document.getElementById('viewport');
+    const zoomval  = document.getElementById('zoomval');
+    let mode = 'fit';
+
+    const SCENE_W = 3860, SCENE_H = 1900;
+
+    function apply() {
+        // `zoom` (not `transform`) so the scaled scene keeps a real layout box
+        // and the flex centering + scrollbars stay honest at 1:1
+        const k = mode === 'fit'
+            ? Math.min((innerWidth - 100) / SCENE_W, (innerHeight - 130) / SCENE_H)
+            : parseFloat(mode);
+
+        scene.style.zoom = k;
+
+        zoomval.textContent = mode === 'fit'
+            ? 'FIT · ' + Math.round(k * 100) + '%'
+            : Math.round(k * 100) + '%';
+    }
+
+    document.querySelectorAll('#bar button[data-zoom]').forEach(b => {
+        b.onclick = () => {
+            document.querySelectorAll('#bar button[data-zoom]').forEach(x => x.classList.remove('on'));
+            b.classList.add('on');
+            mode = b.dataset.zoom;
+            apply();
+            if (mode !== 'fit') {
+                viewport.scrollLeft = (viewport.scrollWidth - viewport.clientWidth) / 2;
+                viewport.scrollTop  = (viewport.scrollHeight - viewport.clientHeight) / 2;
+            }
+        };
+    });
+
+    const hb = document.getElementById('humanbtn');
+    hb.onclick = () => {
+        document.body.classList.toggle('nohuman');
+        hb.classList.toggle('on', !document.body.classList.contains('nohuman'));
+    };
+
+    addEventListener('resize', () => { if (mode === 'fit') apply(); });
+    apply();
+</script>
+
+</body>
+</html>
