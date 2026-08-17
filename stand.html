@@ -39,11 +39,19 @@
         overflow: auto;
     }
 
-    #scene {
+    /* #stage carries the *painted* size so flex centering and the scrollbars
+       stay honest; #scene is the unscaled 1 cm = 10 px world inside it. */
+    #stage {
         position: relative;
+        flex: 0 0 auto;
+    }
+
+    #scene {
+        position: absolute;
+        top: 0; left: 0;
         width: 3860px;                     /* 322 cm wall + room for the scale figure */
         height: calc(1000px + var(--floor));/* poster top sits 190 cm above the floor */
-        flex: 0 0 auto;
+        transform-origin: 0 0;
     }
 
     .wall {
@@ -168,6 +176,7 @@
 <div id="readout">322 × 100 CM &nbsp;·&nbsp; <b><span id="zoomval">FIT</span></b></div>
 
 <div id="viewport">
+  <div id="stage">
     <div id="scene">
         <div class="wall">
             <div class="panel w70">
@@ -202,6 +211,7 @@
             </svg>
         </div>
     </div>
+  </div>
 </div>
 
 <div id="bar">
@@ -214,6 +224,7 @@
 
 <script>
     const scene    = document.getElementById('scene');
+    const stage    = document.getElementById('stage');
     const viewport = document.getElementById('viewport');
     const zoomval  = document.getElementById('zoomval');
     let mode = 'fit';
@@ -221,13 +232,15 @@
     const SCENE_W = 3860, SCENE_H = 1900;
 
     function apply() {
-        // `zoom` (not `transform`) so the scaled scene keeps a real layout box
-        // and the flex centering + scrollbars stay honest at 1:1
+        // transform, never `zoom`: `zoom` resizes each iframe's inner viewport,
+        // so the fixed-width posters reflow and blow out instead of shrinking.
         const k = mode === 'fit'
             ? Math.min((innerWidth - 100) / SCENE_W, (innerHeight - 130) / SCENE_H)
             : parseFloat(mode);
 
-        scene.style.zoom = k;
+        scene.style.transform = 'scale(' + k + ')';
+        stage.style.width  = (SCENE_W * k) + 'px';
+        stage.style.height = (SCENE_H * k) + 'px';
 
         zoomval.textContent = mode === 'fit'
             ? 'FIT · ' + Math.round(k * 100) + '%'
