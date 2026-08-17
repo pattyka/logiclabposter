@@ -81,8 +81,10 @@
         .logo-wrap {
             width: 44px;
             height: 44px;
-            background: transparent;
-            padding: 0;
+            border-radius: 11px;
+            background: #fff;
+            padding: 3px;
+            box-shadow: 0 2px 8px rgba(17,24,39,0.06);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -91,7 +93,8 @@
         .logo-wrap img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
+            border-radius: 8px;
         }
 
         .hdr h1 {
@@ -186,90 +189,26 @@
 
         /* ── FIGURE BOX (FULL SPREAD) ── */
         .img-wrap {
-            background: transparent;
-            padding: 2px 0 0;
+            background: #fff;
+            padding: 4px 6px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--line);
             text-align: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
-        /* ── DATA, DRAWN IN POSTER TYPE (no raster charts) ── */
-        .stat-graphic {
-            height: 186px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            padding: 6px 2px 0;
-            text-align: left;
-        }
-
-        .sg-row { display: flex; flex-direction: column; gap: 3px; }
-
-        .sg-head {
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-        }
-
-        .sg-group {
-            font: 600 15px/1 var(--sans);
-            color: var(--dark);
-        }
-
-        .sg-num {
-            font-family: var(--display);
-            font-size: 50px;
-            line-height: 0.9;
-            color: #E01C47;
-        }
-
-        .sg-colon { color: rgba(224, 28, 71, 0.55); }
-
-        .sg-track { position: relative; height: 31px; }
-
-        .sg-bar {
-            position: absolute;
-            left: 0;
-            border-radius: 3px;
-        }
-
-        .sg-bar.was {
-            top: 0;
-            height: 10px;
-            background: #C2B69A;
-        }
-
-        .sg-bar.was span {
-            position: absolute;
-            left: calc(100% + 7px);
-            top: 0;
-            font: 600 11.5px/1 var(--sans);
-            color: var(--dark-soft);
-            white-space: nowrap;
-        }
-
-        .sg-bar.now {
-            top: 12px;
-            height: 19px;
-            background: #E01C47;
-        }
-
-        .sg-note {
-            font: 400 13px/1.35 var(--sans);
-            color: var(--dark-soft);
-        }
-
-        .sg-note .warm-hl { color: #E01C47; font-weight: 700; }
-
-        .window-svg {
+        .img-wrap img {
             width: 100%;
-            height: 148px;
+            height: 125px;
+            object-fit: contain;
             display: block;
+            mix-blend-mode: multiply;
         }
 
         .img-cap {
-            font: 400 10.5px/1.35 var(--mono);
+            font: 400 9px/1.25 var(--mono);
             color: var(--dark-soft);
             margin-top: 3px;
             text-align: left;
@@ -421,7 +360,7 @@
         }
 
         .refs-list p {
-            font: 400 10px/1.3 var(--sans);
+            font: 400 8.5px/1.24 var(--sans);
             color: var(--dark-soft);
             opacity: 0.75;
         }
@@ -446,7 +385,7 @@
         <div class="hdr">
             <div class="hdr-left">
                 <div class="logo-wrap">
-                    <img src="Logo.svg" alt="LogicLab Kids">
+                    <img src="Logo.png" alt="LogicLab Kids">
                 </div>
                 <h1>Introduction</h1>
             </div>
@@ -457,7 +396,7 @@
         <div class="hero">
             <div class="hero-tagline">1. Context & Rationale</div>
             <h2>The Cognitive Cost of <span class="hl">Screen Media</span></h2>
-            <p class="hero-sub">Children spend 5.5–8.6 hours a day on entertainment media — exactly in the years when executive function is built.</p>
+            <p class="hero-sub">Children spend 5.5 to 8.6 hours daily on entertainment media during the critical developmental window when executive function matures. Passive consumption and unconstrained generative AI threaten to replace the mental exertion required to build problem-solving stamina.</p>
         </div>
 
         <!-- 2-COLUMN CONTENT GRID -->
@@ -467,33 +406,11 @@
             <div class="body-col">
                 <div>
                     <div class="stitle">Entertainment <span class="hl">Surge</span></div>
-                    <p>All of it outside schoolwork — and rising in every age group.</p>
+                    <p>Daily entertainment screen use increased by <b>+17% across two years</b>. Tweens (8-12) average 5h 33m daily, while teens (13-18) consume 8h 39m outside schoolwork.</p>
                 </div>
                 <div class="img-wrap">
-                    <div class="stat-graphic">
-                        <div class="sg-row">
-                            <div class="sg-head">
-                                <span class="sg-group">Tweens (8–12)</span>
-                                <span class="sg-num">5<span class="sg-colon">:</span>33</span>
-                            </div>
-                            <div class="sg-track">
-                                <div class="sg-bar was" style="width: 47.3%"><span>4:44 in 2019</span></div>
-                                <div class="sg-bar now" style="width: 55.5%"></div>
-                            </div>
-                        </div>
-                        <div class="sg-row">
-                            <div class="sg-head">
-                                <span class="sg-group">Teens (13–18)</span>
-                                <span class="sg-num">8<span class="sg-colon">:</span>39</span>
-                            </div>
-                            <div class="sg-track">
-                                <div class="sg-bar was" style="width: 73.7%"><span>7:22 in 2019</span></div>
-                                <div class="sg-bar now" style="width: 86.5%"></div>
-                            </div>
-                        </div>
-                        <div class="sg-note">hours per day · <b class="warm-hl">+17% in two years</b></div>
-                    </div>
-                    <div class="img-cap"><b>FIG 1.</b> Common Sense Census, 2019 → 2021. Figure: own work.</div>
+                    <img src="posterimages/04_screen_media.png" alt="Daily entertainment screen media use by age group" />
+                    <div class="img-cap"><b>FIG 1.</b> Daily screen media by age group, 2019 vs 2021 (+17% growth).</div>
                 </div>
             </div>
 
@@ -501,38 +418,11 @@
             <div class="body-col">
                 <div>
                     <div class="stitle">The Critical <span class="hl">Window</span></div>
-                    <p>The years when reasoning is built are the same years the phone arrives.</p>
+                    <p>Complex executive function develops rapidly between <b>ages 7 and 14</b> (rising 50% to &gt;90%), overlapping with smartphone ownership surge (50%+ by age 11).</p>
                 </div>
                 <div class="img-wrap">
-                    <div class="stat-graphic">
-                        <svg class="window-svg" viewBox="0 0 285 148" aria-label="Executive function trajectory, ages 5-17">
-                            <!-- the 7-11 window -->
-                            <rect x="61" y="8" width="92" height="118" fill="#48A8A6" opacity="0.18"/>
-                            <text x="107" y="21" text-anchor="middle" font-size="13" font-weight="700" fill="#1F6B6A" font-family="Inter, sans-serif">LogicLab Kids</text>
-                            <!-- EF curve: age 5-17 mapped to x 15-270, EF 55-100 mapped to y 118-30 -->
-                            <path d="M 15 118 C 55 92, 90 68, 130 50 C 170 36, 220 30, 270 28"
-                                  fill="none" stroke="#111726" stroke-width="3.2" stroke-linecap="round"/>
-                            <!-- smartphone-at-11 marker: age 11 = x 153 -->
-                            <line x1="153" y1="40" x2="153" y2="126" stroke="#E01C47" stroke-width="1.6" stroke-dasharray="4 3"/>
-                            <circle cx="153" cy="40" r="5" fill="#F7F0DE" stroke="#E01C47" stroke-width="2.4"/>
-                            <text x="161" y="72" font-size="12" font-style="italic" fill="#E01C47" font-family="Inter, sans-serif">
-                                <tspan x="161" dy="0">50%+ own a</tspan>
-                                <tspan x="161" dy="14">smartphone by 11</tspan>
-                            </text>
-                            <!-- endpoint values -->
-                            <text x="15" y="132" font-size="12.5" font-weight="700" fill="#5A6070" font-family="Inter, sans-serif">50%</text>
-                            <text x="270" y="22" text-anchor="end" font-size="12.5" font-weight="700" fill="#111726" font-family="Inter, sans-serif">&gt;90%</text>
-                            <!-- age axis: only the ages that matter -->
-                            <line x1="15" y1="126" x2="270" y2="126" stroke="#111726" stroke-width="1.1"/>
-                            <text x="15" y="141" text-anchor="middle" font-size="12.5" fill="#5A6070" font-family="Inter, sans-serif">5</text>
-                            <text x="61" y="141" text-anchor="middle" font-size="12.5" font-weight="700" fill="#1F6B6A" font-family="Inter, sans-serif">7</text>
-                            <text x="153" y="141" text-anchor="middle" font-size="12.5" font-weight="700" fill="#E01C47" font-family="Inter, sans-serif">11</text>
-                            <text x="222" y="141" text-anchor="middle" font-size="12.5" font-weight="700" fill="#111726" font-family="Inter, sans-serif">14</text>
-                            <text x="270" y="141" text-anchor="middle" font-size="12.5" fill="#5A6070" font-family="Inter, sans-serif">17</text>
-                        </svg>
-                        <div class="sg-note">executive function, % of adult level</div>
-                    </div>
-                    <div class="img-cap"><b>FIG 2.</b> CAS complex-EF, N = 2,036 (Brydges 2014; Diamond 2013). Figure: own work.</div>
+                    <img src="posterimages/03_developmental_window.png" alt="Executive function developmental window" />
+                    <div class="img-cap"><b>FIG 2.</b> Executive function trajectory by age (CAS complex-EF, ages 5-17).</div>
                 </div>
             </div>
 
@@ -566,7 +456,7 @@
         <!-- THE PREMACK INCENTIVE FRAMEWORK -->
         <div class="premack-card">
             <h3>The Premack Behavioral Contingency Model</h3>
-            <p>Premack (1959): a high-probability behavior reinforces a low-probability one. LogicLab Kids makes screen time <b>earned through reasoning</b> — enforced by the OS, not by a promise.</p>
+            <p>Under Premack's Principle (1959), high-probability behaviors (screen entertainment) effectively reinforce low-probability behaviors (structured logical reasoning). LogicLab Kids establishes an unbreakable OS-level contingency where screen time is earned through independent problem-solving.</p>
         </div>
 
         <!-- REFERENCES -->
