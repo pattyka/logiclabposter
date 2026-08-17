@@ -79,12 +79,11 @@
         }
 
         .logo-wrap {
-            width: 46px;
-            height: 46px;
+            width: 62px;
+            height: 62px;
             border-radius: 12px;
-            background: #fff;
-            padding: 3px;
-            box-shadow: 0 2px 8px rgba(17,24,39,0.06);
+            background: transparent;
+            padding: 0;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -93,8 +92,7 @@
         .logo-wrap img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            border-radius: 9px;
+            object-fit: contain;
         }
 
         .hdr h1 {
@@ -205,29 +203,43 @@
             flex-shrink: 0;
         }
 
+        /* two shipped screens, overlapped — the frames are baked into the PNGs */
         .phones-row {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 2px 0;
+            position: relative;
             flex: 1;
+            min-height: 0;
+            padding: 6px 0 2px;
         }
 
-        .phone-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex: 1;
+        .phones-row img {
+            position: absolute;
+            height: 82%;
+            width: auto;
+            filter: drop-shadow(0 16px 30px rgba(17, 24, 39, 0.26));
         }
 
-        .phone-item img {
-            width: 100%;
-            height: 250px;
-            object-fit: contain;
-            filter: drop-shadow(0 8px 16px rgba(17, 24, 39, 0.18));
-            border-radius: 12px;
+        .phones-row .back {
+            right: 4%;
+            top: 9%;
+            transform: rotate(4deg);
+            z-index: 1;
         }
+
+        .phones-row .front {
+            left: 4%;
+            top: 1%;
+            transform: rotate(-3.5deg);
+            z-index: 2;
+        }
+
+        .phone-badge {
+            position: absolute;
+            bottom: 0;
+            z-index: 3;
+        }
+
+        .phone-badge.b-front { left: 2%; }
+        .phone-badge.b-back { right: 2%; }
 
         .phone-badge {
             font-family: var(--mono);
@@ -237,7 +249,7 @@
             text-transform: uppercase;
             color: var(--dark);
             margin-top: 5px;
-            background: #fff;
+            background: #FCF8EE;
             padding: 2px 6px;
             border-radius: 6px;
             border: 1px solid var(--line);
@@ -245,7 +257,7 @@
         }
 
         .premack-box {
-            background: #fff;
+            background: #FCF8EE;
             border-left: 3px solid var(--accent);
             border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
             padding: 7px 10px;
@@ -317,10 +329,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #fff;
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--line);
-            padding: 4px;
+            background: transparent;
+            padding: 2px 0;
             overflow: hidden;
         }
 
@@ -329,7 +339,6 @@
             height: 100%;
             max-height: 280px;
             object-fit: contain;
-            mix-blend-mode: multiply;
             display: block;
         }
 
@@ -468,7 +477,7 @@
         <div class="hdr">
             <div class="hdr-left">
                 <div class="logo-wrap">
-                    <img src="Logo.png" alt="LogicLab Kids">
+                    <img src="logo_logiclabkids.png" alt="LogicLab Kids">
                 </div>
                 <h1>Experimental and method</h1>
             </div>
@@ -524,18 +533,10 @@
                 <div class="stage-title">Interactive Child Experience · iOS &amp; Android</div>
 
                 <div class="phones-row">
-                    <div class="phone-item">
-                        <img src="posterimages/framed-home.png" alt="Daily Mystery Home">
-                        <div class="phone-badge">01 · Daily Mystery</div>
-                    </div>
-                    <div class="phone-item">
-                        <img src="posterimages/framed-done.png" alt="Lesson Solved">
-                        <div class="phone-badge">02 · Lesson Solved</div>
-                    </div>
-                    <div class="phone-item">
-                        <img src="posterimages/framed-reward.png" alt="Earn Free Time">
-                        <div class="phone-badge">03 · Earn Free Time</div>
-                    </div>
+                    <img class="back" src="posterimages/framed-reward.png" alt="Earned free time">
+                    <img class="front" src="posterimages/framed-home.png" alt="Daily mystery home">
+                    <div class="phone-badge b-front">01 · Daily Mystery</div>
+                    <div class="phone-badge b-back">02 · Earn Free Time</div>
                 </div>
 
                 <div class="premack-box">
