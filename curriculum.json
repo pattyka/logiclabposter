@@ -1,0 +1,116 @@
+{
+ "True or Fake?": {
+  "domain": "evidence",
+  "lessons": [
+   "How Do You Know?",
+   "Eyewitness or Gossip?",
+   "Strong and Weak Arguments",
+   "Numbers Don't Lie... Or Do They?",
+   "Who Said It, and Why?",
+   "Master Detective"
+  ],
+  "mix": [
+   "quiz/sortIt/buildIt",
+   "quiz/spotIt/grid",
+   "quiz/buildIt/spotIt",
+   "quiz/spotIt/sortIt",
+   "quiz/sortIt/buildIt",
+   "quiz/grid/spotIt"
+  ]
+ },
+ "Little Detectives": {
+  "domain": "deduction",
+  "lessons": [
+   "Who Ate the Cake?",
+   "The Missing Pencils",
+   "The Contradiction",
+   "Clues on the Playground",
+   "The Secret Message",
+   "The Big Case"
+  ],
+  "mix": [
+   "quiz/grid/spotIt",
+   "buildIt/grid/quiz",
+   "quiz/spotIt/buildIt",
+   "spotIt/sortIt/grid",
+   "buildIt/quiz/spotIt",
+   "grid/spotIt/buildIt"
+  ]
+ },
+ "Pattern Hunters": {
+  "domain": "pattern",
+  "lessons": [
+   "Number Sequences",
+   "Color and Shape Patterns",
+   "Daily Patterns",
+   "Finding the Rule",
+   "Code Cracking",
+   "Pattern Master"
+  ],
+  "mix": [
+   "quiz/spotIt/buildIt",
+   "quiz/sortIt/buildIt",
+   "quiz/buildIt/sortIt",
+   "quiz/spotIt/grid",
+   "quiz/sortIt/buildIt",
+   "quiz/grid/spotIt"
+  ]
+ },
+ "Thinking Traps": {
+  "domain": "fallacy",
+  "lessons": [
+   "You're too little!",
+   "That's not even it!",
+   "Either-Or",
+   "Everybody's doing it!",
+   "So what?!",
+   "Slippery Slope"
+  ],
+  "mix": [
+   "quiz/spotIt/sortIt",
+   "quiz/spotIt/buildIt",
+   "quiz/sortIt/buildIt",
+   "quiz/spotIt/sortIt",
+   "quiz/spotIt/buildIt",
+   "quiz/spotIt/grid"
+  ]
+ },
+ "See It Differently": {
+  "domain": "perspective",
+  "lessons": [
+   "Two Kinds of Truth",
+   "The Fair Judge",
+   "Favorites and Rivals",
+   "First Impressions",
+   "News Bites",
+   "Perspective Master"
+  ],
+  "mix": [
+   "quiz/sortIt/spotIt",
+   "quiz/spotIt/buildIt",
+   "quiz/sortIt/grid",
+   "quiz/buildIt/sortIt",
+   "quiz/spotIt/grid",
+   "quiz/sortIt/buildIt"
+  ]
+ },
+ "Chain Reaction": {
+  "domain": "systems",
+  "lessons": [
+   "Cause and Effect",
+   "The Domino Effect",
+   "Feedback Loops",
+   "Side Effects",
+   "The Big Picture",
+   "Systems Master"
+  ],
+  "mix": [
+   "quiz/sortIt/buildIt",
+   "quiz/buildIt/spotIt",
+   "quiz/spotIt/grid",
+   "quiz/sortIt/spotIt",
+   "quiz/buildIt/grid",
+   "quiz/sortIt/buildIt"
+  ]
+ }
+}

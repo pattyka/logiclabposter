@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Poster 2 · five ways to fill the two slots</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --cream: #EFE3C7; --cream-light: #F7F0DE; --cream-dark: #E2D3B0;
+        --dark: #111827; --dark-soft: #2D3748;
+        --accent: #48A9A6; --accent-deep: #37908D; --warm: #D4895A; --red: #E01C47;
+        --line: rgba(17,24,39,.12); --line-strong: rgba(17,24,39,.25);
+        --display: 'DM Serif Display', serif;
+        --sans: 'Inter', -apple-system, sans-serif;
+        --serif: 'Playfair Display', Georgia, serif;
+        --mono: 'JetBrains Mono', monospace;
+        /* the app's own domain colours, from Content/Courses/domains.json */
+        --d-pattern: #D97706; --d-deduction: #059669; --d-evidence: #0284C7;
+        --d-fallacy: #E11D48; --d-systems: #7C3AED; --d-perspective: #0D9488;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0B0B0B; color: #EFE3C7; font-family: var(--sans); padding: 34px 40px 90px; }
+
+    header { border-bottom: 1px solid rgba(239,227,199,.18); padding-bottom: 14px; }
+    h1 { font-family: var(--display); font-size: 30px; font-weight: 400; }
+    header p { font-size: 13px; line-height: 1.55; color: rgba(239,227,199,.6); margin-top: 6px; max-width: 940px; }
+    header b { color: #EFE3C7; font-weight: 600; }
+
+    .flag {
+        margin-top: 12px; padding: 9px 13px;
+        border-left: 3px solid var(--red); background: rgba(224,28,71,.08);
+        font-size: 12.5px; line-height: 1.5; color: rgba(239,227,199,.78); max-width: 940px;
+    }
+    .flag b { color: #EFE3C7; }
+
+    .opt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(720px,1fr)); gap: 34px 30px; margin-top: 26px; }
+    .opt { display: flex; flex-direction: column; gap: 10px; }
+    .opt-head { display: flex; align-items: baseline; gap: 10px; }
+    .opt-n { font: 600 11px/1 var(--mono); letter-spacing: .14em; color: var(--accent); }
+    .opt-title { font-family: var(--display); font-size: 21px; font-weight: 400; }
+    .opt-why { font-size: 12.5px; line-height: 1.5; color: rgba(239,227,199,.58); max-width: 690px; }
+    .opt-why b { color: rgba(239,227,199,.92); font-weight: 600; }
+    .new { font: 600 9px/1 var(--mono); letter-spacing: .1em; color: #0B0B0B;
+           background: var(--accent); padding: 3px 6px; border-radius: 3px; }
+
+    /* the two real slots, 539×501 at 62% */
+    .pair { display: flex; gap: 12px; }
+    .slot {
+        width: 334px; height: 311px; background: var(--cream-light);
+        border: 1px solid var(--line-strong); border-radius: 12px; color: var(--dark);
+        padding: 9px 11px 8px; display: flex; flex-direction: column; overflow: hidden; flex: 0 0 auto;
+    }
+    .s-hd { display: flex; align-items: center; justify-content: space-between;
+            border-bottom: 1px solid var(--line); padding-bottom: 3px; margin-bottom: 6px; flex-shrink: 0; }
+    .s-hd b { font-family: var(--display); font-size: 12.5px; font-weight: 400; }
+    .s-hd span { font: 400 6.5px/1 var(--mono); color: var(--dark-soft); letter-spacing: .08em; }
+    .s-body { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+    .s-ft { border-top: 1px solid var(--line); padding-top: 3px; margin-top: 5px;
+            font: 400 6.5px/1.35 var(--mono); color: var(--dark-soft); flex-shrink: 0; }
+    .s-ft b { color: var(--accent-deep); }
+
+    /* ══ 1 · CURRICULUM ═════════════════════════════════════ */
+    .courses { justify-content: space-between; }
+    .course { display: flex; align-items: baseline; gap: 7px; padding: 3px 0; border-bottom: 1px solid var(--line); }
+    .course:last-child { border-bottom: none; }
+    .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+    .course b { font: 700 10px/1.2 var(--sans); }
+    .course i { font: 400 7px/1.2 var(--sans); font-style: normal; color: var(--dark-soft); margin-left: auto; }
+    .course em { font: 400 7.5px/1.2 var(--sans); font-style: normal; color: rgba(45,55,72,.62); }
+
+    .index { columns: 2; column-gap: 12px; font: 400 6.6px/1.62 var(--sans); color: var(--dark-soft); }
+    .index div { break-inside: avoid; }
+    .index .h { font: 600 6.4px/1.6 var(--mono); letter-spacing: .06em; margin-top: 3px; }
+    .index .h:first-child { margin-top: 0; }
+
+    /* ══ 2 · THE PROMPT ═════════════════════════════════════ */
+    .code { gap: 4px; }
+    .code .file { font: 600 6.5px/1 var(--mono); letter-spacing: .1em; color: var(--accent-deep); text-transform: uppercase; }
+    .block { background: #17181C; border-radius: 6px; padding: 8px 9px;
+             font: 400 6.6px/1.62 var(--mono); color: #D7D2C4; flex: 1; overflow: hidden; }
+    .block .k { color: #8FB8B6; }
+    .block .no { color: #E8607F; font-weight: 700; }
+    .block .c { color: rgba(215,210,196,.4); }
+    .code .note { font: 400 7px/1.45 var(--sans); color: var(--dark-soft); }
+    .code .note b { color: var(--dark); }
+
+    .man { justify-content: center; gap: 9px; }
+    .man .kicker { font: 600 6.5px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--accent-deep); }
+    .man .line { font-family: var(--display); font-size: 30px; line-height: 1.06; letter-spacing: -.01em; }
+    .man .line i { font-family: var(--serif); font-style: italic; color: var(--red); }
+    .man .sub { font: 400 8px/1.5 var(--sans); color: var(--dark-soft); }
+    .man .rule { height: 1px; background: var(--line-strong); }
+
+    /* ══ 3 · LESSON ANATOMY ═════════════════════════════════ */
+    .anat { gap: 5px; }
+    .spine { display: flex; align-items: stretch; gap: 3px; }
+    .st { flex: 1; border: 1px solid var(--line-strong); border-radius: 4px; padding: 4px 3px; text-align: center; }
+    .st.fix { background: var(--cream-dark); }
+    .st.var { border-style: dashed; }
+    .st b { display: block; font: 700 6.4px/1.2 var(--sans); }
+    .st i { font: 400 5.6px/1.2 var(--mono); font-style: normal; color: var(--dark-soft); }
+    .anat .cap { font: 400 6.8px/1.4 var(--sans); color: var(--dark-soft); }
+    .ex { border-top: 1px solid var(--line); padding-top: 4px; margin-top: 2px; }
+    .ex .r { display: flex; gap: 6px; font: 400 6.6px/1.55 var(--sans); color: var(--dark-soft); }
+    .ex .r b { color: var(--dark); font-weight: 600; min-width: 96px; }
+    .ex .r i { font-family: var(--mono); font-style: normal; font-size: 6.2px; }
+
+    .types { justify-content: space-between; }
+    .ty { display: flex; align-items: baseline; gap: 7px; padding: 6px 0; border-bottom: 1px solid var(--line); }
+    .ty:last-of-type { border-bottom: none; }
+    .ty b { font: 700 9.5px/1.2 var(--sans); min-width: 52px; }
+    .ty span { font: 400 7px/1.3 var(--sans); color: var(--dark-soft); }
+    .ty i { font: 600 7px/1.2 var(--mono); font-style: normal; color: var(--accent-deep); margin-left: auto; }
+    .ty.newtype b { color: var(--red); }
+    .ty.newtype i { color: var(--red); }
+
+    /* ══ 4 · THREAT MODEL ═══════════════════════════════════ */
+    .threat .h { display: grid; grid-template-columns: 1fr 1fr; gap: 9px;
+                 font: 600 6.5px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 3px; }
+    .threat .h .a { color: var(--red); }
+    .threat .h .b { color: var(--accent-deep); }
+    .threat .r { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; flex: 1; align-items: center;
+                 padding: 4px 0; border-top: 1px solid var(--line); font: 400 7.2px/1.35 var(--sans); }
+    .threat .r .a { color: var(--dark); font-weight: 600; }
+    .threat .r .b { color: rgba(45,55,72,.66); }
+
+    /* ══ 5 · THE LOGIC GRID ═════════════════════════════════ */
+    .grid-p { gap: 5px; justify-content: space-between; }
+    .grid-p .situ { font: 400 7.4px/1.4 var(--sans); color: var(--dark-soft); }
+    .grid-p .clues { display: flex; flex-direction: column; gap: 2px; }
+    .grid-p .clues div { font: 400 6.8px/1.35 var(--sans); color: var(--dark-soft); display: flex; gap: 5px; }
+    .grid-p .clues b { font-family: var(--mono); font-size: 6px; color: var(--accent-deep); }
+    table.lg { width: 100%; border-collapse: collapse; margin-top: 2px; }
+    table.lg th, table.lg td { border: 1px solid var(--line-strong); height: 17px; text-align: center; }
+    table.lg th { font: 600 6px/1.2 var(--sans); color: var(--dark-soft); background: var(--cream); padding: 2px; }
+    table.lg th.rh { text-align: left; padding-left: 4px; color: var(--dark); }
+    table.lg td { font: 700 8px/1 var(--sans); color: var(--accent-deep); }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>Poster 2 — five ways to fill the two slots</h1>
+    <p>Rebuilt after your note: <b>none of these repeat anything the poster already says.</b> Every option below is pulled from
+    the shipped app — <code>Content/Courses/*.json</code> and <code>Managers/SocraticEngine.swift</code> — and none of it
+    appears on any of the three posters today. Both slots shown at real proportion (539 × 501, here at 62%).</p>
+    <div class="flag"><b>Found while digging:</b> the poster's fourth pillar says <b>“4 Core Task Types”</b>, but the shipped
+    content has <b>five</b> — <code>quiz</code>, <code>spotIt</code>, <code>sortIt</code>, <code>buildIt</code> and
+    <code>grid</code>, a logic-grid deduction puzzle used in <b>13 of the 36 lessons</b>. That pillar is wrong as printed,
+    whichever option you pick.</div>
+</header>
+
+<div class="opt-grid">
+
+<!-- ════════ 1 ════════ -->
+<div class="opt">
+  <div class="opt-head"><span class="opt-n">01</span><span class="opt-title">The curriculum, named</span><span class="new">NOT ON THE POSTER</span></div>
+  <p class="opt-why">The poster says “6 modules, 36 lessons” as a number and never once says <b>what they are</b>. Printing the six courses and all thirty-six lesson titles is the difference between claiming scope and showing it — and the titles do the pedagogy argument for you.</p>
+  <div class="pair">
+    <div class="slot">
+      <div class="s-hd"><b>Six Thinking Skills</b><span>THE COURSES</span></div>
+      <div class="s-body courses">
+        <div class="course"><span class="dot" style="background:var(--d-pattern)"></span><b>Pattern Hunters</b><em>Pattern recognition</em><i>6</i></div>
+        <div class="course"><span class="dot" style="background:var(--d-deduction)"></span><b>Little Detectives</b><em>Logical thinking</em><i>6</i></div>
+        <div class="course"><span class="dot" style="background:var(--d-evidence)"></span><b>True or Fake?</b><em>Arguments &amp; evidence</em><i>6</i></div>
+        <div class="course"><span class="dot" style="background:var(--d-fallacy)"></span><b>Thinking Traps</b><em>Fallacies</em><i>6</i></div>
+        <div class="course"><span class="dot" style="background:var(--d-systems)"></span><b>Chain Reaction</b><em>Systems thinking</em><i>6</i></div>
+        <div class="course"><span class="dot" style="background:var(--d-perspective)"></span><b>See It Differently</b><em>Perspective &amp; bias</em><i>6</i></div>
+      </div>
+      <div class="s-ft"><b>FIG 3.</b> Domain colours are the app's own (<code>domains.json</code>).</div>
+    </div>
+    <div class="slot">
+      <div class="s-hd"><b>All Thirty-Six</b><span>THE LESSONS</span></div>
+      <div class="s-body">
+        <div class="index">
+          <div class="h" style="color:var(--d-pattern)">PATTERN HUNTERS</div>
+          <div>Number Sequences · Color and Shape Patterns · Daily Patterns · Finding the Rule · Code Cracking · Pattern Master</div>
+          <div class="h" style="color:var(--d-deduction)">LITTLE DETECTIVES</div>
+          <div>Who Ate the Cake? · The Missing Pencils · The Contradiction · Clues on the Playground · The Secret Message · The Big Case</div>
+          <div class="h" style="color:var(--d-evidence)">TRUE OR FAKE?</div>
+          <div>How Do You Know? · Eyewitness or Gossip? · Strong and Weak Arguments · Numbers Don't Lie… Or Do They? · Who Said It, and Why? · Master Detective</div>
+          <div class="h" style="color:var(--d-fallacy)">THINKING TRAPS</div>
+          <div>You're too little! · That's not even it! · Either-Or · Everybody's doing it! · So what?! · Slippery Slope</div>
+          <div class="h" style="color:var(--d-systems)">CHAIN REACTION</div>
+          <div>Cause and Effect · The Domino Effect · Feedback Loops · Side Effects · The Big Picture · Systems Master</div>
+          <div class="h" style="color:var(--d-perspective)">SEE IT DIFFERENTLY</div>
+          <div>Two Kinds of Truth · The Fair Judge · Favorites and Rivals · First Impressions · News Bites · Perspective Master</div>
+        </div>
+      </div>
+      <div class="s-ft"><b>FIG 4.</b> Every title in the shipped build. 36 lessons, 180 authored stages.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ 2 ════════ -->
+<div class="opt">
+  <div class="opt-head"><span class="opt-n">02</span><span class="opt-title">The prompt that ships</span><span class="new">NOT ON THE POSTER</span></div>
+  <p class="opt-why">The poster <i>asserts</i> the model never answers. This <b>prints the rule that makes it true</b>, verbatim from <code>SocraticEngine.swift</code>. It is the single most load-bearing claim in the project and currently the only one with no evidence anywhere on the wall.</p>
+  <div class="pair">
+    <div class="slot">
+      <div class="s-hd"><b>The Tutor's Rules</b><span>SocraticEngine.swift</span></div>
+      <div class="s-body code">
+        <div class="file">shipped system prompt · excerpt</div>
+        <div class="block">
+<span class="c">// You are a Socratic thinking coach who</span><br>
+<span class="c">// talks with kids about critical thinking.</span><br><br>
+<span class="k">RULES:</span><br>
+– <span class="no">NEVER give the answer directly.</span><br>
+&nbsp;&nbsp;Always guide with questions.<br>
+– When the child is wrong, <span class="no">don't correct</span><br>
+&nbsp;&nbsp;<span class="no">them</span> — ask a question that reveals<br>
+&nbsp;&nbsp;the contradiction.<br>
+– Keep replies to a <span class="k">MAXIMUM of 3</span><br>
+&nbsp;&nbsp;<span class="k">sentences.</span><br>
+– Never be judgmental. Every answer is<br>
+&nbsp;&nbsp;a good starting point.
+        </div>
+      </div>
+      <div class="s-ft"><b>FIG 3.</b> <code>SocraticEngine.buildSystemPrompt(for:)</code>, shipped iOS build.</div>
+    </div>
+    <div class="slot">
+      <div class="s-hd"><b>Why It Holds</b><span>THE CONSEQUENCE</span></div>
+      <div class="s-body man">
+        <div class="kicker">Three sentences, no answers</div>
+        <div class="line">A tutor that <i>cannot</i> do the homework.</div>
+        <div class="rule"></div>
+        <div class="sub">The cap makes lecturing impossible and the rule makes hand-over impossible. The model is also the <b>last</b> stage of every lesson, never the first — it only ever meets a child who has already tried.</div>
+      </div>
+      <div class="s-ft"><b>FIG 4.</b> Stage order is fixed across all 36 lessons.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ 3 ════════ -->
+<div class="opt">
+  <div class="opt-head"><span class="opt-n">03</span><span class="opt-title">Fixed spine, varying middle</span><span class="new">NOT ON THE POSTER</span></div>
+  <p class="opt-why">The poster calls it a “fixed 5-stage grammar”, which hides the actual design: the <b>first and last stage never change, the middle three are drawn from five task types and differ per lesson</b>. That is what makes 36 lessons feel authored rather than templated — and it is where the missing fifth type lives.</p>
+  <div class="pair">
+    <div class="slot">
+      <div class="s-hd"><b>One Lesson, Five Stages</b><span>2 FIXED · 3 CHOSEN</span></div>
+      <div class="s-body anat">
+        <div class="spine">
+          <div class="st fix"><b>Story</b><i>always</i></div>
+          <div class="st var"><b>task</b><i>chosen</i></div>
+          <div class="st var"><b>task</b><i>chosen</i></div>
+          <div class="st var"><b>task</b><i>chosen</i></div>
+          <div class="st fix"><b>AI</b><i>always</i></div>
+        </div>
+        <div class="cap">Every lesson opens in a scene and closes with the tutor. The three tasks between them are picked per lesson from five types:</div>
+        <div class="ex">
+          <div class="r"><b>Slippery Slope</b><i>quiz / spotIt / grid</i></div>
+          <div class="r"><b>Feedback Loops</b><i>quiz / spotIt / grid</i></div>
+          <div class="r"><b>Code Cracking</b><i>quiz / sortIt / buildIt</i></div>
+          <div class="r"><b>The Big Case</b><i>grid / spotIt / buildIt</i></div>
+        </div>
+      </div>
+      <div class="s-ft"><b>FIG 3.</b> 36 lessons × 5 stages = 180 authored stages.</div>
+    </div>
+    <div class="slot">
+      <div class="s-hd"><b>The Five Task Types</b><span>USED / 36 LESSONS</span></div>
+      <div class="s-body types">
+        <div class="ty"><b>Quiz</b><span>choose the sound continuation</span><i>34</i></div>
+        <div class="ty"><b>Spot-It</b><span>find the faulty step</span><i>23</i></div>
+        <div class="ty"><b>Build-It</b><span>assemble the conclusion</span><i>21</i></div>
+        <div class="ty"><b>Sort-It</b><span>order a chain of inference</span><i>17</i></div>
+        <div class="ty newtype"><b>Grid</b><span>logic-grid deduction: who was where</span><i>13</i></div>
+        <div class="cap" style="margin-top:auto;padding-top:5px;border-top:1px solid var(--line-strong)">The child acts in every one of them. No stage in the app asks a child to read a definition.</div>
+      </div>
+      <div class="s-ft"><b>FIG 4.</b> Counted across the shipped course files.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ 4 ════════ -->
+<div class="opt">
+  <div class="opt-head"><span class="opt-n">04</span><span class="opt-title">The threat model</span><span class="new">NOT ON THE POSTER</span></div>
+  <p class="opt-why">Every judge will privately think <b>“a nine-year-old would just work around this”</b>. The poster never answers it. Listing the actual attacks and the mechanism that defeats each one is the most convincing thing an engineering poster can do, and nobody else in Kiel will have written one.</p>
+  <div class="pair">
+    <div class="slot">
+      <div class="s-hd"><b>What A Child Tries</b><span>AND WHAT STOPS IT</span></div>
+      <div class="s-body threat">
+        <div class="h"><div class="a">The attempt</div><div class="b">The mechanism</div></div>
+        <div class="r"><div class="a">Delete the app</div><div class="b">The shield is an OS setting; it survives</div></div>
+        <div class="r"><div class="a">Change the clock</div><div class="b">DeviceActivity holds the window</div></div>
+        <div class="r"><div class="a">Make a second account</div><div class="b">Credentials are parent-created only</div></div>
+        <div class="r"><div class="a">Ask the AI for the answer</div><div class="b">The system prompt forbids handing it over</div></div>
+        <div class="r"><div class="a">Guess until it passes</div><div class="b">After two misses the reasoning is shown</div></div>
+      </div>
+      <div class="s-ft"><b>FIG 3.</b> Apple FamilyControls · ManagedSettings · DeviceActivity.</div>
+    </div>
+    <div class="slot">
+      <div class="s-hd"><b>Why It Cannot Be Argued With</b><span>NOT A PROMISE</span></div>
+      <div class="s-body man">
+        <div class="kicker">The design decision</div>
+        <div class="line">Nothing to <i>negotiate.</i></div>
+        <div class="rule"></div>
+        <div class="sub">Every comparable app keeps the timer inside itself, where a child can reach it. Here the lock and the key both sit in the operating system — the app can only ever <b>ask</b> for minutes it has already been earned.</div>
+      </div>
+      <div class="s-ft"><b>FIG 4.</b> Opaque <code>ApplicationToken</code> set; the app never learns the chosen apps.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════ 5 ════════ -->
+<div class="opt">
+  <div class="opt-head"><span class="opt-n">05</span><span class="opt-title">Solve one yourself</span><span class="new">NOT ON THE POSTER</span></div>
+  <p class="opt-why">A real logic grid from the shipped build, printed so a judge can <b>solve it standing there</b>. It is the one task type the poster does not even mention, it takes twenty seconds, and it is the only panel in the hall anyone will actually touch.</p>
+  <div class="pair">
+    <div class="slot">
+      <div class="s-hd"><b>Try It Yourself</b><span>TRUE OR FAKE? · 2/6</span></div>
+      <div class="s-body grid-p">
+        <div class="situ">Three kids — Marty, Hannah, Frank — were each in one of three places. Where was everyone?</div>
+        <div class="clues">
+          <div><b>1</b><span>Hannah was standing by the goal, and she saw the whole thing from there.</span></div>
+          <div><b>2</b><span>Frank wasn't in the yard — he was inside the building.</span></div>
+          <div><b>3</b><span>Marty was playing soccer, and he kicked the ball.</span></div>
+        </div>
+        <table class="lg">
+          <tr><th></th><th>soccer field</th><th>by the goal</th><th>hallway</th></tr>
+          <tr><th class="rh">Marty</th><td></td><td></td><td></td></tr>
+          <tr><th class="rh">Hannah</th><td></td><td></td><td></td></tr>
+          <tr><th class="rh">Frank</th><td></td><td></td><td></td></tr>
+        </table>
+      </div>
+      <div class="s-ft"><b>FIG 3.</b> “Eyewitness or Gossip?”, a <code>grid</code> stage from the shipped build.</div>
+    </div>
+    <div class="slot">
+      <div class="s-hd"><b>Why This Is The Point</b><span>THE SOLUTION</span></div>
+      <div class="s-body grid-p">
+        <table class="lg">
+          <tr><th></th><th>soccer field</th><th>by the goal</th><th>hallway</th></tr>
+          <tr><th class="rh">Marty</th><td>●</td><td></td><td></td></tr>
+          <tr><th class="rh">Hannah</th><td></td><td>●</td><td></td></tr>
+          <tr><th class="rh">Frank</th><td></td><td></td><td>●</td></tr>
+        </table>
+        <div class="situ" style="margin-top:5px">No fact in that puzzle can be looked up, and no model can hand it over — the only route to the three dots is the child holding three constraints in their head at once.</div>
+        <div class="situ"><b>That is the whole thesis in one task:</b> the work cannot be outsourced, so the work gets done.</div>
+      </div>
+      <div class="s-ft"><b>FIG 4.</b> Working memory + constraint satisfaction, ages 7–11.</div>
+    </div>
+  </div>
+</div>
+
+</div>
+</body>
+</html>
