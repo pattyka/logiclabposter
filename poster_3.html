@@ -140,7 +140,7 @@
         /* ── TWO-COLUMN BALANCED CONTENT GRID ── */
         .content-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
             gap: 14px;
             flex: 1;
             min-height: 0;
@@ -196,27 +196,196 @@
             flex: 1;
             min-height: 0;
             display: flex;
-            align-items: center;
+            align-items: stretch;
             justify-content: center;
             background: transparent;
             padding: 2px 0;
             overflow: hidden;
         }
 
-        .fig-canvas img {
+        /* ── DATA, DRAWN IN POSTER TYPE (no raster charts) ── */
+        .stat-graphic {
             width: 100%;
-            height: 100%;
-            object-fit: contain;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 5px 2px 2px;
+            text-align: left;
+        }
+
+        .red  { color: #E01C47; }
+        .teal { color: var(--accent-deep, #37908D); }
+
+        /* FIG 5 — connections */
+        .eeg-headline { display: flex; align-items: center; gap: 10px; }
+
+        .eeg-big {
+            font-family: var(--display);
+            font-size: 58px;
+            line-height: 0.85;
+            color: #E01C47;
+        }
+
+        .eeg-pct { font-size: 32px; }
+
+        .eeg-what { font: 600 14px/1.3 var(--sans); color: var(--dark); }
+
+        .eeg-cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            align-items: end;
+        }
+
+        .eeg-count {
+            font-family: var(--display);
+            font-size: 28px;
+            line-height: 1;
+            margin-bottom: 3px;
+        }
+
+        .eeg-count.teal { color: #37908D; }
+        .eeg-count.red  { color: #E01C47; }
+
+        .ticks {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2px 3px;
+            align-content: flex-start;
+        }
+
+        .ticks i {
+            width: 4px;
+            height: 13px;
+            border-radius: 1px;
             display: block;
         }
+
+        .ticks.teal i { background: #37908D; }
+        .ticks.red  i { background: #E01C47; }
+        .ticks i.ghost { background: rgba(17, 24, 39, 0.13); }
+
+        .eeg-lab {
+            font: 600 13px/1.3 var(--sans);
+            color: var(--dark);
+            margin-top: 5px;
+        }
+
+        .eeg-lab span { font-weight: 400; color: var(--dark-soft); }
+
+        /* FIG 6 — participants */
+        .quote-headline { display: flex; align-items: center; gap: 10px; }
+
+        .quote-big {
+            font-family: var(--display);
+            font-size: 50px;
+            line-height: 0.9;
+            color: #E01C47;
+            white-space: nowrap;
+        }
+
+        .quote-of {
+            font-size: 20px;
+            color: var(--dark-soft);
+            margin: 0 4px;
+            font-family: var(--sans);
+            font-weight: 400;
+        }
+
+        .quote-what { font: 600 14px/1.3 var(--sans); color: var(--dark); }
+
+        .quote-groups {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+        }
+
+        .stat-graphic.quote { justify-content: space-evenly; }
+
+        .dots {
+            display: grid;
+            grid-template-columns: repeat(6, 12px);
+            gap: 4px;
+            justify-content: start;
+        }
+
+        .dots i {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: block;
+            background: transparent;
+            border: 2px solid rgba(17, 24, 39, 0.35);
+        }
+
+        .dots i.f { background: #E01C47; border-color: #E01C47; }
+
+        .qg-lab {
+            font: 400 13px/1.3 var(--sans);
+            color: var(--dark-soft);
+            margin-top: 6px;
+        }
+
+        .qg-lab b { color: var(--dark); }
+        .qg-lab b.red { color: #E01C47; }
+
+        /* FIG 7 — ranked skills */
+        .wef-headline { display: flex; align-items: center; gap: 10px; }
+
+        .wef-rank {
+            font-family: var(--display);
+            font-size: 54px;
+            line-height: 0.85;
+            color: var(--accent);
+        }
+
+        .wef-what { font: 400 13.5px/1.35 var(--sans); color: var(--dark-soft); }
+        .wef-what b { color: var(--dark); }
+
+        .wef-list { display: flex; flex-direction: column; gap: 5px; }
+
+        .wef-row {
+            display: grid;
+            grid-template-columns: 122px 1fr 40px;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .wef-name { font: 400 12.5px/1.15 var(--sans); color: var(--dark-soft); }
+
+        .wef-track {
+            height: 11px;
+            border-radius: 2px;
+            background: rgba(17, 24, 39, 0.07);
+            overflow: hidden;
+            display: block;
+        }
+
+        .wef-track i {
+            display: block;
+            height: 100%;
+            background: #C2B69A;
+            border-radius: 2px;
+        }
+
+        .wef-val {
+            font: 700 13px/1 var(--sans);
+            color: var(--dark-soft);
+            text-align: right;
+        }
+
+        .wef-row.top .wef-name { font-weight: 700; color: var(--dark); }
+        .wef-row.top .wef-track { height: 16px; }
+        .wef-row.top .wef-track i { background: var(--accent); }
+        .wef-row.top .wef-val { color: var(--accent-deep, #37908D); font-size: 16px; }
 
         .fig-footer {
             border-top: 1px solid var(--line);
             padding-top: 3px;
             margin-top: 3px;
             font-family: var(--mono);
-            font-size: 9px;
-            line-height: 1.3;
+            font-size: 10.5px;
+            line-height: 1.35;
             color: var(--dark-soft);
             flex-shrink: 0;
         }
@@ -258,6 +427,7 @@
         }
 
         .funnel-label {
+            font-size: 10.5px;
             font-weight: 600;
             color: var(--dark-soft);
             text-transform: uppercase;
@@ -266,7 +436,7 @@
 
         .funnel-val {
             font-weight: 700;
-            font-size: 10px;
+            font-size: 12.5px;
             color: var(--dark);
         }
 
@@ -337,7 +507,7 @@
 
         .conclusion h2 {
             font-family: var(--display);
-            font-size: 22px;
+            font-size: 28px;
             font-weight: 400;
             color: var(--cream);
             line-height: 1.2;
@@ -370,7 +540,7 @@
         }
 
         .refs-list p {
-            font: 400 8.5px/1.24 var(--sans);
+            font: 400 10px/1.3 var(--sans);
             color: var(--dark-soft);
             opacity: 0.75;
         }
@@ -416,26 +586,53 @@
             <div class="grid-col">
                 <div class="col-intro">
                     <div class="stitle">The AI <span class="hl">Cognitive Debt</span></div>
-                    <p>Unconstrained generative AI reliance severely degrades critical thinking, functional brain connectivity, and independent memory retention.</p>
+                    <p>Unconstrained AI reliance degrades thinking, brain connectivity and memory.</p>
                 </div>
 
                 <!-- FIG 5: EEG Neural Connectivity -->
                 <div class="figure-box">
                     <div class="fig-canvas">
-                        <img src="posterimages/02_eeg_connectivity.png" alt="EEG Neural Connectivity" />
+                        <div class="stat-graphic eeg">
+                            <div class="eeg-headline">
+                                <span class="eeg-big">−47<span class="eeg-pct">%</span></span>
+                                <span class="eeg-what">brain connections<br>while writing with ChatGPT</span>
+                            </div>
+                            <div class="eeg-cols">
+                                <div class="eeg-col">
+                                    <div class="eeg-count teal">79</div>
+                                    <div class="ticks teal" data-n="79"></div>
+                                    <div class="eeg-lab">Brain-only<br><span>no tools</span></div>
+                                </div>
+                                <div class="eeg-col">
+                                    <div class="eeg-count red">42</div>
+                                    <div class="ticks red" data-n="42" data-ghost="37"></div>
+                                    <div class="eeg-lab">ChatGPT<br><span>LLM assistant</span></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="fig-footer">
-                        <b>FIG 5.</b> <b>47% Fewer Brain Connections:</b> EEG dDTF analysis reveals 42 significant alpha-band connections with ChatGPT vs 79 in Brain-only mode (Kosmyna et al., MIT 2025, p &lt; .05).
+                        <b>FIG 5.</b> One mark = one EEG connection; faded = lost. Kosmyna et al., MIT 2025, N = 54.
                     </div>
                 </div>
 
                 <!-- FIG 6: AI Quoting & Recall Deficit -->
                 <div class="figure-box">
                     <div class="fig-canvas">
-                        <img src="posterimages/01_ai_quoting.png" alt="AI Quoting Deficit" />
+                        <div class="stat-graphic quote">
+                            <div class="quote-headline">
+                                <span class="quote-big">15<span class="quote-of">of</span>18</span>
+                                <span class="quote-what">ChatGPT users could not quote<br>one sentence of their own essay</span>
+                            </div>
+                            <div class="quote-groups">
+                                <div class="qg"><div class="dots" data-fail="2"></div><div class="qg-lab">Brain-only<br><b>2 of 18</b></div></div>
+                                <div class="qg"><div class="dots" data-fail="2"></div><div class="qg-lab">Search engine<br><b>2 of 18</b></div></div>
+                                <div class="qg fail"><div class="dots" data-fail="15"></div><div class="qg-lab">ChatGPT<br><b class="red">15 of 18</b></div></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="fig-footer">
-                        <b>FIG 6.</b> <b>83.3% Quoting Failure:</b> 15 of 18 ChatGPT users failed to quote a single sentence from their own essay vs 11.1% in Brain-only and Search groups (p &lt; .001).
+                        <b>FIG 6.</b> One dot = one participant; red could not quote (p &lt; .001). Kosmyna et al., MIT 2025.
                     </div>
                 </div>
             </div>
@@ -444,16 +641,28 @@
             <div class="grid-col">
                 <div class="col-intro">
                     <div class="stitle">Empirical <span class="hl">Validation</span></div>
-                    <p>Analytical thinking is the #1 future workforce requirement. Our validation proves parents urgently seek structured screen-time incentives.</p>
+                    <p>Employers rank analytical thinking first. Parents pay for structured screen time.</p>
                 </div>
 
                 <!-- FIG 7: WEF Skills 2030 -->
                 <div class="figure-box">
                     <div class="fig-canvas">
-                        <img src="posterimages/05_wef_skills_2030.png" alt="WEF Skills for 2030" />
+                        <div class="stat-graphic wef">
+                            <div class="wef-headline">
+                                <span class="wef-rank">#1</span>
+                                <span class="wef-what"><b>Analytical thinking</b> — what employers want most — and what AI erodes first</span>
+                            </div>
+                            <div class="wef-list">
+                                <div class="wef-row top"><span class="wef-name">Analytical thinking</span><span class="wef-track"><i style="width:86%"></i></span><span class="wef-val">69%</span></div>
+                                <div class="wef-row"><span class="wef-name">Resilience &amp; agility</span><span class="wef-track"><i style="width:84%"></i></span><span class="wef-val">67%</span></div>
+                                <div class="wef-row"><span class="wef-name">Leadership &amp; influence</span><span class="wef-track"><i style="width:76%"></i></span><span class="wef-val">61%</span></div>
+                                <div class="wef-row"><span class="wef-name">Creative thinking</span><span class="wef-track"><i style="width:71%"></i></span><span class="wef-val">57%</span></div>
+                                <div class="wef-row"><span class="wef-name">Technological literacy</span><span class="wef-track"><i style="width:64%"></i></span><span class="wef-val">51%</span></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="fig-footer">
-                        <b>FIG 7.</b> <b>Analytical Thinking Ranked #1:</b> 69% of employers rate analytical thinking as a core skill, followed by resilience (67%) and creative thinking (57%).
+                        <b>FIG 7.</b> Employers rating each a core 2030 skill. WEF, Future of Jobs 2025.
                     </div>
                 </div>
 
@@ -463,7 +672,7 @@
                         <div class="funnel-row">
                             <div class="funnel-meta">
                                 <span class="funnel-label">01 · Unique Visitors</span>
-                                <span class="funnel-val">431 <span style="font-weight: 400; font-size: 8px; color: var(--dark-soft);">(100%)</span></span>
+                                <span class="funnel-val">431 <span style="font-weight: 400; font-size: 10px; color: var(--dark-soft);">(100%)</span></span>
                             </div>
                             <div class="funnel-bar-bg">
                                 <div class="funnel-bar" style="width: 100%; background: var(--dark-soft);"></div>
@@ -473,7 +682,7 @@
                         <div class="funnel-row">
                             <div class="funnel-meta">
                                 <span class="funnel-label">02 · Waitlist Leads</span>
-                                <span class="funnel-val teal">206 <span style="font-weight: 600; font-size: 8px; color: var(--accent);">(47.8% Conv.)</span></span>
+                                <span class="funnel-val teal">206 <span style="font-weight: 600; font-size: 10px; color: var(--accent);">(47.8% Conv.)</span></span>
                             </div>
                             <div class="funnel-bar-bg">
                                 <div class="funnel-bar" style="width: 47.8%; background: var(--accent);"></div>
@@ -483,7 +692,7 @@
                         <div class="funnel-row">
                             <div class="funnel-meta">
                                 <span class="funnel-label">03 · Paid Plan Intent</span>
-                                <span class="funnel-val warm">48 <span style="font-weight: 600; font-size: 8px; color: var(--warm);">(11.1% Conv.)</span></span>
+                                <span class="funnel-val warm">48 <span style="font-weight: 600; font-size: 10px; color: var(--warm);">(11.1% Conv.)</span></span>
                             </div>
                             <div class="funnel-bar-bg">
                                 <div class="funnel-bar" style="width: 23%; background: var(--warm);"></div>
@@ -506,7 +715,7 @@
                         </div>
                     </div>
                     <div class="fig-footer warm">
-                        <b>FIG 8.</b> <b>High Commercial Intent:</b> 11.1% paid intent rate without credit card friction validates high parental demand for earned screen time.
+                        <b>FIG 8.</b> Landing-page test: 11.1% paid intent, cold audience, no card. n = 431.
                     </div>
                 </div>
             </div>
@@ -516,7 +725,7 @@
         <!-- CONCLUSION CARD -->
         <div class="conclusion">
             <h2>We don't ban AI, <span class="hl">we prepare children for it.</span></h2>
-            <p>The future generation will inevitably use AI. The fundamental question is whether they will command the algorithms, or let the algorithms command them. LogicLab Kids anchors screen time to structured reasoning to build genuine cognitive stamina.</p>
+            <p>Children will use AI either way — the question is who commands whom. LogicLab Kids anchors screen time to reasoning.</p>
         </div>
 
         <!-- REFERENCES -->
@@ -532,5 +741,25 @@
 
     </div>
 </div>
+<script>
+    // FIG 5: one mark per EEG connection (+ ghosts for the lost ones)
+    document.querySelectorAll('.ticks').forEach(t => {
+        const n = +t.dataset.n, g = +(t.dataset.ghost || 0);
+        for (let i = 0; i < n + g; i++) {
+            const el = document.createElement('i');
+            if (i >= n) el.className = 'ghost';
+            t.appendChild(el);
+        }
+    });
+    // FIG 6: 18 participants per group, red = failed to quote
+    document.querySelectorAll('.dots').forEach(d => {
+        const fail = +d.dataset.fail;
+        for (let i = 0; i < 18; i++) {
+            const el = document.createElement('i');
+            if (i < fail) el.className = 'f';
+            d.appendChild(el);
+        }
+    });
+</script>
 </body>
 </html>

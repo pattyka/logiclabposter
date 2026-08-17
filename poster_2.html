@@ -161,7 +161,7 @@
         .stitle .hl-warm { color: var(--warm); }
 
         .pillar-card p {
-            font: 400 11.5px/1.38 var(--sans);
+            font: 400 12.5px/1.4 var(--sans);
             color: var(--dark-soft);
         }
 
@@ -233,7 +233,7 @@
 
         .phone-badge {
             font-family: var(--mono);
-            font-size: 8px;
+            font-size: 10px;
             font-weight: 600;
             letter-spacing: 0.06em;
             text-transform: uppercase;
@@ -265,7 +265,7 @@
         }
 
         .premack-box p {
-            font: 400 11px/1.35 var(--sans);
+            font: 400 12px/1.4 var(--sans);
             color: var(--dark-soft);
         }
 
@@ -324,11 +324,89 @@
             overflow: hidden;
         }
 
-        .fig-canvas img {
+        /* ── FIG 3: spec sheet ── */
+        .spec {
             width: 100%;
-            height: 100%;
-            object-fit: contain;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            padding: 2px 4px;
+            text-align: left;
+        }
+
+        .spec-row {
+            display: grid;
+            grid-template-columns: 148px 1fr;
+            gap: 16px;
+            align-items: baseline;
+            padding: 14px 2px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .spec-row:last-child { border-bottom: none; }
+
+        .spec-key {
+            font-family: var(--mono);
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--accent-deep);
+        }
+
+        .spec-val {
+            font: 400 16.5px/1.5 var(--sans);
+            color: var(--dark-soft);
+        }
+
+        .spec-val b { font-weight: 700; color: var(--dark); }
+
+        /* ── FIG 4: the five steps ── */
+        .story {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            padding: 2px 4px;
+            text-align: left;
+        }
+
+        .st-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            padding: 10px 2px;
+        }
+
+        .st-row + .st-row { border-top: 1px solid var(--line); }
+
+        .st-n {
+            font-family: var(--display);
+            font-size: 52px;
+            line-height: 0.95;
+            color: var(--accent);
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .st-row:nth-child(4) .st-n,
+        .st-row:nth-child(5) .st-n { color: var(--warm); }
+
+        .st-body b {
             display: block;
+            font: 700 17.5px/1.35 var(--sans);
+            color: var(--dark);
+        }
+
+        .st-body span {
+            font: 400 14.5px/1.45 var(--sans);
+            color: var(--dark-soft);
+        }
+
+        .st-pay {
+            font-family: var(--display) !important;
+            font-size: 24px !important;
+            color: #B85A28 !important;
         }
 
         .fig-footer {
@@ -336,8 +414,8 @@
             padding-top: 4px;
             margin-top: 4px;
             font-family: var(--mono);
-            font-size: 9px;
-            line-height: 1.3;
+            font-size: 10.5px;
+            line-height: 1.35;
             color: var(--dark-soft);
             flex-shrink: 0;
         }
@@ -368,7 +446,7 @@
         }
 
         .info-panel p {
-            font: 400 11px/1.36 var(--sans);
+            font: 400 12px/1.4 var(--sans);
             color: var(--dark-soft);
         }
 
@@ -440,7 +518,7 @@
         }
 
         .refs-list p {
-            font: 400 8.5px/1.24 var(--sans);
+            font: 400 10px/1.3 var(--sans);
             color: var(--dark-soft);
             opacity: 0.75;
         }
@@ -542,14 +620,39 @@
             <div class="tech-col">
                 <div class="figure-box">
                     <div class="fig-header">
-                        <span class="fig-title">System Architecture</span>
-                        <span class="fig-sub">OS Sandbox vs Cloud</span>
+                        <span class="fig-title">Under the Hood</span>
+                        <span class="fig-sub">The Shipped Build</span>
                     </div>
                     <div class="fig-canvas">
-                        <img src="posterimages/07_system_architecture.png" alt="System Architecture">
+                        <div class="spec">
+                            <div class="spec-row">
+                                <span class="spec-key">Platforms</span>
+                                <span class="spec-val"><b>SwiftUI</b> on iOS, live on TestFlight · <b>Kotlin Compose</b> on Android</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-key">Lessons</span>
+                                <span class="spec-val"><b>36 lessons</b> in 6 modules, bundled as JSON — run with <b>zero network</b></span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-key">AI tutor</span>
+                                <span class="spec-val"><b>Gemini, Socratic-locked</b> — probes and hints, never gives the answer</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-key">Sync</span>
+                                <span class="spec-val">Firebase Auth + Firestore — progress and the reward ledger</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-key">Enforcement</span>
+                                <span class="spec-val"><b>The operating system,</b> not the app — FamilyControls, ManagedSettings, DeviceActivity</span>
+                            </div>
+                            <div class="spec-row">
+                                <span class="spec-key">Privacy</span>
+                                <span class="spec-val"><b>Opaque tokens</b> — LogicLab Kids never learns which apps the parent chose</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="fig-footer">
-                        <b>FIG 3.</b> Hardware sandbox vs cloud: Screen-time contingency is enforced on-device via Apple FamilyControls and ManagedSettings. Cloud Firestore manages sync and parental rules.
+                        <b>FIG 3.</b> The shipped build. Figure: own work.
                     </div>
                 </div>
 
@@ -563,14 +666,35 @@
             <div class="tech-col">
                 <div class="figure-box">
                     <div class="fig-header">
-                        <span class="fig-title">Stage Grammar &amp; Loop</span>
-                        <span class="fig-sub">5-Stage Interaction Cycle</span>
+                        <span class="fig-title">From Lesson to Screen Time</span>
+                        <span class="fig-sub">The Loop, in Five Steps</span>
                     </div>
                     <div class="fig-canvas">
-                        <img src="posterimages/08_lesson_reward_loop.png" alt="Lesson Reward Loop">
+                        <div class="story">
+                            <div class="st-row">
+                                <span class="st-n">1</span>
+                                <div class="st-body"><b>The parent locks the fun apps.</b><span>Once, in the operating system — not in ours.</span></div>
+                            </div>
+                            <div class="st-row">
+                                <span class="st-n">2</span>
+                                <div class="st-body"><b>The child solves a lesson.</b><span>Story → quiz → spot the flaw → sort → build. Wrong answers are never punished.</span></div>
+                            </div>
+                            <div class="st-row">
+                                <span class="st-n">3</span>
+                                <div class="st-body"><b>The AI challenge comes last.</b><span>A Socratic dialogue that may not give the answer.</span></div>
+                            </div>
+                            <div class="st-row">
+                                <span class="st-n">4</span>
+                                <div class="st-body"><b>The ledger pays out.</b><span class="st-pay">+20 points&nbsp;&nbsp;·&nbsp;&nbsp;+5 minutes</span></div>
+                            </div>
+                            <div class="st-row">
+                                <span class="st-n">5</span>
+                                <div class="st-body"><b>The shield lifts — for exactly those minutes.</b><span>Then it returns, and the next lesson starts.</span></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="fig-footer warm">
-                        <b>FIG 4.</b> Fixed 5-stage lesson grammar (Story → Quiz/Spot/Sort/Build → Socratic AI → Reward Credit → Shield Lift). Screen entertainment is unlocked strictly for the earned interval.
+                        <b>FIG 4.</b> Premack (1959): a high-probability behaviour reinforces a low-probability one. There is nothing to negotiate — the lock and the key are both in the OS.
                     </div>
                 </div>
 
