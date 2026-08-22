@@ -551,9 +551,15 @@
 
         .strip-item {
             flex: 1;
-            padding: 6px 12px;
-            text-align: center;
+            padding: 7px 16px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            grid-template-rows: auto auto;
+            column-gap: 12px;
+            align-items: center;
+            text-align: left;
         }
+        .strip-item .strip-num { grid-row: 1 / span 2; align-self: center; }
 
         .strip-item + .strip-item {
             border-left: 1px solid var(--line-strong);
@@ -561,26 +567,29 @@
 
         .strip-num {
             font-family: var(--display);
-            font-size: 20px;
+            font-size: 34px;
             line-height: 1;
             color: var(--accent);
-            margin-bottom: 1px;
+            margin-bottom: 0;
+            min-width: 58px;
         }
 
         .strip-num.warm { color: var(--warm); }
 
         .strip-label {
             font-family: var(--sans);
-            font-size: 10.5px;
+            font-size: 11.5px;
             font-weight: 700;
             color: var(--dark);
+            align-self: end;
         }
 
         .strip-sub {
             font-family: var(--mono);
-            font-size: 8px;
+            font-size: 8.5px;
             color: var(--dark-soft);
-            opacity: 0.75;
+            opacity: 0.8;
+            align-self: start;
         }
 
         /* ── REFERENCES ── */
