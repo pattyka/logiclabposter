@@ -37,17 +37,26 @@
             margin: 0; padding: 0;
         }
 
-        .poster-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 30px;
-            min-height: 100vh;
+        /* The poster is a fixed 1700x1000 canvas. It is never re-laid-out to
+           fit the window: a single uniform --fit scale is computed ONCE on
+           load, so browser zoom magnifies a finished layout instead of
+           re-solving it. The old centred-flex wrapper clipped the poster
+           against the viewport, which is what made zooming feel broken. */
+        .viewport {
+            --fit: 1;
+            position: relative;
+            width: calc(1700px * var(--fit));
+            height: calc(1000px * var(--fit));
+            margin: 26px auto;
         }
 
         @page { size: 170cm 100cm; margin: 0; }
 
         .poster {
+            position: absolute;
+            top: 0; left: 0;
+            transform: scale(var(--fit));
+            transform-origin: top left;
             width: 1700px;
             height: 1000px;
             background: var(--cream);
@@ -211,25 +220,87 @@
             padding: 6px 0 2px;
         }
 
-        .phones-row img {
+        .phones-row .dev-ipad {
             position: absolute;
-            height: 68%;
-            width: auto;
-            filter: drop-shadow(0 16px 30px rgba(17, 24, 39, 0.26));
-        }
-
-        .phones-row .back {
-            right: 13%;
-            top: 18%;
-            transform: rotate(4deg);
+            left: 4px;
+            top: 18px;
+            width: 422px;
+            height: auto;
             z-index: 1;
+            filter: drop-shadow(0 5px 12px rgba(17, 24, 39, 0.14));
         }
 
-        .phones-row .front {
-            left: 13%;
-            top: 8%;
-            transform: rotate(-3.5deg);
+        .phones-row .dev-phone {
+            position: absolute;
+            left: 66px;
+            bottom: 24px;
+            height: 278px;
+            width: auto;
+            z-index: 3;
+            filter: drop-shadow(0 6px 14px rgba(17, 24, 39, 0.18));
+        }
+
+        /* one ground plane under the two phones binds the family together */
+        .phones-row .ground {
+            position: absolute;
+            left: 40px;
+            right: 40px;
+            bottom: 14px;
+            height: 22px;
+            z-index: 0;
+            background: radial-gradient(ellipse at center, rgba(17, 24, 39, 0.16) 0%, rgba(17, 24, 39, 0) 68%);
+        }
+
+        /* Android has no shipped screenshot yet, so the shell is drawn:
+           flatter body, squarer corners and a punch-hole instead of an
+           island. It must not be mistaken for an iPhone. */
+        .dev-android {
+            position: absolute;
+            left: 236px;
+            bottom: 24px;
+            width: 130px;
+            height: 278px;
             z-index: 2;
+            border-radius: 22px;
+            padding: 5px;
+            background: linear-gradient(180deg, #2B2D33 0%, #15161A 55%, #1E2025 100%);
+            box-shadow:
+                inset 0 0 0 1px rgba(255, 255, 255, 0.10),
+                0 6px 14px rgba(17, 24, 39, 0.18);
+        }
+
+        .dev-android .hole {
+            position: absolute;
+            top: 11px;
+            left: 50%;
+            margin-left: -3.5px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #050507;
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06);
+            z-index: 2;
+        }
+
+        .dev-android .scr {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 18px;
+            overflow: hidden;
+            background: #EFE7D2;
+        }
+
+        /* stand-in: the iOS reward screen with its status bar cropped away.
+           Replace with an Android emulator capture when one exists. */
+        .dev-android .scr img {
+            position: absolute;
+            left: 0;
+            top: -14px;
+            width: 100%;
+            height: calc(100% + 14px);
+            object-fit: cover;
+            object-position: top center;
         }
 
         .phone-badge {
@@ -238,8 +309,21 @@
             z-index: 3;
         }
 
-        .phone-badge.b-front { left: 2%; }
-        .phone-badge.b-back { right: 2%; }
+        .dev-label {
+            position: absolute;
+            z-index: 4;
+            font-family: var(--mono);
+            font-size: 8.5px;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--dark-soft);
+            opacity: 0.75;
+            text-align: center;
+        }
+        .dev-label.l-ipad { top: 2px; right: 8px; }
+        .dev-label.l-iphone { bottom: 4px; left: 66px; width: 136px; }
+        .dev-label.l-android { bottom: 4px; left: 236px; width: 130px; }
 
         .phone-badge {
             font-family: var(--mono);
@@ -357,37 +441,24 @@
         .dev {
             position: absolute;
             width: auto;
-            filter: drop-shadow(0 20px 36px rgba(17, 24, 39, 0.30));
+            filter: drop-shadow(0 6px 14px rgba(17, 24, 39, 0.16));
         }
 
-        /* middle — devices own the left half, the list owns the right. no overlap. */
-        .dev-pair { position: absolute; left: 0; top: 0; width: 258px; bottom: 0; }
-
-        .dev-pair .front {
-            width: 208px;
-            left: 4px;
-            top: 26px;
-            transform: rotate(-4deg);
-            z-index: 2;
-        }
-
-        .dev-pair .back {
-            width: 164px;
-            left: 106px;
-            top: 82px;
-            transform: rotate(6deg);
-            z-index: 1;
-        }
+        /* middle — one parent screen, upright, whole. The parent's side is a
+           thing you set once, so it gets one calm screen, not a pile. */
+        .dev-solo { position: absolute; left: 2px; top: 15px; width: 230px; }
+        .dev-solo img { position: static; display: block; width: 100%; }
 
         .spec-list {
             position: absolute;
-            right: 2px;
-            top: 10px;
-            width: 254px;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 282px;
             z-index: 3;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 26px;
         }
 
         .spec-list > div {
@@ -397,24 +468,24 @@
 
         .spec-list b {
             display: block;
-            font: 700 15px/1.25 var(--sans);
+            font: 700 16px/1.25 var(--sans);
             color: var(--dark);
             margin-bottom: 1px;
         }
 
         .spec-list span {
-            font: 400 12.5px/1.4 var(--sans);
+            font: 400 13px/1.4 var(--sans);
             color: var(--dark-soft);
         }
 
         /* right — three stages, overlapped and stepping up, all cropped by the edge */
         .dev-fan { position: absolute; inset: 0; }
-        .dev-fan figure { position: absolute; width: 250px; }
+        .dev-fan figure { position: absolute; width: 215px; }
         .dev-fan figure img { position: static; display: block; width: 100%; }
 
-        .dev-fan .s1 { left: 0;     top: 34px; z-index: 1; transform: rotate(-2.5deg); }
-        .dev-fan .s2 { left: 144px;  top: 12px; z-index: 3; }
-        .dev-fan .s3 { left: 288px;  top: 34px; z-index: 2; transform: rotate(2.5deg); }
+        .dev-fan .s1 { left: 0;     top: 45px; z-index: 1; transform: rotate(-2.5deg); }
+        .dev-fan .s2 { left: 161px; top: 16px; z-index: 3; }
+        .dev-fan .s3 { left: 322px; top: 45px; z-index: 2; transform: rotate(2.5deg); }
 
         .fig-footer {
             border-top: 1px solid var(--line);
@@ -538,13 +609,14 @@
         }
 
         @media print {
-            .poster-wrapper { padding: 0; background: #fff; }
+            html, body { background: #fff; }
+            .viewport { --fit: 1 !important; width: 1700px; height: 1000px; margin: 0; }
             .poster { box-shadow: none; }
         }
     </style>
 </head>
 <body>
-<div class="poster-wrapper">
+<div class="viewport">
     <div class="poster">
 
         <!-- HEADER -->
@@ -576,7 +648,7 @@
                     <span class="stitle" style="margin-bottom: 0;">Stage <span class="hl">Grammar</span></span>
                     <span class="pillar-num">02</span>
                 </div>
-                <p><b>6 modules and 36 lessons</b> bundled as JSON. 4 interactive task types: Quiz, Spot-It, Sort-It, Build-It. Mistakes are never punished (explanations shown after 2 misses).</p>
+                <p><b>6 courses and 36 lessons</b> bundled as JSON. 5 interactive task types: Quiz, Spot-It, Sort-It, Build-It, Grid. Mistakes are never punished (explanations shown after 2 misses).</p>
             </div>
 
             <!-- Pillar 3 -->
@@ -585,7 +657,7 @@
                     <span class="stitle" style="margin-bottom: 0;">Premack <span class="hl-warm">Contingency</span></span>
                     <span class="pillar-num" style="color: var(--warm);">03</span>
                 </div>
-                <p>Applies the Premack (1959) differential probability law. Solving a lesson credits the ledger with <b>+20 pts & +5 min</b>. Child spends balance within parent-allowed hours.</p>
+                <p>Applies the Premack (1959) differential probability law. Solving a lesson credits the ledger with <b>+5 min &amp; 20&ndash;25 pts</b>. Child spends balance within parent-allowed hours.</p>
             </div>
 
             <!-- Pillar 4 -->
@@ -604,13 +676,19 @@
 
             <!-- COLUMN 1: PHONES SHOWCASE + PREMACK CARD -->
             <div class="col-phones">
-                <div class="stage-title">Interactive Child Experience · iOS &amp; Android</div>
+                <div class="stage-title">Interactive Child Experience · iPadOS, iOS &amp; Android</div>
 
                 <div class="phones-row">
-                    <img class="back" src="posterimages/framed-reward.png" alt="Earned free time">
-                    <img class="front" src="posterimages/framed-home.png" alt="Daily mystery home">
-                    <div class="phone-badge b-front">01 · Daily Mystery</div>
-                    <div class="phone-badge b-back">02 · Earn Free Time</div>
+                    <div class="ground"></div>
+                    <img class="dev-ipad" src="posterimages/ipad.png" alt="LogicLab Kids on iPad">
+                    <img class="dev-phone" src="posterimages/framed2/home.png" alt="LogicLab Kids on iPhone">
+                    <div class="dev-android">
+                        <span class="hole"></span>
+                        <div class="scr"><img src="gallery/img/app_reward_complete.png" alt=""></div>
+                    </div>
+                    <div class="dev-label l-ipad">iPad</div>
+                    <div class="dev-label l-iphone">iPhone</div>
+                    <div class="dev-label l-android">Android</div>
                 </div>
 
                 <div class="premack-box">
@@ -627,9 +705,8 @@
                         <span class="fig-sub">Governed, not policed</span>
                     </div>
                     <div class="fig-canvas stage">
-                        <div class="dev-pair">
-                            <img class="dev back" src="posterimages/parent_dash.png" alt="Parent dashboard">
-                            <img class="dev front" src="posterimages/parent_settings.png" alt="Screen-time settings">
+                        <div class="dev-solo">
+                            <img class="dev" src="posterimages/framed2/parent.png" alt="Screen-time settings">
                         </div>
                         <div class="spec-list">
                             <div><b>Daily limit</b><span>a hard ceiling on reward minutes</span></div>
@@ -658,9 +735,9 @@
                     </div>
                     <div class="fig-canvas stage">
                         <div class="dev-fan">
-                            <figure class="s1"><img class="dev" src="posterimages/lesson_story.png" alt="Story stage"></figure>
-                            <figure class="s2"><img class="dev" src="posterimages/lesson_task.png" alt="Task stage"></figure>
-                            <figure class="s3"><img class="dev" src="posterimages/lesson_feedback.png" alt="Feedback stage"></figure>
+                            <figure class="s1"><img class="dev" src="posterimages/framed2/story.png" alt="Story stage"></figure>
+                            <figure class="s2"><img class="dev" src="posterimages/framed2/quiz.png" alt="Task stage"></figure>
+                            <figure class="s3"><img class="dev" src="posterimages/framed2/feedback.png" alt="Feedback stage"></figure>
                         </div>
                     </div>
                     <div class="fig-footer warm">
@@ -669,8 +746,8 @@
                 </div>
 
                 <div class="info-panel warm">
-                    <div class="stitle">4 Core <span class="hl-warm">Task Types</span></div>
-                    <p><b>Quiz</b> (sound continuation), <b>Spot-It</b> (faulty step), <b>Sort-It</b> (inference chain), and <b>Build-It</b> (conclusion assembly). The child acts dynamically rather than memorizing definitions.</p>
+                    <div class="stitle">5 Core <span class="hl-warm">Task Types</span></div>
+                    <p><b>Quiz</b> (sound continuation), <b>Spot-It</b> (faulty step), <b>Sort-It</b> (inference chain), <b>Build-It</b> (conclusion assembly) and <b>Grid</b> (entity-attribute matching). The child acts dynamically rather than memorizing definitions.</p>
                 </div>
             </div>
 
@@ -681,12 +758,12 @@
             <div class="strip-item">
                 <div class="strip-num">36</div>
                 <div class="strip-label">Interactive Lessons</div>
-                <div class="strip-sub">6 modules across 4 tracks</div>
+                <div class="strip-sub">6 courses across 6 thinking domains</div>
             </div>
             <div class="strip-item">
                 <div class="strip-num">+5 min</div>
                 <div class="strip-label">Earned Screen Time</div>
-                <div class="strip-sub">+20 pts per solved lesson</div>
+                <div class="strip-sub">20&ndash;25 pts per solved lesson</div>
             </div>
             <div class="strip-item">
                 <div class="strip-num">100%</div>
@@ -713,5 +790,23 @@
 
     </div>
 </div>
+<script>
+(function () {
+    var vp = document.querySelector('.viewport');
+    if (navigator.webdriver || location.search.indexOf('full') !== -1) return;
+    var dpr = window.devicePixelRatio;
+    function fit() {
+        vp.style.setProperty('--fit', Math.min(
+            1, (window.innerWidth - 52) / 1700, (window.innerHeight - 52) / 1000));
+    }
+    fit();
+    window.addEventListener('resize', function () {
+        // devicePixelRatio changed => the user zoomed the browser. Leave --fit
+        // alone so cmd-plus enlarges the poster instead of re-fitting it.
+        if (window.devicePixelRatio !== dpr) { dpr = window.devicePixelRatio; return; }
+        fit();
+    });
+})();
+</script>
 </body>
 </html>
