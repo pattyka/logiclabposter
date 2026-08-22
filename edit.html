@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<title>Poszter szerkesztő</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: #0E0E0E; font: 13px/1.4 -apple-system, "SF Pro Text", Inter, sans-serif; color: #fff; }
+
+  .bar {
+    position: fixed; top: 0; left: 0; right: 0; height: 44px; z-index: 10;
+    display: flex; align-items: center; gap: 10px; padding: 0 14px;
+    background: #161616; border-bottom: 1px solid #2A2A2A;
+  }
+  .bar .tabs { display: flex; gap: 2px; }
+  .bar .tabs a {
+    color: #8A8A8A; text-decoration: none; padding: 6px 12px; border-radius: 7px; font-weight: 500;
+  }
+  .bar .tabs a.on { color: #fff; background: #2A2A2A; }
+  .bar .grow { flex: 1; }
+  .bar .st { color: #8A8A8A; font-variant-numeric: tabular-nums; }
+  .bar .st.dirty { color: #fff; }
+  .bar button {
+    appearance: none; border: 1px solid #3A3A3A; background: #1E1E1E; color: #fff;
+    font: inherit; font-weight: 500; padding: 6px 12px; border-radius: 7px; cursor: pointer;
+  }
+  .bar button:hover { background: #2A2A2A; }
+  .bar button.primary { background: #fff; color: #000; border-color: #fff; }
+  .bar button:disabled { opacity: .35; cursor: default; }
+  .bar kbd { font: inherit; color: #8A8A8A; margin-left: 6px; }
+  .bar .hint { color: #8A8A8A; }
+
+  iframe { position: fixed; top: 44px; left: 0; width: 100%; height: calc(100% - 44px); border: 0; background: #0E0E0E; }
+</style>
+</head>
+<body>
+<div class="bar">
+  <div class="tabs" id="tabs"></div>
+  <span class="hint" id="hint">Kattints bármelyik szövegre a poszteren és írd át.</span>
+  <span class="grow"></span>
+  <span class="st" id="status">Változatlan</span>
+  <button id="reset">Visszaállítás</button>
+  <button id="save" class="primary" disabled>Mentés<kbd>⌘S</kbd></button>
+</div>
+<iframe id="f" title="poster"></iframe>
+
+<script>
+(function () {
+  var POSTERS = [1, 2, 3];
+  var q = new URLSearchParams(location.search);
+  var n = parseInt(q.get('p') || '2', 10);
+  if (POSTERS.indexOf(n) === -1) n = 2;
+  var FILE = 'poster_' + n + '.html';
+  var KEY = 'posteredit:' + FILE;
+
+  var $ = function (id) { return document.getElementById(id); };
+  var frame = $('f'), status = $('status'), saveBtn = $('save');
+  var dirty = false, doc = null;
+
+  POSTERS.forEach(function (p) {
+    var a = document.createElement('a');
+    a.href = '?p=' + p; a.textContent = 'Poszter ' + p;
+    if (p === n) a.className = 'on';
+    $('tabs').appendChild(a);
+  });
+  document.title = 'Szerkesztő · ' + FILE;
+
+  function setStatus(text, isDirty) {
+    dirty = !!isDirty;
+    status.textContent = text;
+    status.className = 'st' + (dirty ? ' dirty' : '');
+    saveBtn.disabled = !dirty;
+  }
+
+  // ── which elements get to be edited ────────────────────────────────────
+  // Every element that owns at least one non-blank text node, unless an
+  // ancestor already qualified. That gives whole paragraphs (with their
+  // <b>s inside) rather than fragments, and leaves layout boxes alone.
+  function hasOwnText(el) {
+    for (var c = el.firstChild; c; c = c.nextSibling)
+      if (c.nodeType === 3 && c.nodeValue.trim()) return true;
+    return false;
+  }
+  function collect(root) {
+    var out = [];
+    (function walk(el, insideEditable) {
+      if (el.nodeType !== 1) return;
+      var tag = el.tagName;
+      if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'IMG' || tag === 'SVG') return;
+      var mine = !insideEditable && hasOwnText(el);
+      if (mine) out.push(el);
+      for (var c = el.firstChild; c; c = c.nextSibling) walk(c, insideEditable || mine);
+    })(root, false);
+    return out;
+  }
+  // stable address of an element = child-index path from <body>
+  function pathOf(el) {
+    var p = [];
+    while (el && el.tagName !== 'BODY') {
+      var i = 0, s = el;
+      while ((s = s.previousElementSibling)) i++;
+      p.unshift(i); el = el.parentElement;
+    }
+    return p.join('/');
+  }
+  function byPath(path) {
+    var el = doc.body;
+    if (!path) return el;
+    var parts = path.split('/');
+    for (var i = 0; i < parts.length && el; i++) el = el.children[+parts[i]];
+    return el || null;
+  }
+
+  var store = {};
+  try { store = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { store = {}; }
+
+  function arm() {
+    doc = frame.contentDocument;
+    var st = doc.createElement('style');
+    st.id = '__edit_style';
+    st.textContent =
+      '[contenteditable]{outline:1px dashed transparent;outline-offset:2px;border-radius:2px;cursor:text;transition:outline-color .12s}' +
+      '[contenteditable]:hover{outline-color:rgba(17,24,39,.45)}' +
+      '[contenteditable]:focus{outline:2px solid #111827;outline-offset:2px;background:rgba(255,255,255,.35)}' +
+      '::selection{background:#111827;color:#fff}';
+    doc.head.appendChild(st);
+
+    var els = collect(doc.body), applied = 0;
+    els.forEach(function (el) {
+      var path = pathOf(el);
+      if (store[path] != null && store[path] !== el.innerHTML) { el.innerHTML = store[path]; applied++; }
+      el.setAttribute('contenteditable', 'true');
+      el.setAttribute('spellcheck', 'false');
+      el.dataset.editPath = path;
+      el.addEventListener('input', function () {
+        store[path] = el.innerHTML;
+        localStorage.setItem(KEY, JSON.stringify(store));
+        setStatus('Nincs mentve', true);
+      });
+      // Enter = soft line break, never a new <div>
+      el.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') { e.preventDefault(); doc.execCommand('insertLineBreak'); }
+      });
+      // paste as plain text
+      el.addEventListener('paste', function (e) {
+        e.preventDefault();
+        doc.execCommand('insertText', false, (e.clipboardData || window.clipboardData).getData('text/plain'));
+      });
+    });
+    $('hint').textContent = els.length + ' szerkeszthető szöveg.';
+    setStatus(applied ? 'Nem mentett változtatások betöltve' : 'Változatlan', applied > 0);
+    doc.addEventListener('keydown', onKey);
+  }
+
+  function serialize() {
+    var clone = doc.documentElement.cloneNode(true);
+    var junk = clone.querySelector('#__edit_style'); if (junk) junk.remove();
+    clone.querySelectorAll('[contenteditable]').forEach(function (el) {
+      el.removeAttribute('contenteditable');
+      el.removeAttribute('spellcheck');
+      delete el.dataset.editPath;
+    });
+    // the fit script writes --fit inline; the file must not carry it
+    clone.querySelectorAll('[style*="--fit"]').forEach(function (el) {
+      el.style.removeProperty('--fit');
+      if (!el.getAttribute('style')) el.removeAttribute('style');
+    });
+    return '<!DOCTYPE html>\n' + clone.outerHTML + '\n';
+  }
+
+  function save() {
+    if (!dirty || !doc) return;
+    saveBtn.disabled = true; setStatus('Mentés…', true);
+    fetch('/save?file=' + encodeURIComponent(FILE), { method: 'POST', headers: { 'Content-Type': 'text/html; charset=utf-8' }, body: serialize() })
+      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (res) {
+        if (!res.ok || !res.j.ok) throw new Error(res.j && res.j.error || 'save failed');
+        store = {}; localStorage.removeItem(KEY);
+        var t = new Date(); var hh = ('0' + t.getHours()).slice(-2), mm = ('0' + t.getMinutes()).slice(-2);
+        setStatus('Mentve ' + hh + ':' + mm + ' → ' + FILE, false);
+      })
+      .catch(function (e) { setStatus('Hiba: ' + e.message, true); });
+  }
+
+  function reset() {
+    if (!Object.keys(store).length && !dirty) { setStatus('Változatlan', false); return; }
+    if (!confirm('Minden nem mentett változtatást eldobsz ezen a poszteren?')) return;
+    store = {}; localStorage.removeItem(KEY);
+    frame.contentWindow.location.reload();
+  }
+
+  function onKey(e) {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 's') { e.preventDefault(); save(); }
+  }
+
+  saveBtn.addEventListener('click', save);
+  $('reset').addEventListener('click', reset);
+  document.addEventListener('keydown', onKey);
+  window.addEventListener('beforeunload', function (e) { if (dirty) { e.preventDefault(); e.returnValue = ''; } });
+
+  frame.addEventListener('load', arm);
+  frame.src = FILE + '?edit=1';
+})();
+</script>
+</body>
+</html>

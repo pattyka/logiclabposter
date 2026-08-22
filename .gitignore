@@ -5,3 +5,6 @@ poster.pdf
 .chrome_tmp/
 .DS_Store
 *.DS_Store
+.backups/
+.editserver.log
+*.tmp
