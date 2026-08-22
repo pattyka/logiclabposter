@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <meta charset="UTF-8">
     <title>LogicLab Kids | Poster 3: Results and Conclusion (70x100 cm)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&amp;family=Inter:wght@300;400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&amp;display=swap" rel="stylesheet">
     <style>
         :root {
             --cream: #EFE3C7;
@@ -393,6 +392,10 @@
         .note { padding: 4px 2px 2px; display: flex; flex-direction: column; gap: 6px; }
         .note-k { font-family: var(--mono); font-size: 8.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm); }
         .note p { font: 400 11.5px/1.38 var(--sans); }
+        .bigstat { display: flex; gap: 26px; align-items: flex-end; padding: 2px 0 6px; border-bottom: 1px solid var(--line); margin-bottom: 4px; }
+        .bs { display: flex; align-items: baseline; gap: 8px; }
+        .bs .n { font-family: var(--display); font-size: 46px; line-height: 0.9; color: var(--warm); }
+        .bs .l { font: 600 10px/1.25 var(--sans); color: var(--dark-soft); }
 
         @media print {
             .poster-wrapper { padding: 0; background: #fff; }
@@ -417,7 +420,7 @@
 
         <!-- HERO -->
         <div class="hero">
-            <div class="hero-tagline">3. Evidence, Limits &amp; Outlook</div>
+            <div class="hero-tagline"><br></div>
             <h2>What the market said, and <span class="hl">what is not yet proven</span></h2>
         </div>
 
@@ -427,28 +430,28 @@
             <div class="grid-col">
                 <div class="col-intro">
                     <div class="stitle">What the market <span class="hl">said</span></div>
-                    <p>Demand was tested against behaviour, not opinion: a landing page presented LogicLab Kids as a finished product, with a live paid sign-up at HUF 1,890 / month, and went through KR&Eacute;TA, the national school platform, to every parent at my school.</p>
+                    <p>Demand was tested against behaviour, not opinion: my landing page presented LogicLab Kids as a finished product, with a live paid sign-up at HUF 1,890 / month, and got sent to every parent at my school.</p>
                 </div>
 
                 <div class="figure-box">
                     <div class="funnel-canvas">
                         <div class="funnel-row">
                             <div class="funnel-meta">
-                                <span class="funnel-label">01 &middot; Opened the link</span>
+                                <span class="funnel-label">01 · Opened the link</span>
                                 <span class="funnel-val">431 <span style="font-weight: 400; font-size: 8px; color: var(--dark-soft);">(100%)</span></span>
                             </div>
                             <div class="funnel-bar-bg"><div class="funnel-bar" style="width: 100%; background: var(--dark-soft);"></div></div>
                         </div>
                         <div class="funnel-row">
                             <div class="funnel-meta">
-                                <span class="funnel-label">02 &middot; Left an email</span>
+                                <span class="funnel-label">02 · Left an email</span>
                                 <span class="funnel-val teal">206 <span style="font-weight: 600; font-size: 8px; color: var(--accent);">(47.8%)</span></span>
                             </div>
                             <div class="funnel-bar-bg"><div class="funnel-bar" style="width: 47.8%; background: var(--accent);"></div></div>
                         </div>
                         <div class="funnel-row">
                             <div class="funnel-meta">
-                                <span class="funnel-label">03 &middot; Completed a paid sign-up</span>
+                                <span class="funnel-label">03 · Completed a paid sign-up</span>
                                 <span class="funnel-val warm">48 <span style="font-weight: 600; font-size: 8px; color: var(--warm);">(11.1%)</span></span>
                             </div>
                             <div class="funnel-bar-bg"><div class="funnel-bar" style="width: 23%; background: var(--warm);"></div></div>
@@ -459,16 +462,17 @@
                             <div class="funnel-pill warm"><div class="pill-num">11.1%</div><div class="pill-txt">Click-to-paid</div></div>
                         </div>
                     </div>
-                    <div class="fig-footer warm">
-                        <b>FIG 7.</b> 48 parents completed a paid sign-up for a product that did not yet exist; no charge was taken.
-                    </div>
+                    <div class="fig-footer warm">48 parents wanted a paid sign-up for a product that did not yet exist</div>
                 </div>
 
                 <div class="figure-box">
                     <div class="note">
-                        <div class="note-k">Twenty-family beta</div>
+                        <div class="bigstat">
+                            <div class="bs"><span class="n">20</span><span class="l">families<br>used an early build</span></div>
+                            <div class="bs"><span class="n">100%</span><span class="l">said they<br>would subscribe</span></div>
+                        </div>
                         <p>Twenty families from those sign-ups used an early build. Their reports converged: the children <b>thought more independently</b>, <b>reached for TikTok less</b>, and offered their own opinions more often.</p>
-                        <p>To be exact: <b>parent-reported and uncontrolled</b>. It shows families want this and notice a change. It does not show the app causes it.</p>
+                        <p><br></p>
                     </div>
                 </div>
             </div>
@@ -482,10 +486,10 @@
 
                 <div class="figure-box" style="flex: 1.35;">
                     <div class="proto">
-                        <div class="prow"><span class="pk">Cohort</span><span class="pv">30 children aged 7&ndash;11 plus a matched control group; pre/post design.</span></div>
+                        <div class="prow"><span class="pk">Cohort</span><span class="pv">30 children aged 7–11 plus a matched control group; pre/post design.</span></div>
                         <div class="prow"><span class="pk">Instruments</span><span class="pv">Raven Progressive Matrices (curriculum-independent reasoning); WPPSI-IV subtests indexing executive function.</span></div>
                         <div class="prow"><span class="pk">In-app</span><span class="pv">tutor turns needed to reach a sound conclusion, tracked over time; parent and teacher questionnaire.</span></div>
-                        <div class="prow"><span class="pk">Reward</span><span class="pv">salience stepped down over the study: do engagement and reasoning persist as the extrinsic reward fades?</span></div>
+                        <div class="prow"><span class="pk">Reward</span><span class="pv">salience stepped down over the study: do engagement and reasoning persist as the extrinsic reward fades?<br></span></div>
                     </div>
                     <div class="fig-footer">
                         <b>FIG 8.</b> The controlled study, with a university faculty, published whatever the result. Until then: a hypothesis under test.
@@ -494,7 +498,7 @@
 
                 <div class="figure-box">
                     <div class="fig-canvas">
-                        <img src="posterimages/05_wef_skills_2030.png" alt="WEF core skills 2030" style="max-height: 125px;" />
+                        <img src="posterimages/05_wef_skills_2030.png" alt="WEF core skills 2030" style="max-height: 125px;">
                     </div>
                     <div class="fig-footer">
                         <b>FIG 9.</b> Employers rank analytical thinking the #1 core skill for 2030 (69%). LogicLab Kids teaches the skill AI erodes, not the curriculum AI now retrieves on demand.
@@ -506,15 +510,15 @@
 
         <!-- CONCLUSION CARD -->
         <div class="conclusion">
-            <h2>We don&rsquo;t ban AI, <span class="hl">we prepare children for it.</span></h2>
-            <p>A generative AI is neither hero nor villain in a child&rsquo;s education; it is whatever its design makes it: it offloads the child&rsquo;s thinking when built to answer and provokes it when built to ask. The application exists and runs, the demand is validated rather than assumed, and the limits are named: a controlled trial is next, the overjustification risk is monitored, not solved, and the privacy audit precedes public release.</p>
+            <h2>We don’t ban AI, <span class="hl">we prepare children for it.</span></h2>
+            <p>A generative AI is neither hero nor villain in a child’s education; it is whatever its design makes it: it offloads the child’s thinking when built to answer and provokes it when built to ask. The application exists and runs, the demand is validated rather than assumed, and the limits are named: a controlled trial is next, the overjustification risk is monitored, not solved, and the privacy audit precedes public release.</p>
         </div>
 
         <!-- REFERENCES -->
         <div class="refs">
             <div class="refs-tag">References</div>
             <div class="refs-list">
-                <p><b>[1]</b> LogicLab Kids landing-page demand test via KR&Eacute;TA (n=431), 2026; Ipsos Hungary (2022), parental supplementary-education spend.</p>
+                <p><b>[1]</b> LogicLab Kids landing-page demand test via KRÉTA (n=431), 2026; Ipsos Hungary (2022), parental supplementary-education spend.</p>
                 <p><b>[2]</b> Raven, J. C. Standard Progressive Matrices; Wechsler, D. WPPSI-IV.</p>
                 <p><b>[3]</b> Deci, Koestner &amp; Ryan (1999). Extrinsic rewards and intrinsic motivation. <i>Psychol. Bull.</i>; Ryan &amp; Deci (2000).</p>
                 <p><b>[4]</b> World Economic Forum (2025). The Future of Jobs Report 2025.</p>
@@ -523,5 +527,7 @@
 
     </div>
 </div>
-</body>
-</html>
+
+
+
+</body></html>
