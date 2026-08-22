@@ -384,6 +384,16 @@
             opacity: 1;
         }
 
+        /* ── PROTOCOL + NOTE PANELS ── */
+        .proto { display: flex; flex-direction: column; gap: 4px; padding: 3px 2px 2px; }
+        .prow { display: grid; grid-template-columns: 76px 1fr; gap: 8px; border-top: 1px solid var(--line); padding-top: 4px; }
+        .prow:first-child { border-top: 0; padding-top: 0; }
+        .pk { font-family: var(--mono); font-size: 8.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); padding-top: 2px; }
+        .pv { font: 400 10.5px/1.32 var(--sans); color: var(--dark-soft); }
+        .note { padding: 4px 2px 2px; display: flex; flex-direction: column; gap: 6px; }
+        .note-k { font-family: var(--mono); font-size: 8.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm); }
+        .note p { font: 400 11.5px/1.38 var(--sans); }
+
         @media print {
             .poster-wrapper { padding: 0; background: #fff; }
             .poster { box-shadow: none; }
@@ -407,108 +417,87 @@
 
         <!-- HERO -->
         <div class="hero">
-            <div class="hero-tagline">3. Empirical Evidence &amp; Market Traction</div>
-            <h2>Validation &amp; <span class="hl">Impact</span></h2>
+            <div class="hero-tagline">3. Evidence, Limits &amp; Outlook</div>
+            <h2>What exists, what the market said, <span class="hl">what is not yet proven</span></h2>
         </div>
 
-        <!-- 2-COLUMN BALANCED CONTENT GRID -->
         <div class="content-grid">
 
-            <!-- COLUMN 1: NEUROSCIENCE & COGNITIVE IMPACT -->
+            <!-- COLUMN 1: DEMAND -->
             <div class="grid-col">
                 <div class="col-intro">
-                    <div class="stitle">The AI <span class="hl">Cognitive Debt</span></div>
-                    <p>Unconstrained generative AI reliance severely degrades critical thinking, functional brain connectivity, and independent memory retention.</p>
+                    <div class="stitle">What the market <span class="hl">said</span></div>
+                    <p>Demand was tested against behaviour, not opinion: a landing page presented LogicLab Kids as a finished product, with a live paid sign-up at HUF 1,890 / month, and went through KR&Eacute;TA, the national school platform, to every parent at my school.</p>
                 </div>
 
-                <!-- FIG 5: EEG Neural Connectivity -->
-                <div class="figure-box">
-                    <div class="fig-canvas">
-                        <img src="posterimages/02_eeg_connectivity.png" alt="EEG Neural Connectivity" />
-                    </div>
-                    <div class="fig-footer">
-                        <b>FIG 5.</b> <b>47% Fewer Brain Connections:</b> EEG dDTF analysis reveals 42 significant alpha-band connections with ChatGPT vs 79 in Brain-only mode (Kosmyna et al., MIT 2025, p &lt; .05).
-                    </div>
-                </div>
-
-                <!-- FIG 6: AI Quoting & Recall Deficit -->
-                <div class="figure-box">
-                    <div class="fig-canvas">
-                        <img src="posterimages/01_ai_quoting.png" alt="AI Quoting Deficit" />
-                    </div>
-                    <div class="fig-footer">
-                        <b>FIG 6.</b> <b>83.3% Quoting Failure:</b> 15 of 18 ChatGPT users failed to quote a single sentence from their own essay vs 11.1% in Brain-only and Search groups (p &lt; .001).
-                    </div>
-                </div>
-            </div>
-
-            <!-- COLUMN 2: FUTURE SKILLS & MARKET TRACTION -->
-            <div class="grid-col">
-                <div class="col-intro">
-                    <div class="stitle">Empirical <span class="hl">Validation</span></div>
-                    <p>Analytical thinking is the #1 future workforce requirement. Our validation proves parents urgently seek structured screen-time incentives.</p>
-                </div>
-
-                <!-- FIG 7: WEF Skills 2030 -->
-                <div class="figure-box">
-                    <div class="fig-canvas">
-                        <img src="posterimages/05_wef_skills_2030.png" alt="WEF Skills for 2030" />
-                    </div>
-                    <div class="fig-footer">
-                        <b>FIG 7.</b> <b>Analytical Thinking Ranked #1:</b> 69% of employers rate analytical thinking as a core skill, followed by resilience (67%) and creative thinking (57%).
-                    </div>
-                </div>
-
-                <!-- FIG 8: Fake Door Market Funnel -->
                 <div class="figure-box">
                     <div class="funnel-canvas">
                         <div class="funnel-row">
                             <div class="funnel-meta">
-                                <span class="funnel-label">01 · Unique Visitors</span>
+                                <span class="funnel-label">01 &middot; Opened the link</span>
                                 <span class="funnel-val">431 <span style="font-weight: 400; font-size: 8px; color: var(--dark-soft);">(100%)</span></span>
                             </div>
-                            <div class="funnel-bar-bg">
-                                <div class="funnel-bar" style="width: 100%; background: var(--dark-soft);"></div>
-                            </div>
+                            <div class="funnel-bar-bg"><div class="funnel-bar" style="width: 100%; background: var(--dark-soft);"></div></div>
                         </div>
-
                         <div class="funnel-row">
                             <div class="funnel-meta">
-                                <span class="funnel-label">02 · Waitlist Leads</span>
-                                <span class="funnel-val teal">206 <span style="font-weight: 600; font-size: 8px; color: var(--accent);">(47.8% Conv.)</span></span>
+                                <span class="funnel-label">02 &middot; Left an email</span>
+                                <span class="funnel-val teal">206 <span style="font-weight: 600; font-size: 8px; color: var(--accent);">(47.8%)</span></span>
                             </div>
-                            <div class="funnel-bar-bg">
-                                <div class="funnel-bar" style="width: 47.8%; background: var(--accent);"></div>
-                            </div>
+                            <div class="funnel-bar-bg"><div class="funnel-bar" style="width: 47.8%; background: var(--accent);"></div></div>
                         </div>
-
                         <div class="funnel-row">
                             <div class="funnel-meta">
-                                <span class="funnel-label">03 · Paid Plan Intent</span>
-                                <span class="funnel-val warm">48 <span style="font-weight: 600; font-size: 8px; color: var(--warm);">(11.1% Conv.)</span></span>
+                                <span class="funnel-label">03 &middot; Completed a paid sign-up</span>
+                                <span class="funnel-val warm">48 <span style="font-weight: 600; font-size: 8px; color: var(--warm);">(11.1%)</span></span>
                             </div>
-                            <div class="funnel-bar-bg">
-                                <div class="funnel-bar" style="width: 23%; background: var(--warm);"></div>
-                            </div>
+                            <div class="funnel-bar-bg"><div class="funnel-bar" style="width: 23%; background: var(--warm);"></div></div>
                         </div>
-
                         <div class="funnel-pills">
-                            <div class="funnel-pill">
-                                <div class="pill-num">431</div>
-                                <div class="pill-txt">Visitors</div>
-                            </div>
-                            <div class="funnel-pill teal">
-                                <div class="pill-num">47.8%</div>
-                                <div class="pill-txt">Lead Rate</div>
-                            </div>
-                            <div class="funnel-pill warm">
-                                <div class="pill-num">11.1%</div>
-                                <div class="pill-txt">Paid Intent</div>
-                            </div>
+                            <div class="funnel-pill"><div class="pill-num">431</div><div class="pill-txt">Parents</div></div>
+                            <div class="funnel-pill teal"><div class="pill-num">47.8%</div><div class="pill-txt">Left email</div></div>
+                            <div class="funnel-pill warm"><div class="pill-num">11.1%</div><div class="pill-txt">Click-to-paid</div></div>
                         </div>
                     </div>
                     <div class="fig-footer warm">
-                        <b>FIG 8.</b> <b>High Commercial Intent:</b> 11.1% paid intent rate without credit card friction validates high parental demand for earned screen time.
+                        <b>FIG 7.</b> 48 parents completed a paid sign-up for a product that did not yet exist; no charge was taken. Demand validation, not evidence of effect.
+                    </div>
+                </div>
+
+                <div class="figure-box">
+                    <div class="note">
+                        <div class="note-k">Twenty-family beta</div>
+                        <p>Twenty families from those sign-ups used an early build. Their reports converged: the children <b>thought more independently</b>, <b>reached for TikTok less</b>, and offered their own opinions more often.</p>
+                        <p>To be exact: <b>parent-reported and uncontrolled</b>. It shows families want this and notice a change. It does not show the app causes it.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLUMN 2: WHAT IS NOT YET PROVEN -->
+            <div class="grid-col">
+                <div class="col-intro">
+                    <div class="stitle">What is <span class="hl">not yet proven</span></div>
+                    <p>Whether the app causes the change, and whether the reward sustains engagement without eroding the intrinsic motivation it is meant to build. The next phase answers both.</p>
+                </div>
+
+                <div class="figure-box" style="flex: 1.35;">
+                    <div class="proto">
+                        <div class="prow"><span class="pk">Cohort</span><span class="pv">30 children aged 7&ndash;11 plus a matched control group; pre/post design.</span></div>
+                        <div class="prow"><span class="pk">Instruments</span><span class="pv">Raven Progressive Matrices (curriculum-independent reasoning); WPPSI-IV subtests indexing executive function.</span></div>
+                        <div class="prow"><span class="pk">In-app</span><span class="pv">tutor turns needed to reach a sound conclusion, tracked over time; parent and teacher questionnaire.</span></div>
+                        <div class="prow"><span class="pk">Reward</span><span class="pv">salience stepped down over the study: do engagement and reasoning persist as the extrinsic reward fades?</span></div>
+                    </div>
+                    <div class="fig-footer">
+                        <b>FIG 8.</b> The controlled study, with a university faculty, published whatever the result. Until then: a hypothesis under test.
+                    </div>
+                </div>
+
+                <div class="figure-box">
+                    <div class="fig-canvas">
+                        <img src="posterimages/05_wef_skills_2030.png" alt="WEF core skills 2030" style="max-height: 125px;" />
+                    </div>
+                    <div class="fig-footer">
+                        <b>FIG 9.</b> Employers rank analytical thinking the #1 core skill for 2030 (69%). LogicLab Kids teaches the skill AI erodes, not the curriculum AI now retrieves on demand.
                     </div>
                 </div>
             </div>
@@ -517,18 +506,18 @@
 
         <!-- CONCLUSION CARD -->
         <div class="conclusion">
-            <h2>We don't ban AI, <span class="hl">we prepare children for it.</span></h2>
-            <p>The future generation will inevitably use AI. The fundamental question is whether they will command the algorithms, or let the algorithms command them. LogicLab Kids anchors screen time to structured reasoning to build genuine cognitive stamina.</p>
+            <h2>We don&rsquo;t ban AI, <span class="hl">we prepare children for it.</span></h2>
+            <p>A generative AI is neither hero nor villain in a child&rsquo;s education; it is whatever its design makes it: it offloads the child&rsquo;s thinking when built to answer and provokes it when built to ask. The application exists and runs, the demand is validated rather than assumed, and the limits are named: a controlled trial is next, the overjustification risk is monitored, not solved, and the privacy audit precedes public release.</p>
         </div>
 
         <!-- REFERENCES -->
         <div class="refs">
             <div class="refs-tag">References</div>
             <div class="refs-list">
-                <p><b>[1]</b> Kosmyna et al. (2025). Your Brain on ChatGPT. <i>MIT Media Lab</i>, N=54.</p>
-                <p><b>[2]</b> World Economic Forum (2025). Future of Jobs: Core Skills 2030.</p>
-                <p><b>[3]</b> Apple Inc. FamilyControls &amp; ManagedSettings Frameworks.</p>
-                <p><b>[4]</b> LogicLab Kids GA4 Landing Page Intent Trial (n=431), 2026.</p>
+                <p><b>[1]</b> LogicLab Kids landing-page demand test via KR&Eacute;TA (n=431), 2026; Ipsos Hungary (2022), parental supplementary-education spend.</p>
+                <p><b>[2]</b> Raven, J. C. Standard Progressive Matrices; Wechsler, D. WPPSI-IV.</p>
+                <p><b>[3]</b> Deci, Koestner &amp; Ryan (1999). Extrinsic rewards and intrinsic motivation. <i>Psychol. Bull.</i>; Ryan &amp; Deci (2000).</p>
+                <p><b>[4]</b> World Economic Forum (2025). The Future of Jobs Report 2025.</p>
             </div>
         </div>
 

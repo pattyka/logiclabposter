@@ -129,7 +129,7 @@
 
         .hero h2 {
             font-family: var(--display);
-            font-size: 32px;
+            font-size: 30px;
             font-weight: 400;
             line-height: 1.12;
             color: var(--dark);
@@ -179,6 +179,7 @@
             font: 400 12px/1.38 var(--sans);
             color: var(--dark-soft);
         }
+        .body-col p + p { margin-top: 5px; }
 
         .body-col p b {
             font-weight: 700;
@@ -197,7 +198,7 @@
 
         .img-wrap img {
             width: 100%;
-            height: 125px;
+            height: 76px;
             object-fit: contain;
             display: block;
         }
@@ -389,79 +390,71 @@
 
         <!-- HERO -->
         <div class="hero">
-            <div class="hero-tagline">1. Context & Rationale</div>
-            <h2>The Cognitive Cost of <span class="hl">Screen Media</span></h2>
-            <p class="hero-sub">Children spend 5.5 to 8.6 hours daily on entertainment media during the critical developmental window when executive function matures. Passive consumption and unconstrained generative AI threaten to replace the mental exertion required to build problem-solving stamina.</p>
+            <div class="hero-tagline">1. Context &amp; Rationale</div>
+            <h2>When the machine thinks, <span class="hl">the child&rsquo;s mind does less of it</span></h2>
+            <p class="hero-sub">A ten-year-old on a tram told his father that ChatGPT had finished his homework, and the father was pleased. In the years the reasoning mind is built, children are learning to skip the act of thinking. The binding constraint is not pedagogy but <b>adherence</b>.</p>
         </div>
 
-        <!-- 2-COLUMN CONTENT GRID -->
+        <!-- ROW 1: THE PROBLEM ─ cognitive debt + the window -->
         <div class="content-grid">
-
-            <!-- COLUMN 1: SCREEN MEDIA EXPLOSION -->
             <div class="body-col">
                 <div>
-                    <div class="stitle">Entertainment <span class="hl">Surge</span></div>
-                    <p>Daily entertainment screen use increased by <b>+17% across two years</b>. Tweens (8-12) average 5h 33m daily, while teens (13-18) consume 8h 39m outside schoolwork.</p>
+                    <div class="stitle">Cognitive <span class="hl">Debt</span></div>
+                    <p>MIT Media Lab, 2025: minutes after writing an essay with an AI assistant, <b>83% could not quote one sentence</b> of it, against 11% unaided, and the AI group showed the <b>weakest EEG connectivity</b> of three conditions. Adult sample, preprint, and the mechanism a child meets every afternoon.</p>
                 </div>
                 <div class="img-wrap">
-                    <img src="posterimages/04_screen_media.png" alt="Daily entertainment screen media use by age group" />
-                    <div class="img-cap"><b>FIG 1.</b> Daily screen media by age group, 2019 vs 2021 (+17% growth).</div>
+                    <img src="posterimages/02_eeg_connectivity.png" alt="Significant brain connections, brain-only vs ChatGPT" />
+                    <div class="img-cap"><b>FIG 1.</b> Significant alpha-band brain connections, Brain-only vs ChatGPT: 79 vs 42 (EEG dDTF, N=54, p&lt;.05).</div>
                 </div>
             </div>
-
-            <!-- COLUMN 2: DEVELOPMENTAL WINDOW -->
             <div class="body-col">
                 <div>
                     <div class="stitle">The Critical <span class="hl">Window</span></div>
-                    <p>Complex executive function develops rapidly between <b>ages 7 and 14</b> (rising 50% to &gt;90%), overlapping with smartphone ownership surge (50%+ by age 11).</p>
+                    <p>Executive function, the inhibition, working memory and reasoning beneath later analytical thought, develops fastest between <b>ages 7 and 11</b>. What is exercised now consolidates; what is left idle is harder to build later. And the device arrives mid-window: <b>half of children own a smartphone by 11</b>.</p>
                 </div>
                 <div class="img-wrap">
                     <img src="posterimages/03_developmental_window.png" alt="Executive function developmental window" />
-                    <div class="img-cap"><b>FIG 2.</b> Executive function trajectory by age (CAS complex-EF, ages 5-17).</div>
+                    <div class="img-cap"><b>FIG 2.</b> Complex executive-function trajectory by age (ages 5&ndash;17) against the rise of smartphone ownership.</div>
                 </div>
-            </div>
-
-        </div>
-
-        <!-- 3-DEVICE SHOWCASE STAGE: iPad, iPhone, Android -->
-        <div class="phones-stage">
-            <div class="stage-title">Interactive Multi-Platform Runtime · iPadOS, iOS &amp; Android</div>
-
-            <div class="phones-row">
-                <div class="device-item ipad">
-                    <img src="posterimages/ipad.png" alt="iPadOS App">
-                    <div class="phone-badge">iPad</div>
-                </div>
-                <div class="device-item iphone">
-                    <img src="posterimages/framed-home.png" alt="iOS iPhone App">
-                    <div class="phone-badge">iPhone</div>
-                </div>
-                <div class="device-item android">
-                    <img src="posterimages/framed-done.png" alt="Android App">
-                    <div class="phone-badge">Android</div>
-                </div>
-            </div>
-
-            <div class="stage-footer">
-                <span>NATIVE SWIFTUI &amp; KOTLIN COMPOSE</span>
-                <span>OS-ENFORCED REWARD INCENTIVE LOOP</span>
             </div>
         </div>
 
-        <!-- THE PREMACK INCENTIVE FRAMEWORK -->
+        <!-- ROW 2: THE COLLISION + WHAT I SET OUT TO DO -->
+        <div class="content-grid">
+            <div class="body-col">
+                <div>
+                    <div class="stitle">The <span class="hl">Collision</span></div>
+                    <p>Children aged 8&ndash;12 spend <b>5 h 33 min a day</b> on entertainment screens, teens 8 h 39 min, up 17% in two years. The scarce resource in a child&rsquo;s education is no longer content. It is attention.</p>
+                </div>
+                <div class="img-wrap">
+                    <img src="posterimages/04_screen_media.png" alt="Daily entertainment screen media use by age group" />
+                    <div class="img-cap"><b>FIG 3.</b> Daily entertainment screen media by age group, 2019 vs 2021 (+17%).</div>
+                </div>
+            </div>
+            <div class="body-col">
+                <div>
+                    <div class="stitle">What I set out to <span class="hl">build and test</span></div>
+                    <p><b>Pedagogical.</b> Make reasoning learnable the way arithmetic is: by practice, not exposition. The child builds an argument, finds the broken step, weighs evidence.</p>
+                    <p><b>Technical.</b> A native app that trades completed practice for parent-configured screen time, enforced by the OS, not by the app&rsquo;s goodwill, plus an AI tutor that may only ask.</p>
+                    <p><b>Research.</b> Test against a control whether reasoning measurably improves, and whether the reward erodes the motivation it is meant to build; publish whatever the result.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- THE HYPOTHESIS -->
         <div class="premack-card">
-            <h3>The Premack Behavioral Contingency Model</h3>
-            <p>Under Premack's Principle (1959), high-probability behaviors (screen entertainment) effectively reinforce low-probability behaviors (structured logical reasoning). LogicLab Kids establishes an unbreakable OS-level contingency where screen time is earned through independent problem-solving.</p>
+            <h3>The hypothesis: make thinking the price of screen time</h3>
+            <p>Premack (1959): a higher-probability behaviour can reinforce a lower-probability one. Screen entertainment is a child&rsquo;s highest-probability behaviour and reasoning practice among the lowest, so finishing a lesson earns minutes that unlock the apps the parent chose, and <b>iOS, not the app, holds the lock</b>. The honest objection, the overjustification effect, is treated as a design constraint and measured, not assumed away.</p>
         </div>
 
         <!-- REFERENCES -->
         <div class="refs">
             <div class="refs-tag">References</div>
             <div class="refs-list">
-                <p><b>[1]</b> Common Sense Media (2019, 2021). Media Use by Tweens and Teens.</p>
-                <p><b>[2]</b> Brydges et al. (2014). Executive function trajectory across ages 5-17 (N=2,036).</p>
-                <p><b>[3]</b> Premack, D. (1959). Toward empirical behavior laws: I. Positive reinforcement.</p>
-                <p><b>[4]</b> Rideout et al. (2022). The Common Sense Census: Media use by kids.</p>
+                <p><b>[1]</b> Kosmyna et al. (2025). Your Brain on ChatGPT: Accumulation of Cognitive Debt. <i>MIT Media Lab</i>, arXiv:2506.08872.</p>
+                <p><b>[2]</b> Diamond (2013). Executive functions. <i>Annu. Rev. Psychol.</i>; Brydges et al. (2014), EF trajectory ages 5&ndash;17.</p>
+                <p><b>[3]</b> Common Sense Media (2019; 2021). The Common Sense Census: Media Use by Tweens and Teens.</p>
+                <p><b>[4]</b> Premack (1959). Toward empirical behavior laws. <i>Psychol. Rev.</i>; Deci, Koestner &amp; Ryan (1999), overjustification meta-analysis.</p>
             </div>
         </div>
 
