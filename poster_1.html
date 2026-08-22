@@ -163,34 +163,11 @@
             gap: 6px;
         }
 
-        /* chart boxes: text on the left, the figure standing on the right,
-           one caption across the bottom. The figure column is fixed so the
-           three charts line up from box to box. */
-        .body-col.has-fig {
-            display: grid;
-            grid-template-columns: 1fr 120px;
-            grid-template-areas: "ttl ttl" "txt fig" "cap cap";
-            column-gap: 10px;
-            row-gap: 4px;
-            align-items: stretch;
-        }
-        .body-col.has-fig > .stitle { grid-area: ttl; margin-bottom: 0; }
-        .body-col.has-fig .txt { grid-area: txt; min-width: 0; }
-        .body-col.has-fig .fig {
-            grid-area: fig;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 0;
-        }
-        .body-col.has-fig .fig img {
-            width: 100%;
-            height: auto;
-            max-height: 150px;
-            object-fit: contain;
-            display: block;
-        }
-        .body-col.has-fig .img-cap { grid-area: cap; margin-top: 2px; }
+        /* chart boxes: title, a short paragraph, then the chart at the full
+           width of the box. The charts carry their own source lines, so no
+           separate caption. */
+        .body-col.has-fig .fig { margin-top: 2px; display: flex; align-items: flex-end; justify-content: center; flex: 1; min-height: 0; }
+        .body-col.has-fig .fig img { width: 100%; height: auto; max-height: 141px; object-fit: contain; display: block; }
 
         .stitle {
             font-family: var(--display);
@@ -427,19 +404,13 @@
         <div class="content-grid">
             <div class="body-col has-fig">
                 <div class="stitle">Cognitive <span class="hl">Debt</span></div>
-                <div class="txt">
-                    <p>MIT Media Lab, 2025: minutes after writing an essay with an AI assistant, <b>83% could not quote one sentence</b> of it, against 11% unaided, and the AI group showed the <b>weakest EEG connectivity</b>. Adult sample, preprint; but a child meets that mechanism every afternoon.</p>
-                </div>
+                <p>MIT, 2025: after writing with an AI assistant, <b>83% could not quote a sentence</b> of their own essay (11% unaided), and showed the <b>weakest EEG connectivity</b>.</p>
                 <div class="fig"><img src="posterimages/02_eeg_connectivity.png" alt="Significant brain connections, brain-only vs ChatGPT"></div>
-                <div class="img-cap">Significant alpha-band brain connections, Brain-only vs ChatGPT: 79 vs 42 (EEG dDTF, N=54, p&lt;.05).</div>
             </div>
             <div class="body-col has-fig">
                 <div class="stitle">The Critical <span class="hl">Window</span></div>
-                <div class="txt">
-                    <p>Executive function, the base of later analytical thought, develops fastest between <b>ages 7 and 11</b>. What is exercised now consolidates; what is left idle is harder to build later. The device arrives mid-window: <b>half of children own a smartphone by 11</b>.</p>
-                </div>
+                <p>Executive function develops fastest between <b>ages 7 and 11</b>; what is left idle then is harder to build later. <b>Half of children own a smartphone by 11.</b></p>
                 <div class="fig"><img src="posterimages/03_developmental_window.png" alt="Executive function developmental window"></div>
-                <div class="img-cap">Complex executive-function trajectory by age (ages 5–17) against the rise of smartphone ownership.</div>
             </div>
         </div>
 
@@ -447,11 +418,8 @@
         <div class="content-grid">
             <div class="body-col has-fig">
                 <div class="stitle">The <span class="hl">Collision</span></div>
-                <div class="txt">
-                    <p>Children aged 8–12 spend <b>5 h 33 min a day</b> on entertainment screens, teens 8 h 39 min, up 17% in two years. The scarce resource in a child’s education is attention, not content.</p>
-                </div>
+                <p>Children aged 8–12 spend <b>5 h 33 min a day</b> on entertainment screens, teens 8 h 39 min, up 17% in two years. The scarce resource is attention, not content.</p>
                 <div class="fig"><img src="posterimages/04_screen_media.png" alt="Daily entertainment screen media use by age group"></div>
-                <div class="img-cap">Daily entertainment screen media by age group, 2019 vs 2021 (+17%).</div>
             </div>
             <div class="body-col">
                 <div>
@@ -466,7 +434,7 @@
         <!-- THE HYPOTHESIS -->
         <div class="premack-card">
             <h3>The hypothesis: make thinking the price of screen time</h3>
-            <p>Premack (1959): a higher-probability behaviour can reinforce a lower-probability one. Screen entertainment is a child’s highest-probability behaviour and reasoning practice among the lowest, so finishing a lesson earns minutes that unlock the apps the parent chose, and <b>iOS, not the app, holds the lock</b>. The known objection is the overjustification effect, that rewards can erode intrinsic motivation; the planned study measures it.</p>
+            <p>Premack (1959): a higher-probability behaviour can reinforce a lower-probability one. Screen entertainment is a child’s highest-probability behaviour and reasoning practice among the lowest, so finishing a lesson earns minutes that unlock the apps the parent chose, and <b>iOS, not the app, holds the lock</b>. The known objection, the overjustification effect, is measured in the planned study.</p>
         </div>
 
         <!-- REFERENCES -->
