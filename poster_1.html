@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <meta charset="UTF-8">
     <title>LogicLab Kids | Poster 1: Introduction (70x100 cm)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&amp;family=Inter:wght@300;400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&amp;display=swap" rel="stylesheet">
     <style>
         :root {
             --cream: #EFE3C7;
@@ -163,6 +162,34 @@
             flex-direction: column;
             gap: 6px;
         }
+
+        /* chart boxes: text on the left, the figure standing on the right,
+           one caption across the bottom. The figure column is fixed so the
+           three charts line up from box to box. */
+        .body-col.has-fig {
+            display: grid;
+            grid-template-columns: 1fr 120px;
+            grid-template-areas: "txt fig" "cap cap";
+            column-gap: 10px;
+            row-gap: 4px;
+            align-items: stretch;
+        }
+        .body-col.has-fig .txt { grid-area: txt; min-width: 0; }
+        .body-col.has-fig .fig {
+            grid-area: fig;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 0;
+        }
+        .body-col.has-fig .fig img {
+            width: 100%;
+            height: auto;
+            max-height: 150px;
+            object-fit: contain;
+            display: block;
+        }
+        .body-col.has-fig .img-cap { grid-area: cap; margin-top: 2px; }
 
         .stitle {
             font-family: var(--display);
@@ -385,57 +412,51 @@
                 </div>
                 <h1>Introduction</h1>
             </div>
-            <div class="hdr-right-badge">LogicLab Kids · EUCYS 2026</div>
+            <div class="hdr-right-badge">LogicLab Kids - EUCYS 2026</div>
         </div>
 
         <!-- HERO -->
         <div class="hero">
-            <div class="hero-tagline">1. Context &amp; Rationale</div>
-            <h2>When the machine thinks, <span class="hl">the child&rsquo;s mind does less of it</span></h2>
-            <p class="hero-sub">A ten-year-old on a tram told his father that ChatGPT had done his homework, and the father was pleased. Children are learning to skip thinking in the years the reasoning mind is built. The binding constraint is not pedagogy but <b>adherence</b>: an app a child never opens teaches nothing.</p>
+            <div class="hero-tagline">Context&nbsp;</div>
+            <h2>When the machine thinks, <span class="hl">the child’s mind does less of it</span></h2>
+            <p class="hero-sub">I was on a tram when a ten-year-old told his father that ChatGPT had done his homework, and the father was pleased. Children are learning to skip thinking in the years the reasoning mind is built. The binding constraint is not pedagogy but <b>adherence</b>: an app a child never opens teaches nothing.</p>
         </div>
 
         <!-- ROW 1: THE PROBLEM ─ cognitive debt + the window -->
         <div class="content-grid">
-            <div class="body-col">
-                <div>
+            <div class="body-col has-fig">
+                <div class="txt">
                     <div class="stitle">Cognitive <span class="hl">Debt</span></div>
-                    <p>MIT Media Lab, 2025: minutes after writing an essay with an AI assistant, <b>83% could not quote one sentence</b> of it, against 11% unaided, and the AI group showed the <b>weakest EEG connectivity</b> of three conditions. An adult sample and a preprint, but the mechanism is the one a child meets every afternoon.</p>
+                    <p>MIT Media Lab, 2025: minutes after writing an essay with an AI assistant, <b>83% could not quote one sentence</b> of it, against 11% unaided, and the AI group showed the <b>weakest EEG connectivity</b>. Adult sample, preprint; but a child meets that mechanism every afternoon.</p>
                 </div>
-                <div class="img-wrap">
-                    <img src="posterimages/02_eeg_connectivity.png" alt="Significant brain connections, brain-only vs ChatGPT" />
-                    <div class="img-cap"><b>FIG 1.</b> Significant alpha-band brain connections, Brain-only vs ChatGPT: 79 vs 42 (EEG dDTF, N=54, p&lt;.05).</div>
-                </div>
+                <div class="fig"><img src="posterimages/02_eeg_connectivity.png" alt="Significant brain connections, brain-only vs ChatGPT"></div>
+                <div class="img-cap">Significant alpha-band brain connections, Brain-only vs ChatGPT: 79 vs 42 (EEG dDTF, N=54, p&lt;.05).</div>
             </div>
-            <div class="body-col">
-                <div>
+            <div class="body-col has-fig">
+                <div class="txt">
                     <div class="stitle">The Critical <span class="hl">Window</span></div>
-                    <p>Executive function, the inhibition, working memory and reasoning beneath later analytical thought, develops fastest between <b>ages 7 and 11</b>. What is exercised now consolidates; what is left idle is harder to build later. And the device arrives mid-window: <b>half of children own a smartphone by 11</b>.</p>
+                    <p>Executive function, the base of later analytical thought, develops fastest between <b>ages 7 and 11</b>. What is exercised now consolidates; what is left idle is harder to build later. The device arrives mid-window: <b>half of children own a smartphone by 11</b>.</p>
                 </div>
-                <div class="img-wrap">
-                    <img src="posterimages/03_developmental_window.png" alt="Executive function developmental window" />
-                    <div class="img-cap"><b>FIG 2.</b> Complex executive-function trajectory by age (ages 5&ndash;17) against the rise of smartphone ownership.</div>
-                </div>
+                <div class="fig"><img src="posterimages/03_developmental_window.png" alt="Executive function developmental window"></div>
+                <div class="img-cap">Complex executive-function trajectory by age (ages 5–17) against the rise of smartphone ownership.</div>
             </div>
         </div>
 
         <!-- ROW 2: THE COLLISION + WHAT I SET OUT TO DO -->
         <div class="content-grid">
-            <div class="body-col">
-                <div>
+            <div class="body-col has-fig">
+                <div class="txt">
                     <div class="stitle">The <span class="hl">Collision</span></div>
-                    <p>Children aged 8&ndash;12 spend <b>5 h 33 min a day</b> on entertainment screens, teens 8 h 39 min, up 17% in two years. The scarce resource in a child&rsquo;s education is attention, not content.</p>
+                    <p>Children aged 8–12 spend <b>5 h 33 min a day</b> on entertainment screens, teens 8 h 39 min, up 17% in two years. The scarce resource in a child’s education is attention, not content.</p>
                 </div>
-                <div class="img-wrap">
-                    <img src="posterimages/04_screen_media.png" alt="Daily entertainment screen media use by age group" />
-                    <div class="img-cap"><b>FIG 3.</b> Daily entertainment screen media by age group, 2019 vs 2021 (+17%).</div>
-                </div>
+                <div class="fig"><img src="posterimages/04_screen_media.png" alt="Daily entertainment screen media use by age group"></div>
+                <div class="img-cap">Daily entertainment screen media by age group, 2019 vs 2021 (+17%).</div>
             </div>
             <div class="body-col">
                 <div>
                     <div class="stitle">What I set out to <span class="hl">build and test</span></div>
-                    <p><b>Pedagogical.</b> Make reasoning learnable the way arithmetic is: by practice, not exposition. The child builds an argument, finds the broken step, weighs evidence.</p>
-                    <p><b>Technical.</b> A native app that trades completed practice for parent-configured screen time, enforced by the OS, not by the app&rsquo;s goodwill, plus an AI tutor that may only ask.</p>
+                    <p><b>Pedagogical.</b> Make reasoning learnable the way arithmetic is: by practice, not exposition. The child builds an argument, finds the broken step, weighs evidence. And one which the child actually wants to open.</p>
+                    <p><b>Technical.</b> A native app where for each completed lesson the child gets screentime which the parent sets up once.</p>
                     <p><b>Research.</b> Test against a control whether reasoning measurably improves, and whether the reward erodes the motivation it is meant to build; publish whatever the result.</p>
                 </div>
             </div>
@@ -444,7 +465,7 @@
         <!-- THE HYPOTHESIS -->
         <div class="premack-card">
             <h3>The hypothesis: make thinking the price of screen time</h3>
-            <p>Premack (1959): a higher-probability behaviour can reinforce a lower-probability one. Screen entertainment is a child&rsquo;s highest-probability behaviour and reasoning practice among the lowest, so finishing a lesson earns minutes that unlock the apps the parent chose, and <b>iOS, not the app, holds the lock</b>. The known objection is the overjustification effect, that rewards can erode intrinsic motivation; the planned study measures it.</p>
+            <p>Premack (1959): a higher-probability behaviour can reinforce a lower-probability one. Screen entertainment is a child’s highest-probability behaviour and reasoning practice among the lowest, so finishing a lesson earns minutes that unlock the apps the parent chose, and <b>iOS, not the app, holds the lock</b>. The known objection is the overjustification effect, that rewards can erode intrinsic motivation; the planned study measures it.</p>
         </div>
 
         <!-- REFERENCES -->
@@ -452,7 +473,7 @@
             <div class="refs-tag">References</div>
             <div class="refs-list">
                 <p><b>[1]</b> Kosmyna et al. (2025). Your Brain on ChatGPT: Accumulation of Cognitive Debt. <i>MIT Media Lab</i>, arXiv:2506.08872.</p>
-                <p><b>[2]</b> Diamond (2013). Executive functions. <i>Annu. Rev. Psychol.</i>; Brydges et al. (2014), EF trajectory ages 5&ndash;17.</p>
+                <p><b>[2]</b> Diamond (2013). Executive functions. <i>Annu. Rev. Psychol.</i>; Brydges et al. (2014), EF trajectory ages 5–17.</p>
                 <p><b>[3]</b> Common Sense Media (2019; 2021). The Common Sense Census: Media Use by Tweens and Teens.</p>
                 <p><b>[4]</b> Premack (1959). Toward empirical behavior laws. <i>Psychol. Rev.</i>; Deci, Koestner &amp; Ryan (1999), overjustification meta-analysis.</p>
             </div>
@@ -460,5 +481,6 @@
 
     </div>
 </div>
-</body>
-</html>
+
+
+</body></html>

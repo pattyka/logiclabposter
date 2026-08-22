@@ -37,9 +37,10 @@
 <body>
 <div class="bar">
   <div class="tabs" id="tabs"></div>
-  <span class="hint" id="hint">Kattints bármelyik szövegre a poszteren és írd át.</span>
+  <span class="hint" id="hint">Kattints a szövegre és írd át. Kijelölés + ⌘B = félkövér.</span>
   <span class="grow"></span>
   <span class="st" id="status">Változatlan</span>
+  <button id="bold" title="Félkövér (⌘B)"><b>B</b></button>
   <button id="reset">Visszaállítás</button>
   <button id="save" class="primary" disabled>Mentés<kbd>⌘S</kbd></button>
 </div>
@@ -56,7 +57,7 @@
 
   var $ = function (id) { return document.getElementById(id); };
   var frame = $('f'), status = $('status'), saveBtn = $('save');
-  var dirty = false, doc = null;
+  var dirty = false, doc = null, baseTag = null;
 
   POSTERS.forEach(function (p) {
     var a = document.createElement('a');
@@ -114,6 +115,11 @@
 
   var store = {};
   try { store = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch (e) { store = {}; }
+  function h32(str) { var h = 5381; for (var i = 0; i < str.length; i++) h = ((h << 5) + h + str.charCodeAt(i)) | 0; return (h >>> 0).toString(36); }
+  function remember(path, base, html) {
+    store[path] = { base: base, html: html };
+    localStorage.setItem(KEY, JSON.stringify(store));
+  }
 
   function arm() {
     doc = frame.contentDocument;
@@ -126,16 +132,23 @@
       '::selection{background:#111827;color:#fff}';
     doc.head.appendChild(st);
 
-    var els = collect(doc.body), applied = 0;
+    fetch(FILE, { method: 'HEAD', cache: 'no-store' }).then(function (r) { baseTag = r.headers.get('ETag'); });
+
+    var els = collect(doc.body), applied = 0, conflicts = 0;
     els.forEach(function (el) {
       var path = pathOf(el);
-      if (store[path] != null && store[path] !== el.innerHTML) { el.innerHTML = store[path]; applied++; }
+      var base = h32(el.innerHTML);
+      var saved = store[path];
+      if (saved && typeof saved === 'object') {
+        if (saved.base === base && saved.html !== el.innerHTML) { el.innerHTML = saved.html; applied++; }
+        else if (saved.base !== base) { conflicts++; delete store[path]; }
+      } else if (typeof saved === 'string') { delete store[path]; }
       el.setAttribute('contenteditable', 'true');
       el.setAttribute('spellcheck', 'false');
       el.dataset.editPath = path;
+      el.dataset.editBase = base;
       el.addEventListener('input', function () {
-        store[path] = el.innerHTML;
-        localStorage.setItem(KEY, JSON.stringify(store));
+        remember(path, base, el.innerHTML);
         setStatus('Nincs mentve', true);
       });
       // Enter = soft line break, never a new <div>
@@ -148,7 +161,8 @@
         doc.execCommand('insertText', false, (e.clipboardData || window.clipboardData).getData('text/plain'));
       });
     });
-    $('hint').textContent = els.length + ' szerkeszthető szöveg.';
+    localStorage.setItem(KEY, JSON.stringify(store));
+    $('hint').textContent = els.length + ' szerkeszthető szöveg.' + (conflicts ? ' ' + conflicts + ' régi módosítás eldobva: az a szöveg közben megváltozott.' : '');
     setStatus(applied ? 'Nem mentett változtatások betöltve' : 'Változatlan', applied > 0);
     doc.addEventListener('keydown', onKey);
   }
@@ -160,6 +174,7 @@
       el.removeAttribute('contenteditable');
       el.removeAttribute('spellcheck');
       delete el.dataset.editPath;
+      delete el.dataset.editBase;
     });
     // the fit script writes --fit inline; the file must not carry it
     clone.querySelectorAll('[style*="--fit"]').forEach(function (el) {
@@ -172,10 +187,19 @@
   function save() {
     if (!dirty || !doc) return;
     saveBtn.disabled = true; setStatus('Mentés…', true);
-    fetch('/save?file=' + encodeURIComponent(FILE), { method: 'POST', headers: { 'Content-Type': 'text/html; charset=utf-8' }, body: serialize() })
-      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+    var hdrs = { 'Content-Type': 'text/html; charset=utf-8' };
+    if (baseTag) hdrs['If-Match'] = baseTag;
+    fetch('/save?file=' + encodeURIComponent(FILE), { method: 'POST', headers: hdrs, body: serialize() })
+      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, status: r.status, j: j }; }); })
       .then(function (res) {
+        if (res.status === 409) {
+          // someone else (Claude) changed the file since this page loaded. Nothing is lost:
+          // the edits stay in localStorage and re-apply on reload wherever the text still matches.
+          setStatus('A fájl közben megváltozott. Töltsd újra (⌘R): a módosításaid megmaradnak.', true);
+          return;
+        }
         if (!res.ok || !res.j.ok) throw new Error(res.j && res.j.error || 'save failed');
+        baseTag = res.j.etag || baseTag;
         store = {}; localStorage.removeItem(KEY);
         var t = new Date(); var hh = ('0' + t.getHours()).slice(-2), mm = ('0' + t.getMinutes()).slice(-2);
         setStatus('Mentve ' + hh + ':' + mm + ' → ' + FILE, false);
@@ -190,11 +214,39 @@
     frame.contentWindow.location.reload();
   }
 
+  function editableOf(node) {
+    while (node && node.nodeType !== 1) node = node.parentNode;
+    return node ? node.closest('[contenteditable]') : null;
+  }
+  function toggleBold() {
+    if (!doc) return;
+    var sel = doc.getSelection();
+    if (!sel || sel.rangeCount === 0 || sel.isCollapsed) return;
+    var host = editableOf(sel.anchorNode);
+    if (!host) return;
+    doc.execCommand('bold');
+    // Safari/Chrome emit <strong>, <span style="font-weight…"> or <b>; the poster only styles <b>
+    host.querySelectorAll('strong, span[style*="font-weight"]').forEach(function (el) {
+      var w = el.style && el.style.fontWeight;
+      if (el.tagName === 'STRONG' || w === 'bold' || w === '700') {
+        var b = doc.createElement('b'); while (el.firstChild) b.appendChild(el.firstChild); el.replaceWith(b);
+      } else if (w === 'normal' || w === '400') {
+        while (el.firstChild) el.parentNode.insertBefore(el.firstChild, el); el.remove();
+      }
+    });
+    host.querySelectorAll('b b').forEach(function (inner) { while (inner.firstChild) inner.parentNode.insertBefore(inner.firstChild, inner); inner.remove(); });
+    host.normalize();
+    remember(host.dataset.editPath, host.dataset.editBase, host.innerHTML);
+    setStatus('Nincs mentve', true);
+  }
+
   function onKey(e) {
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 's') { e.preventDefault(); save(); }
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'b') { e.preventDefault(); toggleBold(); }
   }
 
   saveBtn.addEventListener('click', save);
+  $('bold').addEventListener('mousedown', function (e) { e.preventDefault(); toggleBold(); });
   $('reset').addEventListener('click', reset);
   document.addEventListener('keydown', onKey);
   window.addEventListener('beforeunload', function (e) { if (dirty) { e.preventDefault(); e.returnValue = ''; } });

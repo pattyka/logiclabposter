@@ -15,13 +15,25 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 ALLOWED = re.compile(r"^poster_\d+\.html$")
 
 
+def etag_of(path):
+    st = os.stat(path)
+    return '"%d-%d"' % (int(st.st_mtime * 1000), st.st_size)
+
+
 class Handler(SimpleHTTPRequestHandler):
     def __init__(self, *a, **kw):
         super().__init__(*a, directory=ROOT, **kw)
 
     def end_headers(self):
-        if self.path.split("?")[0].endswith((".html", "/")):
+        path = self.path.split("?")[0]
+        if path.endswith((".html", "/")):
             self.send_header("Cache-Control", "no-store")
+        name = path.lstrip("/")
+        if ALLOWED.match(name):
+            try:
+                self.send_header("ETag", etag_of(os.path.join(ROOT, name)))
+            except OSError:
+                pass
         super().end_headers()
 
     def log_message(self, fmt, *args):
@@ -47,9 +59,13 @@ class Handler(SimpleHTTPRequestHandler):
         if length <= 0 or length > 5_000_000:
             return self._json(400, {"error": "bad length"})
         html = self.rfile.read(length).decode("utf-8")
+        target = os.path.join(ROOT, name)
+        # optimistic lock: the editor must be saving on top of the version it loaded
+        base = self.headers.get("If-Match")
+        if base and os.path.exists(target) and base != etag_of(target):
+            return self._json(409, {"error": "stale", "current": etag_of(target)})
         if "<html" not in html[:400].lower() or "</html>" not in html[-200:].lower():
             return self._json(400, {"error": "body is not a whole HTML document"})
-        target = os.path.join(ROOT, name)
         backups = os.path.join(ROOT, ".backups")
         os.makedirs(backups, exist_ok=True)
         if os.path.exists(target):
@@ -59,7 +75,7 @@ class Handler(SimpleHTTPRequestHandler):
         with open(tmp, "w", encoding="utf-8") as f:
             f.write(html)
         os.replace(tmp, target)
-        return self._json(200, {"ok": True, "file": name, "bytes": len(html)})
+        return self._json(200, {"ok": True, "file": name, "bytes": len(html), "etag": etag_of(target)})
 
 
 if __name__ == "__main__":
