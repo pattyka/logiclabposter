@@ -384,11 +384,11 @@
         }
 
         /* ── PROTOCOL + NOTE PANELS ── */
-        .proto { display: flex; flex-direction: column; gap: 4px; padding: 3px 2px 2px; }
-        .prow { display: grid; grid-template-columns: 76px 1fr; gap: 8px; border-top: 1px solid var(--line); padding-top: 4px; }
+        .proto { display: flex; flex-direction: column; gap: 3px; padding: 2px 2px 0; }
+        .prow { display: grid; grid-template-columns: 72px 1fr; gap: 8px; border-top: 1px solid var(--line); padding-top: 3px; }
         .prow:first-child { border-top: 0; padding-top: 0; }
         .pk { font-family: var(--mono); font-size: 8.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); padding-top: 2px; }
-        .pv { font: 400 10.5px/1.32 var(--sans); color: var(--dark-soft); }
+        .pv { font: 400 10px/1.3 var(--sans); color: var(--dark-soft); }
         .note { padding: 4px 2px 2px; display: flex; flex-direction: column; gap: 6px; }
         .note-k { font-family: var(--mono); font-size: 8.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--warm); }
         .note p { font: 400 11.5px/1.38 var(--sans); }
@@ -469,7 +469,7 @@
                     <div class="note">
                         <div class="bigstat">
                             <div class="bs"><span class="n">20</span><span class="l">families in the beta</span></div>
-                            <div class="bs"><span class="n">100%</span><span class="l">would still subscribe</span></div>
+                            <div class="bs"><span class="n">100%</span><span class="l">would subscribe again</span></div>
                         </div>
                         <p>Twenty families from those sign-ups used an early build. Their reports converged: the children <b>thought more independently</b>, <b>reached for TikTok less</b>, and offered their own opinions more often.</p>
                     </div>
@@ -483,7 +483,7 @@
                     <p>Whether the app causes the change, and whether the reward sustains engagement without eroding the intrinsic motivation it is meant to build. The next phase answers both.</p>
                 </div>
 
-                <div class="figure-box" style="flex: 1.35;">
+                <div class="figure-box" style="flex: 0 0 auto;">
                     <div class="proto">
                         <div class="prow"><span class="pk">Cohort</span><span class="pv">30 children aged 7–11 plus a matched control group; pre/post design.</span></div>
                         <div class="prow"><span class="pk">Instruments</span><span class="pv">Raven Progressive Matrices (curriculum-independent reasoning); WPPSI-IV subtests indexing executive function.</span></div>
@@ -497,10 +497,10 @@
 
                 <div class="figure-box">
                     <div class="fig-canvas">
-                        <img src="posterimages/05_wef_skills_2030.png" alt="WEF core skills 2030" style="max-height: 125px;">
+                        <img src="posterimages/05_wef_skills_2030.png" alt="WEF core skills 2030" style="max-height: none; width: 100%; height: auto;">
                     </div>
                     <div class="fig-footer">
-                        <b>FIG 9.</b> Employers rank analytical thinking the #1 core skill for 2030 (69%). LogicLab Kids teaches the skill AI erodes, not the curriculum AI now retrieves on demand.
+                        <b>FIG 9.</b> Analytical thinking is the #1 core skill employers name for 2030 (69%): the skill AI erodes, not the curriculum it retrieves.
                     </div>
                 </div>
             </div>
@@ -526,6 +526,7 @@
 
     </div>
 </div>
+
 
 
 
