@@ -220,110 +220,105 @@
             padding: 6px 0 2px;
         }
 
-        .phones-row .dev-ipad {
+        /* ── DEVICE FAMILY ─────────────────────────────────────────────────
+           Three devices, one material, nothing overlapping. iPad on top,
+           iPhone and Android below on a shared baseline, each labelled.
+           Real relative scale (phone ≈ 0.29 of an 11" iPad's width).
+           The iPhone is the photographic frame used across the poster;
+           the iPad and Android shells are drawn in the same dark titanium
+           so the three read as one family, not three sources.           */
+        .fam {
             position: absolute;
-            left: 4px;
-            top: 18px;
-            width: 422px;
-            height: auto;
-            z-index: 1;
-            filter: drop-shadow(0 5px 12px rgba(17, 24, 39, 0.14));
+            left: 0; right: 0; top: 0; bottom: 0;
         }
 
-        .phones-row .dev-phone {
+        .shell {
             position: absolute;
-            left: 66px;
-            bottom: 24px;
-            height: 278px;
-            width: auto;
-            z-index: 3;
-            filter: drop-shadow(0 6px 14px rgba(17, 24, 39, 0.18));
-        }
-
-        /* one ground plane under the two phones binds the family together */
-        .phones-row .ground {
-            position: absolute;
-            left: 40px;
-            right: 40px;
-            bottom: 14px;
-            height: 22px;
-            z-index: 0;
-            background: radial-gradient(ellipse at center, rgba(17, 24, 39, 0.16) 0%, rgba(17, 24, 39, 0) 68%);
-        }
-
-        /* Android has no shipped screenshot yet, so the shell is drawn:
-           flatter body, squarer corners and a punch-hole instead of an
-           island. It must not be mistaken for an iPhone. */
-        .dev-android {
-            position: absolute;
-            left: 236px;
-            bottom: 24px;
-            width: 130px;
-            height: 278px;
-            z-index: 2;
-            border-radius: 22px;
-            padding: 5px;
-            background: linear-gradient(180deg, #2B2D33 0%, #15161A 55%, #1E2025 100%);
+            background: linear-gradient(160deg, #33353B 0%, #1A1B1F 45%, #222328 100%);
             box-shadow:
-                inset 0 0 0 1px rgba(255, 255, 255, 0.10),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.11),
+                inset 0 0 0 2px rgba(0, 0, 0, 0.55),
                 0 6px 14px rgba(17, 24, 39, 0.18);
         }
-
-        .dev-android .hole {
+        .shell .scr {
             position: absolute;
-            top: 11px;
-            left: 50%;
-            margin-left: -3.5px;
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background: #050507;
-            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06);
-            z-index: 2;
-        }
-
-        .dev-android .scr {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            border-radius: 18px;
             overflow: hidden;
             background: #EFE7D2;
         }
-
-        /* stand-in: the iOS reward screen with its status bar cropped away.
-           Replace with an Android emulator capture when one exists. */
-        .dev-android .scr img {
+        .shell .scr img {
             position: absolute;
-            left: 0;
-            top: -14px;
-            width: 100%;
-            height: calc(100% + 14px);
+            left: 0; top: 0;
+            width: 100%; height: 100%;
             object-fit: cover;
             object-position: top center;
+            display: block;
         }
 
-        .phone-badge {
+        /* iPad 11", landscape */
+        .shell.ipad {
+            left: 37px; top: 4px;
+            width: 356px; height: 278px;
+            border-radius: 19px;
+        }
+        .shell.ipad .scr {
+            left: 11px; top: 11px; right: 11px; bottom: 11px;
+            border-radius: 9px;
+        }
+        .shell.ipad .cam {
             position: absolute;
-            bottom: 0;
-            z-index: 3;
+            top: 4px; left: 50%;
+            width: 4px; height: 4px;
+            margin-left: -2px;
+            border-radius: 50%;
+            background: #0A0A0C;
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.07);
+        }
+
+        /* iPhone — photographic frame, same height as the Android shell */
+        .fam .dev-phone {
+            position: absolute;
+            left: 93px; bottom: 18px;
+            height: 214px; width: auto;
+            filter: drop-shadow(0 6px 14px rgba(17, 24, 39, 0.18));
+        }
+
+        /* Android — flatter body, squarer corners, punch-hole */
+        .shell.android {
+            left: 232px; bottom: 18px;
+            width: 106px; height: 214px;
+            border-radius: 17px;
+        }
+        .shell.android .scr {
+            left: 4px; top: 4px; right: 4px; bottom: 4px;
+            border-radius: 14px;
+        }
+        /* stand-in: the iOS reward screen with its status bar cropped away.
+           Replace with an Android emulator capture when one exists. */
+        .shell.android .scr img { top: -11px; height: calc(100% + 11px); }
+        .shell.android .hole {
+            position: absolute;
+            top: 9px; left: 50%;
+            width: 6px; height: 6px;
+            margin-left: -3px;
+            border-radius: 50%;
+            background: #050507;
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.07);
+            z-index: 2;
         }
 
         .dev-label {
             position: absolute;
-            z-index: 4;
             font-family: var(--mono);
-            font-size: 8.5px;
+            font-size: 9px;
             font-weight: 600;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
+            letter-spacing: 0.06em;
             color: var(--dark-soft);
             opacity: 0.75;
             text-align: center;
         }
-        .dev-label.l-ipad { top: 2px; right: 8px; }
-        .dev-label.l-iphone { bottom: 4px; left: 66px; width: 136px; }
-        .dev-label.l-android { bottom: 4px; left: 236px; width: 130px; }
+        .dev-label.l-ipad    { top: 286px; left: 37px;  width: 356px; }
+        .dev-label.l-iphone  { bottom: 2px; left: 93px;  width: 108px; }
+        .dev-label.l-android { bottom: 2px; left: 232px; width: 106px; }
 
         .phone-badge {
             font-family: var(--mono);
@@ -679,16 +674,18 @@
                 <div class="stage-title">Interactive Child Experience · iPadOS, iOS &amp; Android</div>
 
                 <div class="phones-row">
-                    <div class="ground"></div>
-                    <img class="dev-ipad" src="posterimages/ipad.png" alt="LogicLab Kids on iPad">
-                    <img class="dev-phone" src="posterimages/framed2/home.png" alt="LogicLab Kids on iPhone">
-                    <div class="dev-android">
-                        <span class="hole"></span>
-                        <div class="scr"><img src="gallery/img/app_reward_complete.png" alt=""></div>
+                    <div class="fam">
+                        <div class="shell ipad"><span class="cam"></span>
+                            <div class="scr"><img src="posterimages/framed2/ipad_screen.png" alt="LogicLab Kids on iPad"></div>
+                        </div>
+                        <img class="dev-phone" src="posterimages/framed2/home.png" alt="LogicLab Kids on iPhone">
+                        <div class="shell android"><span class="hole"></span>
+                            <div class="scr"><img src="gallery/img/app_reward_complete.png" alt=""></div>
+                        </div>
+                        <div class="dev-label l-ipad">iPad</div>
+                        <div class="dev-label l-iphone">iPhone</div>
+                        <div class="dev-label l-android">Android</div>
                     </div>
-                    <div class="dev-label l-ipad">iPad</div>
-                    <div class="dev-label l-iphone">iPhone</div>
-                    <div class="dev-label l-android">Android</div>
                 </div>
 
                 <div class="premack-box">
