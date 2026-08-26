@@ -305,9 +305,8 @@
             left: 5px; top: 5px; right: 5px; bottom: 5px;
             border-radius: 16px;
         }
-        /* stand-in: the iOS reward screen with its status bar cropped away.
-           Replace with an Android emulator capture when one exists. */
-        .shell.android .scr img { top: -13px; height: calc(100% + 13px); }
+        /* a real capture from the Android build, status bar included */
+        .shell.android .scr img { top: 0; height: 100%; }
         .shell.android .hole {
             position: absolute;
             top: 11px; left: 50%;
@@ -700,7 +699,7 @@
                         </div>
                         <img class="dev-phone" src="posterimages/framed2/home.png" alt="LogicLab Kids on iPhone">
                         <div class="shell android"><span class="hole"></span>
-                            <div class="scr"><img src="gallery/img/app_reward_complete.png" alt=""></div>
+                            <div class="scr"><img src="posterimages/android_home.png" alt="LogicLab Kids on Android"></div>
                         </div>
                         <div class="dev-label l-ipad">iPad</div>
                         <div class="dev-label l-iphone">iPhone</div>
