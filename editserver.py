@@ -26,8 +26,11 @@ class Handler(SimpleHTTPRequestHandler):
 
     def end_headers(self):
         path = self.path.split("?")[0]
-        if path.endswith((".html", "/")):
-            self.send_header("Cache-Control", "no-store")
+        # The posters and their screenshots are replaced constantly and keep the
+        # same filenames, so nothing here may be cached: a stale PNG looks
+        # exactly like a change that never happened.
+        if path.endswith((".html", "/", ".png", ".jpg", ".jpeg", ".svg", ".css", ".js")):
+            self.send_header("Cache-Control", "no-store, must-revalidate")
         name = path.lstrip("/")
         if ALLOWED.match(name):
             try:
