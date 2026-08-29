@@ -483,6 +483,25 @@
 
         /* right — three stages, overlapped and stepping up, all cropped by the edge */
         .dev-fan { position: absolute; inset: 0; }
+
+        /* The fan runs past the bottom edge on purpose: cropping is what lets
+           the screens stay large enough to read. This fades the cut into the
+           panel so it reads as a deliberate edge, not a clipped image. */
+        .dev-fan::after {
+            content: "";
+            position: absolute;
+            left: 0; right: 0; bottom: 0;
+            height: 96px;
+            z-index: 4;
+            pointer-events: none;
+            background: linear-gradient(
+                to bottom,
+                rgba(247, 240, 222, 0) 0%,
+                rgba(247, 240, 222, 0.55) 45%,
+                rgba(247, 240, 222, 0.93) 78%,
+                var(--cream-light) 100%
+            );
+        }
         .dev-fan figure { position: absolute; width: 215px; }
         .dev-fan figure img { position: static; display: block; width: 100%; }
 
@@ -637,7 +656,7 @@
                 <div class="logo-wrap">
                     <img src="logo_logiclabkids.png" alt="LogicLab Kids">
                 </div>
-                <h1>Experimental and method</h1>
+                <h1>What I built</h1>
             </div>
             <div class="hdr-badge">LogicLab Kids · EUCYS</div>
         </div>
@@ -651,7 +670,7 @@
                     <span class="stitle" style="margin-bottom: 0;">Native <span class="hl">Platforms</span></span>
                     <span class="pillar-num"><br></span>
                 </div>
-                <p>Native <b>SwiftUI (MVVM)</b> on iOS, live on TestFlight; <b>Kotlin Compose</b> on Android. All 36 lessons ship as bundled JSON, so a lesson runs end to end with the network off; the cloud holds only identity, progress and the tutor.</p>
+                <p>I love great design. Especially that "native look". So i built 2 apps, 1 for iOS and one for android. Seperate, partially for the looks, and partially so both can lock the screen from the core.<br><br><br></p>
             </div>
 
             <!-- Pillar 2 -->
@@ -660,7 +679,7 @@
                     <span class="stitle" style="margin-bottom: 0;">Stage <span class="hl">Grammar</span></span>
                     <span class="pillar-num"><br></span>
                 </div>
-                <p><b>6 courses × 6 lessons × 5 stages = 180 stages.</b> Every lesson opens on a story and closes on the AI challenge; between them, three tasks drawn from five types: Quiz, Spot-It, Sort-It, Build-It, Grid. A miss costs nothing: after two, the explanation is shown.</p>
+                <p><b>6 courses × 6 lessons × 5 stages = 180 stages.</b> Every lesson opens on a story and closes on the AI challenge; between them, three tasks drawn from five types: Quiz, Spot-It, Sort-It, Build-It, Grid. If the child guesses randomly they don't get screen time:(<br><br></p>
             </div>
 
             <!-- Pillar 3 -->
@@ -669,7 +688,7 @@
                     <span class="stitle" style="margin-bottom: 0;">Premack <span class="hl-warm">Contingency</span></span>
                     <span class="pillar-num" style="color: var(--warm);"><br></span>
                 </div>
-                <p>Premack (1959): the higher-probability behaviour reinforces the lower one. A solved lesson pays <b>+5 min and 20–25 pts</b> into a ledger the child spends inside parent-allowed hours; an Early Bird deadline set by the parent multiplies the payout.</p>
+                <p>Premack (1959): The higher-probability behaviour reinforces the lower one. A solved lesson pays <b>+5 min and 20–25 pts</b> into a ledger the child spends inside parent-allowed hours; so a child can spend their screentime instantly on TikTok, or save up to watch a moview on the weekend.</p>
             </div>
 
             <!-- Pillar 4 -->
@@ -678,7 +697,7 @@
                     <span class="stitle" style="margin-bottom: 0;">Constrained <span class="hl">Gemini</span></span>
                     <span class="pillar-num"><br></span>
                 </div>
-                <p>The challenge is the app’s only AI surface and always the last stage. The system prompt forbids stating the answer and caps every reply at three sentences; a low token ceiling stops it lecturing. The child must make at least three moves.</p>
+                <p>The challenge is the app’s only AI surface and always the last stage. The system prompt forbids stating the answer and caps every reply at three sentences, here the child argues against the ai, which then fairly judges the argument.<br><br></p>
             </div>
 
         </div>
@@ -707,7 +726,7 @@
 
                 <div class="premack-box">
                     <h4>Why the lock is in the OS</h4>
-                    <p>Making entertainment contingent on reasoning only works if it cannot be negotiated. So the lock and the key are both in iOS, not in the app, so a tech sawy 15 year old cant hack the system without him knowing the password set by the parent.</p>
+                    <p>Making entertainment contingent on reasoning only works if it cannot be negotiated. So the lock and the key are both in the OS, not in the app, so a tech savvy 15 year old can't hack the system without knowing the password set by the parent.</p>
                 </div>
             </div>
 
@@ -723,14 +742,13 @@
                             <img class="dev" src="posterimages/framed2/parent.png" alt="Screen-time settings">
                         </div>
                         <div class="spec-list">
-                            <div><b>Daily limit</b><span>a hard ceiling on reward minutes</span></div>
+                            <div><b>Daily limit</b><span>the base limit</span></div>
                             <div><b>Allowed hours</b><span>when the minutes may be spent</span></div>
-                            <div><b>App whitelist</b><span>which apps the shield lifts on</span></div>
-                            <div><b>Per child</b><span>own login, own data only</span></div>
+                            <div><b>App whitelist</b><span>which apps the shield lifts on, so the child can still call their parent in an emergency, or do school work</span></div>
+                            <div><b>Per child</b><span>own limits, own data</span></div>
                         </div>
                     </div>
-                    <div class="fig-footer">The parent sets the economy once: daily ceiling, allowed window, whitelisted apps, one account per child. From then on FamilyControls enforces it and the app only keeps the ledger. Screen: shipped iOS build.
-                    </div>
+                    <div class="fig-footer">The parent sets the economy once: daily ceiling, allowed window, whitelisted apps, one account per child. From then on FamilyControls enforces it and the app only keeps the ledger.</div>
                 </div>
 
                 <div class="info-panel accent">
@@ -753,7 +771,7 @@
                             <figure class="s3"><img class="dev" src="posterimages/framed2/feedback.png" alt="Feedback stage"></figure>
                         </div>
                     </div>
-                    <div class="fig-footer warm">The “Daily Patterns” lesson: the concept arrives inside a scene the child knows, becomes a task the child must solve, and a wrong answer ends in an explanation, never a penalty. A socratic AI chat comes last to make sure the child understood the concept, and isnt just mashing buttons.</div>
+                    <div class="fig-footer warm">The “Daily Patterns” lesson: the concept arrives inside a scene the child knows, becomes a task the child must solve, and a wrong answer ends in an explanation, never a penalty. A socratic AI chat comes last to make sure the child understood the concept, and isn't just mashing buttons.</div>
                 </div>
 
                 <div class="info-panel warm">
@@ -819,6 +837,9 @@
     });
 })();
 </script>
+
+
+
 
 
 </body></html>
