@@ -369,9 +369,17 @@
             opacity: 1;
         }
 
+        /* Print at true physical size. The posters are drawn at 10 px per cm,
+           but 1 cm is 37.7952755 CSS px at 96 dpi, so without this scale the
+           artwork lands in the top-left quarter of the sheet. */
         @media print {
-            .poster-wrapper { padding: 0; background: #fff; }
-            .poster { box-shadow: none; }
+            html, body { background: #fff; margin: 0; }
+            .poster-wrapper { padding: 0; background: #fff; display: block; min-height: 0; }
+            .poster {
+                box-shadow: none;
+                transform: scale(3.77952755);
+                transform-origin: top left;
+            }
         }
     </style>
 </head>

@@ -639,9 +639,12 @@
             opacity: 1;
         }
 
+        /* Print at true physical size. The posters are drawn at 10 px per cm,
+           but 1 cm is 37.7952755 CSS px at 96 dpi, so without this scale the
+           artwork lands in the top-left quarter of the sheet. */
         @media print {
-            html, body { background: #fff; }
-            .viewport { --fit: 1 !important; width: 1700px; height: 1000px; margin: 0; }
+            html, body { background: #fff; margin: 0; }
+            .viewport { --fit: 3.77952755 !important; width: 1700px; height: 1000px; margin: 0; }
             .poster { box-shadow: none; }
         }
     </style>
@@ -790,9 +793,9 @@
                 <div class="strip-sub">6 courses across 6 thinking domains</div>
             </div>
             <div class="strip-item">
-                <div class="strip-num">+5 min</div>
+                <div class="strip-num">+5 minutes</div>
                 <div class="strip-label">Earned Screen Time</div>
-                <div class="strip-sub">20–25 pts per solved lesson</div>
+                <div class="strip-sub">The parent can change this</div>
             </div>
             <div class="strip-item">
                 <div class="strip-num">180</div>
@@ -837,6 +840,7 @@
     });
 })();
 </script>
+
 
 
 
