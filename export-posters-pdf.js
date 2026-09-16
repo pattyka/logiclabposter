@@ -13,13 +13,19 @@ const path = require('path');
 const fs = require('fs');
 const os = require('os');
 
-const CHROME = path.join(
-  os.homedir(),
-  'Library/Caches/ms-playwright/chromium-1237/chrome-mac-arm64',
+// newest Playwright Chromium on disk (the build number changes with every
+// Playwright update, so it is discovered rather than pinned)
+const CACHE = path.join(os.homedir(), 'Library/Caches/ms-playwright');
+const BUILD = fs.readdirSync(CACHE)
+  .filter(d => /^chromium-\d+$/.test(d))
+  .sort((a, b) => +b.split('-')[1] - +a.split('-')[1])[0];
+const CHROME = BUILD && path.join(
+  CACHE, BUILD, 'chrome-mac-arm64',
   'Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing'
 );
 
-const OUT_DIR = path.resolve(__dirname, 'pdf');
+// output folder: first CLI argument, default ./pdf
+const OUT_DIR = path.resolve(process.argv[2] || path.join(__dirname, 'pdf'));
 
 const POSTERS = [
   { src: 'poster_1.html', out: 'LogicLabKids_P1_Introduction_70x100.pdf' },
@@ -28,8 +34,8 @@ const POSTERS = [
 ];
 
 (async () => {
-  if (!fs.existsSync(CHROME)) {
-    console.error('Chrome for Testing not found at:\n  ' + CHROME);
+  if (!CHROME || !fs.existsSync(CHROME)) {
+    console.error('Chrome for Testing not found under:\n  ' + CACHE);
     process.exit(1);
   }
   fs.mkdirSync(OUT_DIR, { recursive: true });
